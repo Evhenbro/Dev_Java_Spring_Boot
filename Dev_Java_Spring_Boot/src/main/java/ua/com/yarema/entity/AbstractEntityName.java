@@ -13,6 +13,14 @@ public abstract class AbstractEntityName {
 	private Integer id;
 	
 	private String name;
+	
+	public AbstractEntityName(Integer id, String name) {
+ 		this.id = id;
+		this.name = name;
+	}
+
+	public AbstractEntityName() {
+	}
 
 	public Integer getId() {
 		return id;
