@@ -2,6 +2,7 @@ package ua.com.yarema.entity;
 
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
@@ -22,6 +23,7 @@ public class CommentToCafes extends AbstractEntity {
 	
 	private int hierarchy;
 	
+	@Column(name="_like")
 	private int like;
 	
 	private int dislike;
