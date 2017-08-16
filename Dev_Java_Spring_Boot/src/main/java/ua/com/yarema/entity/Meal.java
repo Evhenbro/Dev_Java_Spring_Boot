@@ -42,7 +42,7 @@ public class Meal extends AbstractEntity {
 	private Cafe cafe;
 	
 	@OneToMany(mappedBy="meal")
-	private List<CommentToMeals> commentToMeals = new ArrayList<>();
+	private List<Comment> comments = new ArrayList<>();
 
 	public String getTitle() {
 		return title;
@@ -124,12 +124,13 @@ public class Meal extends AbstractEntity {
 		this.cafe = cafe;
 	}
 
-	public List<CommentToMeals> getCommentToMeals() {
-		return commentToMeals;
+	public List<Comment> getComments() {
+		return comments;
 	}
 
-	public void setCommentToMeals(List<CommentToMeals> commentToMeals) {
-		this.commentToMeals = commentToMeals;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
+
 	
 }

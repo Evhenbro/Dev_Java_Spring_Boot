@@ -1,6 +1,8 @@
 package ua.com.yarema.model.view;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class CafeView {
 
@@ -27,6 +29,23 @@ public class CafeView {
 	private String open;
 	
 	private String close;
+	
+	public CafeView(Integer id, BigDecimal rate, String name, String photoUrl, int version, String address,
+			String fullDescription, String type, String phone, String email, LocalTime open, LocalTime close) {
+		super();
+		this.id = id;
+		this.rate = rate;
+		this.name = name;
+		this.photoUrl = photoUrl;
+		this.version = version;
+		this.address = address;
+		this.fullDescription = fullDescription;
+		this.type = type;
+		this.phone = phone;
+		this.email = email;
+		this.open = open.format(DateTimeFormatter.ofPattern("HH:mm"));
+		this.close = close.format(DateTimeFormatter.ofPattern("HH:mm"));
+	}
 
 	public Integer getId() {
 		return id;
@@ -122,6 +141,13 @@ public class CafeView {
 
 	public void setClose(String close) {
 		this.close = close;
+	}
+
+	@Override
+	public String toString() {
+		return "CafeView [id=" + id + ", rate=" + rate + ", name=" + name + ", photoUrl=" + photoUrl + ", version="
+				+ version + ", address=" + address + ", fullDescription=" + fullDescription + ", type=" + type
+				+ ", phone=" + phone + ", email=" + email + ", open=" + open + ", close=" + close + "]";
 	}
 	
 }

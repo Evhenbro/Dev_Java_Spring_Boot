@@ -51,7 +51,7 @@ public class Cafe extends AbstractEntityName {
 	private List<Meal> meals = new ArrayList<>();
 	
 	@OneToMany(mappedBy="cafe")
-	private List<CommentToCafes> commentToCafes = new ArrayList<>();
+	private List<Comment> comments = new ArrayList<>();
 	
 	public BigDecimal getRate() {
 		return rate;
@@ -131,11 +131,11 @@ public class Cafe extends AbstractEntityName {
 	public void setMeals(List<Meal> meals) {
 		this.meals = meals;
 	}
-	public List<CommentToCafes> getCommentToCafes() {
-		return commentToCafes;
+	public List<Comment> getComments() {
+		return comments;
 	}
-	public void setCommentToCafes(List<CommentToCafes> commentToCafes) {
-		this.commentToCafes = commentToCafes;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 }

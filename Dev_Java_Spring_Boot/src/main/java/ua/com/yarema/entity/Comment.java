@@ -1,25 +1,31 @@
 package ua.com.yarema.entity;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="comment_cafes")
-public class CommentToCafes extends AbstractEntity {
+@Table(name="comment")
+public class Comment extends AbstractEntity {
 	
-	@Lob
+	@Column(length=1023)
 	private String message;
 	
 	private LocalTime time;
 	
-	private Integer parentCommentId;
+	@ManyToOne
+	private Comment parentComment;
+	
+	@OneToMany(mappedBy="parentComment")
+	private List<Comment> childComment = new ArrayList<>();
 	
 	private int hierarchy;
 	
@@ -33,6 +39,9 @@ public class CommentToCafes extends AbstractEntity {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Cafe cafe;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Meal meal;
 
 	public String getMessage() {
 		return message;
@@ -50,12 +59,20 @@ public class CommentToCafes extends AbstractEntity {
 		this.time = time;
 	}
 
-	public Integer getParentCommentId() {
-		return parentCommentId;
+	public Comment getParentComment() {
+		return parentComment;
 	}
 
-	public void setParentCommentId(Integer parentCommentId) {
-		this.parentCommentId = parentCommentId;
+	public void setParentComment(Comment parentComment) {
+		this.parentComment = parentComment;
+	}
+
+	public List<Comment> getChildComment() {
+		return childComment;
+	}
+
+	public void setChildComment(List<Comment> childComment) {
+		this.childComment = childComment;
 	}
 
 	public int getHierarchy() {
@@ -82,6 +99,14 @@ public class CommentToCafes extends AbstractEntity {
 		this.dislike = dislike;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Cafe getCafe() {
 		return cafe;
 	}
@@ -90,12 +115,12 @@ public class CommentToCafes extends AbstractEntity {
 		this.cafe = cafe;
 	}
 
-	public User getUser() {
-		return user;
+	public Meal getMeal() {
+		return meal;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMeal(Meal meal) {
+		this.meal = meal;
 	}
 	
 }

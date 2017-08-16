@@ -34,10 +34,7 @@ public class User extends AbstractEntity {
 	private String email;
 	
 	@OneToMany(mappedBy="user")
-	private List<CommentToMeals> commentToMeals = new ArrayList<>();
-	
-	@OneToMany(mappedBy="user")
-	private List<CommentToCafes> commentToCafes = new ArrayList<>();
+	private List<Comment> comments = new ArrayList<>();
 
 	public String getLogin() {
 		return login;
@@ -111,20 +108,12 @@ public class User extends AbstractEntity {
 		this.email = email;
 	}
 
-	public List<CommentToMeals> getCommentToMeals() {
-		return commentToMeals;
+	public List<Comment> getComments() {
+		return comments;
 	}
 
-	public void setCommentToMeals(List<CommentToMeals> commentToMeals) {
-		this.commentToMeals = commentToMeals;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
-	public List<CommentToCafes> getCommentToCafes() {
-		return commentToCafes;
-	}
-
-	public void setCommentToCafes(List<CommentToCafes> commentToCafes) {
-		this.commentToCafes = commentToCafes;
-	}
-	
 }
