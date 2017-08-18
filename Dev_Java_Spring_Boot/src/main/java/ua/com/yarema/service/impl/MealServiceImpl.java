@@ -1,19 +1,61 @@
 package ua.com.yarema.service.impl;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ua.com.yarema.entity.Meal;
+import ua.com.yarema.model.view.MealView;
 import ua.com.yarema.repository.MealRepository;
 import ua.com.yarema.service.MealService;
 
 @Service
-public class MealServiceImpl extends CrudServiceImpl<Meal, Integer> implements MealService {
+public class MealServiceImpl implements MealService {
 
-	@Autowired
+	private final MealRepository repository;
+
 	public MealServiceImpl(MealRepository repository) {
-		super(repository);
+		this.repository = repository;
+	}
+
+	@Override
+	public List<String> findAllCuisines() {
+		return repository.findAllCuisines();
+	}
+
+	@Override
+	public List<String> findAllIngredients() {
+		return repository.findAllIngredients();
+	}
+
+	@Override
+	public List<String> findAllCafes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<MealView> findAllViews() {
+		List<MealView> views = repository.findAllViews();
+		views.forEach(this::loadIngredients);
+		return null;
+	}
+
+	private void loadIngredients(MealView view) {
+		view.setIngredients(repository.finfAllIngredientsByMealId(view.getId()));
+	}
+	
+	@Override
+	public void save(Meal meal) {
+		repository.save(meal);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		repository.delete(id);
 	}
 
 }

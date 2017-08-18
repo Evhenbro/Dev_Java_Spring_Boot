@@ -1,7 +1,22 @@
 package ua.com.yarema.service;
 
-import ua.com.yarema.entity.Meal;
+import java.util.List;
 
-public interface MealService extends CrudService<Meal, Integer> {
+import ua.com.yarema.entity.Meal;
+import ua.com.yarema.model.view.MealView;
+
+public interface MealService {
+	
+	List<String> findAllCuisines();
+	
+	List<String> findAllIngredients();
+	
+	List<String> findAllCafes();
+	
+	List<MealView> findAllViews();
+	
+	void save(Meal meal);
+	
+	void delete(Integer id);
 
 }

@@ -9,5 +9,8 @@
 <body>
 	<h2>Admin</h2>
 	<a href="/admin/cuisine">Cuisine</a>
+	<a href="/admin/ingredient">Ingredient</a>
+	<a href="/admin/table">Table</a>
+	<a href="/admin/meal">Meal</a>
 </body>
 </html>

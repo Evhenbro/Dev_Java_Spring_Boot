@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<title>Cuisine</title>
+<title>Ingredient</title>
 </head>
 <body>
 	<div class="container">
@@ -17,12 +17,12 @@
 						<th class="text-center">Name</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="cuisine" items="${cuisines}">
+					<c:forEach var="ingredient" items="${ingredients}">
 						<tr>
-							<td class="text-center">${cuisine.name}</td>
+							<td class="text-center">${ingredient.name}</td>
 							<td class="text-center">
-								<a href="/admin/cuisine/update/${cuisine.id}" type="button" class="btn btn-outline-success btn-sm">Update</a>
-								<a href="/admin/cuisine/delete/${cuisine.id}" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/ingredient/update/${ingredient.id}" type="button" class="btn btn-outline-success btn-sm">Update</a>
+								<a href="/admin/ingredient/delete/${ingredient.id}" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

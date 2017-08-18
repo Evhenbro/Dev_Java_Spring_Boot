@@ -7,29 +7,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.com.yarema.service.CuisineService;
+import ua.com.yarema.service.IngredientService;
 
 @Controller
-@RequestMapping("/admin/cuisine")
-public class AdminCuisineController {
+@RequestMapping("/admin/ingredient")
+public class AdminIngredientController {
 	
-	private final CuisineService service;
+	private final IngredientService service;
 	
 	@Autowired
-	public AdminCuisineController(CuisineService service) {
+	public AdminIngredientController(IngredientService service) {
 		this.service = service;
 	}
 	
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("cuisines", service.findAll());
-		return "cuisine";
+		model.addAttribute("ingredients", service.findAll());
+		return "ingredient";
 	}
-	
+
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
-		return "redirect:/admin/cuisine";
+		return "redirect:/admin/ingredient";
 	}
 	
+
 }
