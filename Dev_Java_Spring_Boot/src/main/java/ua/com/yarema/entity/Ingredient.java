@@ -11,9 +11,16 @@ import javax.persistence.Table;
 @Table(name="ingredient")
 public class Ingredient extends AbstractEntityName {
 	
+	public Ingredient() {
+	}
+
+	public Ingredient(String name) {
+		super(name);
+	}
+
 	@ManyToMany(mappedBy="ingredients")
 	private List<Meal> meals = new ArrayList<>();
-
+	
 	public List<Meal> getMeals() {
 		return meals;
 	}

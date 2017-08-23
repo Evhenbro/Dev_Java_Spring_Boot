@@ -5,8 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import ua.com.yarema.entity.Ingredient;
 import ua.com.yarema.service.IngredientService;
 
 @Controller
@@ -32,5 +35,9 @@ public class AdminIngredientController {
 		return "redirect:/admin/ingredient";
 	}
 	
-
+	@PostMapping
+	public String save(@RequestParam String name) {
+		service.save(new Ingredient(name));
+		return "redirect:/admin/ingredient";
+	}
 }

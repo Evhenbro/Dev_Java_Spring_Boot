@@ -6,6 +6,13 @@ import javax.persistence.MappedSuperclass;
 public abstract class AbstractEntityName extends AbstractEntity {
 	
 	private String name;
+	
+	public AbstractEntityName() {
+	}
+
+	public AbstractEntityName(String name) {
+		this.name = name;
+	}
 
 	public String getName() {
 		return name;

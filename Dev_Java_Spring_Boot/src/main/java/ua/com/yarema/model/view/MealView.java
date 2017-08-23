@@ -19,12 +19,14 @@ public class MealView {
 	
 	private String cuisine;
 	
+	private String cafe;
+	
 	private int weight;
 	
 	private List<String> ingredients;
 
 	public MealView(Integer id, String title, String description, BigDecimal price, String photoUrl, int version,
-			String cuisine, int weight) {
+			String cuisine, String cafe, int weight) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -32,6 +34,7 @@ public class MealView {
 		this.photoUrl = photoUrl;
 		this.version = version;
 		this.cuisine = cuisine;
+		this.cafe = cafe;
 		this.weight = weight;
 	}
 
@@ -89,6 +92,14 @@ public class MealView {
 
 	public void setCuisine(String cuisine) {
 		this.cuisine = cuisine;
+	}
+
+	public String getCafe() {
+		return cafe;
+	}
+
+	public void setCafe(String cafe) {
+		this.cafe = cafe;
 	}
 
 	public int getWeight() {

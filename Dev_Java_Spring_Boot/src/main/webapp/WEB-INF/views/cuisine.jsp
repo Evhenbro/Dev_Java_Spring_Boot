@@ -12,6 +12,23 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
+				<form action="/admin/cuisine" method="POST">
+					<div class="form-group row">
+						<label class="col-2 col-form-label" for="name">Name:</label>
+						<div class="col-10">
+							<input class="form-control" id="name" name="name">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-10 mr-left">
+							<button class="btn btn-sm btn-outline-success">Save</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Name</th>
@@ -19,10 +36,10 @@
 					</tr>
 					<c:forEach var="cuisine" items="${cuisines}">
 						<tr>
-							<td class="text-center">${cuisine.name}</td>
+							<td>${cuisine.name}</td>
 							<td class="text-center">
-								<a href="/admin/cuisine/update/${cuisine.id}" type="button" class="btn btn-outline-success btn-sm">Update</a>
-								<a href="/admin/cuisine/delete/${cuisine.id}" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/cuisine/update/${cuisine.id}" class="btn btn-sm btn-outline-warning">Update</a>
+								<a href="/admin/cuisine/delete/${cuisine.id}" class="btn btn-sm btn-outline-danger">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

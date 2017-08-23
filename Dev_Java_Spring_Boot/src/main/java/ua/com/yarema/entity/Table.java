@@ -15,6 +15,15 @@ public class Table extends AbstractEntity {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Cafe cafe;
 
+	public Table() {
+	}
+	
+	public Table(int countOfPeople, boolean isFree, Cafe cafe) {
+		this.countOfPeople = countOfPeople;
+		this.isFree = isFree;
+		this.cafe = cafe;
+	}
+
 	public int getCountOfPeople() {
 		return countOfPeople;
 	}
@@ -23,11 +32,11 @@ public class Table extends AbstractEntity {
 		this.countOfPeople = countOfPeople;
 	}
 
-	public boolean isFree() {
+	public boolean getIsFree() {
 		return isFree;
 	}
 
-	public void setFree(boolean isFree) {
+	public void setIsFree(boolean isFree) {
 		this.isFree = isFree;
 	}
 

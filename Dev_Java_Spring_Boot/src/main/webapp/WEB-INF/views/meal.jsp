@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -58,6 +58,16 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
+						<div class="col-10">
+							<select class="form-control" id="cafe" name="cafe">
+								<c:forEach var="cafe" items="${cafes}">
+									<option value="${cafe}">${cafe}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
 						<div class="col-10 mr-left">
 							<button class="btn btn-sm btn-outline-success">Save</button>
 						</div>
@@ -73,6 +83,7 @@
 						<th class="text-center">Description</th>
 						<th class="text-center">Price</th>
 						<th class="text-center">Cuisine</th>
+						<th class="text-center">Cafe</th>
 						<th class="text-center">Weight</th>
 						<th class="text-center">Ingredients</th>
 						<th class="text-center">Options</th>
@@ -83,15 +94,16 @@
 							<td>${meal.description}</td>
 							<td>${meal.price}</td>
 							<td>${meal.cuisine}</td>
+							<td>${meal.cafe}</td>
 							<td>${meal.weight}</td>
 							<td>
-								<c:forEach var="indredient" items="${meal.ingredients}">
-									${ingredient}									
+								<c:forEach var="ingredient" items="${meal.ingredients}">
+									${ingredient} 
 								</c:forEach>
 							</td>
 							<td class="text-center">
-								<a href="/admin/meal/update/${cuisine.id}" class="btn btn-outline-warning btn-sm">Update</a>
-								<a href="/admin/meal/delete/${cuisine.id}" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/meal/update/${meal.id}" class="btn btn-outline-warning btn-sm">Update</a>
+								<a href="/admin/meal/delete/${meal.id}" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

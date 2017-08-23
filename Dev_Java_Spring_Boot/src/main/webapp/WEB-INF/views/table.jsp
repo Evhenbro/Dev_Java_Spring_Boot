@@ -12,6 +12,39 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
+				<form action="/admin/cuisine" method="POST">
+					<div class="form-group row">
+						<label class="col-2 col-form-label" for="countOfPeople">Count Of People:</label>
+						<div class="col-10">
+							<input class="form-control" id="countOfPeople" name="countOfPeople">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label" for="isFree">Free:</label>
+						<div class="col-10">
+							<input class="form-control" id="isFree" name="isFree">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
+						<div class="col-10">
+							<select class="form-control" id="cafe" name="cafe">
+								<c:forEach var="cafe" items="${cafes}">
+									<option value="${cafe}">${cafe}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-10 mr-left">
+							<button class="btn btn-sm btn-outline-success">Save</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Count Of People</th>
@@ -21,12 +54,12 @@
 					</tr>
 					<c:forEach var="table" items="${tables}">
 						<tr>
-							<td class="text-center">${table.countOfPeople}</td>
-							<td class="text-center">${table.isFree}</td>
-							<td class="text-center">${table.cafe}</td>
+							<td>${table.countOfPeople}</td>
+							<td>${table.isFree}</td>
+							<td>${table.cafe}</td>
 							<td class="text-center">
-								<a href="/admin/table/update/${table.id}" type="button" class="btn btn-outline-success btn-sm">Update</a>
-								<a href="/admin/table/delete/${table.id}" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/table/update/${table.id}" class="btn btn-outline-success btn-sm">Update</a>
+								<a href="/admin/table/delete/${table.id}" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

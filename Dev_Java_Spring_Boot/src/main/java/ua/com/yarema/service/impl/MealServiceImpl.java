@@ -32,8 +32,7 @@ public class MealServiceImpl implements MealService {
 
 	@Override
 	public List<String> findAllCafes() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAllCafes();
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class MealServiceImpl implements MealService {
 	public List<MealView> findAllViews() {
 		List<MealView> views = repository.findAllViews();
 		views.forEach(this::loadIngredients);
-		return null;
+		return views;
 	}
 
 	private void loadIngredients(MealView view) {
