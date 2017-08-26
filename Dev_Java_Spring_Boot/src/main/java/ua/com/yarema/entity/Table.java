@@ -14,7 +14,7 @@ public class Table extends AbstractEntity {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Cafe cafe;
-
+	
 	public Table() {
 	}
 	
@@ -23,7 +23,7 @@ public class Table extends AbstractEntity {
 		this.isFree = isFree;
 		this.cafe = cafe;
 	}
-
+	
 	public int getCountOfPeople() {
 		return countOfPeople;
 	}

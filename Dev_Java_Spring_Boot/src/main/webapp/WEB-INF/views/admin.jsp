@@ -1,12 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin</title>
-</head>
-<body>
+<%@ include file="header.jsp"%>
+<div>
 	<h2>Admin</h2>
 	<a href="/admin/cafe">Cafe</a>
 	<a href="/admin/comment">Comment</a>
@@ -17,5 +10,6 @@
 	<a href="/admin/order">Order</a>
 	<a href="/admin/table">Table</a>
 	<a href="/admin/user">User</a>
-</body>
-</html>
+</div>
+<%@ include file="footer.jsp"%>
+
