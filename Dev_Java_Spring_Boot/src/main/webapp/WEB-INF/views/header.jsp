@@ -25,6 +25,7 @@
 					    </div>
 			    		<div class="navbar-nav ml-auto">
 			    			<button type="button" class="btn btn-link" data-toggle="modal" data-target="#loginInSystem"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</button>
+			    			<%@ include file="modal.jsp"%>
 			    			<a class="nav-item nav-link" href="/registration">Sign up</a>
 					      	<a class="nav-item nav-link" href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
 			    		</div>
