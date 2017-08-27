@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,7 +25,7 @@
 					      	<a class="nav-item nav-link" href="/admin"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a>
 					    </div>
 			    		<div class="navbar-nav ml-auto">
-			    			<button type="button" class="btn btn-link" data-toggle="modal" data-target="#loginInSystem"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</button>
+			    			<a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#loginInSystem"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
 			    			<%@ include file="modal.jsp"%>
 			    			<a class="nav-item nav-link" href="/registration">Sign up</a>
 					      	<a class="nav-item nav-link" href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>

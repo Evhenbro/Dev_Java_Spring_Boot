@@ -1,46 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<title>Table</title>
-</head>
-<body>
-	<div class="container">
+<%@ include file="header.jsp"%>
+	<div class="container mt-3">
 		<div class="row">
 			<div class="col-12">
-				<form action="/admin/cuisine" method="POST">
+				<form:form action="/admin/table" method="POST" modelAttribute="table">
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="countOfPeople">Count Of People:</label>
 						<div class="col-10">
-							<input class="form-control" id="countOfPeople" name="countOfPeople">
+							<form:input class="form-control" id="countOfPeople" path="countOfPeople"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="isFree">Free:</label>
 						<div class="col-10">
-							<input class="form-control" id="isFree" name="isFree">
+							<form:input class="form-control" id="isFree" path="isFree"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-							<select class="form-control" id="cafe" name="cafe">
+							<form:select class="form-control" id="cafe" path="cafe">
 								<c:forEach var="cafe" items="${cafes}">
 									<option value="${cafe}">${cafe}</option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
 					</div>
 					<div class="form-group row">
-						<div class="col-10 mr-left">
+						<div class="col-10 ml-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
+							<a href="/admin/table/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
 						</div>
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 		<div class="row">
@@ -67,5 +58,4 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+<%@ include file="footer.jsp"%>

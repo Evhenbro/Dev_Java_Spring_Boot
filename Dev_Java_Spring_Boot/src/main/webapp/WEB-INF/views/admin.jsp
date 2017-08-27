@@ -1,6 +1,8 @@
 <%@ include file="header.jsp"%>
-<div>
-	<h2>Admin</h2>
+<div >
+	<div  class="mx-auto text-center">
+		<h2>Welcome Admin</h2>
+	</div>
 	<a href="/admin/cafe">Cafe</a>
 	<a href="/admin/comment">Comment</a>
 	<a href="/admin/cuisine">Cuisine</a>
