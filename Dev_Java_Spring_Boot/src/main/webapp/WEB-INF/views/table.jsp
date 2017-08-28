@@ -18,11 +18,11 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="cafe" path="cafe">
+							<select class="form-control" id="cafe" name="cafe">
 								<c:forEach var="cafe" items="${cafes}">
-									<option value="${cafe}">${cafe}</option>
+									<option value="${cafe}">${cafe.name}</option>
 								</c:forEach>
-							</form:select>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -47,7 +47,7 @@
 						<tr>
 							<td>${table.countOfPeople}</td>
 							<td>${table.isFree}</td>
-							<td>${table.cafe}</td>
+							<td>${table.cafe.name}</td>
 							<td class="text-center">
 								<a href="/admin/table/update/${table.id}" class="btn btn-outline-success btn-sm">Update</a>
 								<a href="/admin/table/delete/${table.id}" class="btn btn-outline-danger btn-sm">Delete</a>

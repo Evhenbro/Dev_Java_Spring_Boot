@@ -25,7 +25,7 @@ import ua.com.yarema.service.MealService;
 @RequestMapping("/admin/meal")
 public class AdminMealController {
 	
-	private final MealService service;
+	private final MealService mealService;
 	
 	@Autowired
 	private CuisineRepository cuisineRepository;
@@ -38,21 +38,21 @@ public class AdminMealController {
  	
 	@Autowired
 	public AdminMealController(MealService service) {
-		this.service = service;
+		this.mealService = service;
 	}
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("ingredients", service.findAllIngredients());
-		model.addAttribute("cuisines", service.findAllCuisines());
-		model.addAttribute("meals", service.findAllViews());
-		model.addAttribute("cafes", service.findAllCafes());
+		model.addAttribute("ingredients", mealService.findAllIngredients());
+		model.addAttribute("cuisines", mealService.findAllCuisines());
+		model.addAttribute("meals", mealService.findAllViews());
+		model.addAttribute("cafes", mealService.findAllCafes());
 		return "meal";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String show(@PathVariable Integer id) {
-		service.delete(id);
+		mealService.delete(id);
 		return "redirect:/admin/meal";
 	}
 
@@ -68,7 +68,7 @@ public class AdminMealController {
 		List<Ingredient> ingredients2 = ingredientRepository.findAll(ingredients);
 		Cafe cafe2 = cafeRepository.findByName(cafe);
 		Meal meal = new Meal(title, description, price, cuisine2, weight, ingredients2, cafe2);
-		service.save(meal);
+		mealService.save(meal);
 		return "redirect:/admin/meal";
 	}
 }

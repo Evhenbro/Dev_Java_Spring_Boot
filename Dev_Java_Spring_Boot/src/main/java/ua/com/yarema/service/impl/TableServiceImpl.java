@@ -1,9 +1,5 @@
 package ua.com.yarema.service.impl;
 
-
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +10,11 @@ import ua.com.yarema.service.TableService;
 @Service
 public class TableServiceImpl extends CrudServiceImpl<Table, Integer> implements TableService {
 	
-	private TableRepository repository;
-	
 	@Autowired
 	public TableServiceImpl(TableRepository repository) {
 		super(repository); 
 	}
 
-	@Override
-	public List<String> findAllCafes() {
-		return repository.findAllCafes();
-	}
 
 	
 }

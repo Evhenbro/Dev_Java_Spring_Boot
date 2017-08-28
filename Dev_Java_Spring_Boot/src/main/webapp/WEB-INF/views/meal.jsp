@@ -92,8 +92,10 @@
 								</c:forEach>
 							</td>
 							<td class="text-center">
-								<a href="/admin/meal/update/${meal.id}" class="btn btn-outline-warning btn-sm">Update</a>
-								<a href="/admin/meal/delete/${meal.id}" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+								<div>
+									<a href="/admin/meal/update/${meal.id}" class="btn btn-outline-warning btn-sm">Update</a>
+									<a href="/admin/meal/delete/${meal.id}" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+								</div>
 							</td>
 						</tr>
 					</c:forEach>
