@@ -20,7 +20,7 @@
 						<div class="col-10">
 							<select class="form-control" id="cafe" name="cafe">
 								<c:forEach var="cafe" items="${cafes}">
-									<option value="${cafe}">${cafe.name}</option>
+									<option value="${cafe.id}">${cafe.name}</option>
 								</c:forEach>
 							</select>
 						</div>

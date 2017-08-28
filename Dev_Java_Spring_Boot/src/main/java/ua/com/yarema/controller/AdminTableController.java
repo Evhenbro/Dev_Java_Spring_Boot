@@ -13,18 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Table;
 import ua.com.yarema.repository.CafeRepository;
-import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.TableService;
 
 @Controller
 @RequestMapping("/admin/table")
 public class AdminTableController {
 	
-	private final TableService service;
-	
 	@Autowired
-	private CafeService cafeService;
-	
+	private final TableService service;
+
 	@Autowired
 	private CafeRepository cafeRepository;
 
@@ -40,7 +37,7 @@ public class AdminTableController {
 	
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("cafes", cafeService.findAll());
+		model.addAttribute("cafes", service.findAllCafes());
 		model.addAttribute("tables", service.findAll());
 		return "table";
 	}
@@ -54,8 +51,8 @@ public class AdminTableController {
 	@PostMapping
 	public String save(@RequestParam int countOfPeople,
 			@RequestParam boolean isFree,
-			@RequestParam String cafe) {
-		Cafe cafe2 = cafeRepository.findByName(cafe);
+			@RequestParam Cafe cafe) {
+		Cafe cafe2 = cafeRepository.findOne(cafe.getId());
 		Table table = new Table(countOfPeople, isFree, cafe2);
 		service.save(table);
 		return "redirect:/admin/table";
