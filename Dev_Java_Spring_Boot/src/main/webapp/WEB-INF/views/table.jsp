@@ -18,11 +18,12 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-							<select class="form-control" id="cafe" name="cafe">
+						<form:select class="form-control" path="cafe" items="${cafes}" itemValue="id" itemLabel="name"/>
+							<%-- <select class="form-control" id="cafe" name="cafe">
 								<c:forEach var="cafe" items="${cafes}">
 									<option value="${cafe.id}">${cafe.name}</option>
 								</c:forEach>
-							</select>
+							</select> --%>
 						</div>
 					</div>
 					<div class="form-group row">

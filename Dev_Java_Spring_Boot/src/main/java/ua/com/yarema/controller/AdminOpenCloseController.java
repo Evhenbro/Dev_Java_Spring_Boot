@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.entity.OpenClose;
 import ua.com.yarema.service.OpenCloseService;
 
 @Controller
-@RequestMapping("/admin/open_close")
+@RequestMapping("/admin/times")
+@SessionAttributes("open_close")
 public class AdminOpenCloseController {
 
 	private final OpenCloseService service;
@@ -28,17 +30,17 @@ public class AdminOpenCloseController {
 	public OpenClose getForm(){
 		return new OpenClose();
 	}
-	
+
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("open_closes", service.findAll());
-		return "open_close";
+		model.addAttribute("times", service.findAll());
+		return "times";
 	}
-	
+
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
-		return "redirect:/admin/open_close";
+		return "redirect:/admin/times";
 	}
 	
 	@PostMapping
@@ -48,14 +50,14 @@ public class AdminOpenCloseController {
 	}
 	
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable Integer id, Model model){
-		model.addAttribute("open_close", service.findOne(id));
-		return show(model);
+	public String update(@PathVariable Integer id, Model model) {
+		model.addAttribute("time", service.findOne(id));
+		return show(model);	
 	}
 	
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/admin/open_close";
+		return "redirect:/admin/times";
 	}
 }

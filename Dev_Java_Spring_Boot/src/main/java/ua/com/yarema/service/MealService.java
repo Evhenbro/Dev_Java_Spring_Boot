@@ -2,7 +2,7 @@ package ua.com.yarema.service;
 
 import java.util.List;
 
-import ua.com.yarema.entity.Meal;
+import ua.com.yarema.model.request.MealRequest;
 import ua.com.yarema.model.view.MealView;
 
 public interface MealService {
@@ -15,8 +15,10 @@ public interface MealService {
 	
 	List<MealView> findAllViews();
 	
-	void save(Meal meal);
+	void save(MealRequest mealRequest);
 	
 	void delete(Integer id);
+
+	MealRequest findOne(Integer id);
 
 }

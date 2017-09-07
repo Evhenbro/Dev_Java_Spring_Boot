@@ -24,4 +24,7 @@ public interface MealRepository extends JpaRepository<Meal, Integer> {
 	
 	@Query("SELECT i.name FROM Ingredient i JOIN i.meals m WHERE m.id=?1")
 	List<String> finfAllIngredientsByMealId(Integer id);
+
+	@Query("SELECT DISTINCT m FROM Meal m JOIN FETCH m.cuisine LEFT JOIN FETCH m.ingredients JOIN FETCH m.cafe WHERE m.id=?1")
+	Meal findOneRequest(Integer id);
 }

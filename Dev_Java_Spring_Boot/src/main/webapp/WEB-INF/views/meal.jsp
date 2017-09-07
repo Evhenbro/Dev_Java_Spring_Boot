@@ -1,68 +1,72 @@
 <%@ include file="header.jsp"%>
-	<div class="container">
+	<div class="container mt-3">
 		<div class="row">
 			<div class="col-12">
-				<form action="/admin/meal" method="POST">
+				<form:form action="/admin/meal" method="POST" modelAttribute="meal">
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="title">Title:</label>
 						<div class="col-10">
-							<input class="form-control" id="title" name="title">
+							<form:input class="form-control" id="title" path="title"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="description">Description:</label>
 						<div class="col-10">
-							<textarea class="form-control" id="description" name="description" rows="5"></textarea>
+							<form:textarea class="form-control" id="description" path="description" rows="5"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="price">Price:</label>
 						<div class="col-10">
-							<input class="form-control" id="price" name="price">
+							<form:input class="form-control" id="price" path="price"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="weight">Weight:</label>
 						<div class="col-10">
-							<input class="form-control" id="weight" name="weight">
+							<form:input class="form-control" id="weight" path="weight"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cuisine">Cuisine:</label>
 						<div class="col-10">
-							<select class="form-control" id="cuisine" name="cuisine">
+							<form:select class="form-control" path="cuisine" items="${cuisines}"/>
+							<%-- <select class="form-control" id="cuisine" path="cuisine">
 								<c:forEach var="cuisine" items="${cuisines}">
 									<option value="${cuisine}">${cuisine}</option>
 								</c:forEach>
-							</select>
+							</select> --%>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="ingredients">Ingredients:</label>
 						<div class="col-10">
-							<select class="form-control" id="ingredients" name="ingredients" multiple>
+							<form:select class="form-control" path="ingredients" items="${ingredients}" multiple="multiple"/>
+							<%-- <select class="form-control" id="ingredients" path="ingredients" multiple>
 								<c:forEach var="ingredient" items="${ingredients}">
 									<option value="${ingredient}">${ingredient}</option>
 								</c:forEach>
-							</select>
+							</select> --%>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-							<select class="form-control" id="cafe" name="cafe">
+							<form:select class="form-control" path="cafe" items="${cafes}"/>
+							<%-- <select class="form-control" id="cafe" path="cafe">
 								<c:forEach var="cafe" items="${cafes}">
 									<option value="${cafe}">${cafe}</option>
 								</c:forEach>
-							</select>
+							</select> --%>
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-10 mr-left">
 							<button class="btn btn-sm btn-outline-success">Save</button>
+							<a href="/admin/meal/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
 						</div>
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 		<div class="row">

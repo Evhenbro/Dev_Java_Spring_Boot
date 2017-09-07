@@ -33,7 +33,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-outline-success">Sign in</button>
+				<a href="/login" class="btn btn-outline-success">Sign in</a>
 			</div>
 		</div>
 	</div>
