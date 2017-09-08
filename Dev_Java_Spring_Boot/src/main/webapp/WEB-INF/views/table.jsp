@@ -48,7 +48,7 @@
 						<tr>
 							<td>${table.countOfPeople}</td>
 							<td>${table.isFree}</td>
-							<td>${table.cafe.name}</td>
+							<td>${table.cafe}</td>
 							<td class="text-center">
 								<a href="/admin/table/update/${table.id}" class="btn btn-outline-success btn-sm">Update</a>
 								<a href="/admin/table/delete/${table.id}" class="btn btn-outline-danger btn-sm">Delete</a>

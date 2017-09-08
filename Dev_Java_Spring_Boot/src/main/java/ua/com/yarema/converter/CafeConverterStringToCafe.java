@@ -7,17 +7,17 @@ import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.repository.CafeRepository;
 
 @Component
-public class CafeConverter implements Converter<String, Cafe> {
-	
+public class CafeConverterStringToCafe implements Converter<Cafe, String> {
+
 	private final CafeRepository cafeRepository;
 	
-	public CafeConverter(CafeRepository cafeRepository) {
+	public CafeConverterStringToCafe(CafeRepository cafeRepository) {
 		this.cafeRepository = cafeRepository;
 	}
 
 	@Override
-	public Cafe convert(String source) {
-		return cafeRepository.findByName(source);
+	public String convert(Cafe arg0) {
+		return arg0.getName();
 	}
 
 }

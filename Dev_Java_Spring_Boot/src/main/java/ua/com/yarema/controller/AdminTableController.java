@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.yarema.entity.Table;
+import ua.com.yarema.model.request.TableRequest;
 import ua.com.yarema.service.TableService;
 
 @Controller
@@ -19,7 +19,6 @@ import ua.com.yarema.service.TableService;
 @SessionAttributes("table")
 public class AdminTableController {
 	
-	@Autowired
 	private final TableService tableService;
 
 	@Autowired
@@ -28,8 +27,8 @@ public class AdminTableController {
 	}
 	
 	@ModelAttribute("table")
-	public Table getForm() {
-		return new Table();
+	public TableRequest getForm() {
+		return new TableRequest();
 	}
 	
 	@GetMapping
@@ -46,8 +45,8 @@ public class AdminTableController {
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("table") Table table, SessionStatus sessionStatus){
-		tableService.save(table);
+	public String save(@ModelAttribute("table") TableRequest tableRequest, SessionStatus sessionStatus){
+		tableService.save(tableRequest);
 		return cancel(sessionStatus);
 	}
 	

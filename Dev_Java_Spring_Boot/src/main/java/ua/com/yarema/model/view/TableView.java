@@ -33,11 +33,11 @@ public class TableView {
 		this.countOfPeople = countOfPeople;
 	}
 
-	public boolean isFree() {
+	public boolean getIsFree() {
 		return isFree;
 	}
 
-	public void setFree(boolean isFree) {
+	public void setIsFree(boolean isFree) {
 		this.isFree = isFree;
 	}
 
