@@ -10,15 +10,17 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-2 col-form-label" for="isFree">Free:</label>
-						<div class="col-10">
-							<form:input class="form-control" id="isFree" path="isFree"/>
+						<div class="col-4 form-check">
+							<form:checkbox path="IsFree"/>
+							<label class="form-check-label pl-2">
+								Free
+							</label>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-						<form:select class="form-control" path="cafe" items="${cafes}" itemValue="id" itemLabel="name"/>
+						<form:select class="form-control" path="cafe" items="${cafes}" itemValue="name" itemLabel="name"/>
 							<%-- <select class="form-control" id="cafe" name="cafe">
 								<c:forEach var="cafe" items="${cafes}">
 									<option value="${cafe.id}">${cafe.name}</option>

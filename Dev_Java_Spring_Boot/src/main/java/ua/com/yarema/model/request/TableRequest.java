@@ -6,7 +6,7 @@ public class TableRequest {
 
 	private Integer id;
 	
-	private int countOfPeople;
+	private Integer countOfPeople;
 	
 	private boolean isFree;
 	
@@ -20,11 +20,11 @@ public class TableRequest {
 		this.id = id;
 	}
 
-	public int getCountOfPeople() {
+	public Integer getCountOfPeople() {
 		return countOfPeople;
 	}
 
-	public void setCountOfPeople(int countOfPeople) {
+	public void setCountOfPeople(Integer countOfPeople) {
 		this.countOfPeople = countOfPeople;
 	}
 
