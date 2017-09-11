@@ -11,7 +11,6 @@ public class StringConverterToLocalTime implements Converter<String, LocalTime> 
 	
 	@Override
 	public LocalTime convert(String arg0) {
-//		Pattern pattern =  
 		LocalTime time = LocalTime.parse(arg0, DateTimeFormatter.ISO_LOCAL_TIME);
 		return time;
 	}
