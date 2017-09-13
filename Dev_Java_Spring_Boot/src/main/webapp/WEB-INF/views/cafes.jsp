@@ -93,7 +93,7 @@
 						<th class="text-center">Email</th>
 						<th class="text-center">Phone</th>
 						<th class="text-center">Rate</th>
-						<!-- <th class="text-center">Short desc.</th> -->
+						<th class="text-center">Short desc.</th>
 						<th class="text-center">Full desc.</th>
 						<th class="text-center">Photo Url</th>
 						<th class="text-center">Version</th>
@@ -109,13 +109,13 @@
 							<td>${fullCafe.email}</td>
 							<td>${fullCafe.phone}</td>
 							<td>${fullCafe.rate}</td>
-							<%-- <td>${fullCafe.shortDescription}</td> --%>
+							<td>${fullCafe.shortDescription}</td>
 							<td>${fullCafe.fullDescription}</td>
 							<td>${fullCafe.photoUrl}</td>
 							<td>${fullCafe.version}</td>
 							<td>${fullCafe.type}</td>
-							<td>${fullCafe.open}</td>
-							<td>${fullCafe.close}</td>
+							<td>${fullCafe.open.time}</td>
+							<td>${fullCafe.close.time}</td>
 							<td class="text-center">
 								<div>
 									<a href="/admin/cafes/update/${fullCafe.id}" class="btn btn-outline-warning btn-sm">Update</a>

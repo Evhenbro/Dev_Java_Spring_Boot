@@ -38,7 +38,7 @@ public class AdminCafeController {
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("fullCafes", cafeService.findCafeView());
+		model.addAttribute("fullCafes", cafeService.findAllCafes());
 		model.addAttribute("cafes", cafeService.findAllCafeShortView());
 		model.addAttribute("times", openCloseService.findAllTimes());
 		model.addAttribute("types", Type.values());
@@ -47,6 +47,7 @@ public class AdminCafeController {
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
+		cafeService.delete(id);
 		return "redirect:/admin/cafes";
 	}
 	

@@ -10,7 +10,6 @@ import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Type;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.model.view.CafeShortView;
-import ua.com.yarema.model.view.CafeView;
 import ua.com.yarema.repository.CafeRepository;
 import ua.com.yarema.service.CafeService;
 
@@ -76,7 +75,7 @@ public class CafeServiceImpl implements CafeService {
 	}
 
 	@Override
-	public List<CafeView> findCafeView() {
-		return cafeRepository.findCafeView();
+	public List<Cafe> findAllCafes() {
+		return cafeRepository.findAllCafes();
 	}
 }

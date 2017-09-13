@@ -2,9 +2,9 @@ package ua.com.yarema.service;
 
 import java.util.List;
 
+import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.model.view.CafeShortView;
-import ua.com.yarema.model.view.CafeView;
 
 public interface CafeService {
 
@@ -16,5 +16,5 @@ public interface CafeService {
 
 	List<CafeShortView> findAllCafeShortView();
 
-	List<CafeView> findCafeView();
+	List<Cafe> findAllCafes();
 }
