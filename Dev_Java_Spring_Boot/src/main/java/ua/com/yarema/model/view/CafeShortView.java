@@ -2,7 +2,9 @@ package ua.com.yarema.model.view;
 
 import java.math.BigDecimal;
 
-public class CafeIndexView {
+import ua.com.yarema.entity.Type;
+
+public class CafeShortView {
 
 	private Integer id;
 	
@@ -21,8 +23,8 @@ public class CafeIndexView {
 	private String type;
 
 	
-	public CafeIndexView(Integer id, BigDecimal rate, String name, String photoUrl, int version, String address,
-			String shortDescription, String type) {
+	public CafeShortView(Integer id, BigDecimal rate, String name, String photoUrl, int version, String address,
+			String shortDescription, Type type) {
 		this.id = id;
 		this.rate = rate;
 		this.name = name;
@@ -30,7 +32,7 @@ public class CafeIndexView {
 		this.version = version;
 		this.address = address;
 		this.shortDescription = shortDescription;
-		this.type = type;
+		this.type = type.name();
 	}
 
 	public Integer getId() {

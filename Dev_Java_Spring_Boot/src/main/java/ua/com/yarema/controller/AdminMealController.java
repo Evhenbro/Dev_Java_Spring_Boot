@@ -22,8 +22,8 @@ public class AdminMealController {
 	private final MealService mealService;
 	
 	@Autowired
-	public AdminMealController(MealService service) {
-		this.mealService = service;
+	public AdminMealController(MealService mealService) {
+		this.mealService = mealService;
 	}
 	
 	@ModelAttribute("meal")

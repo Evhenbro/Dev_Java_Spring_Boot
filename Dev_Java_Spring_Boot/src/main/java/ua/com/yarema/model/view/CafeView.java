@@ -3,6 +3,10 @@ package ua.com.yarema.model.view;
 import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import ua.com.yarema.entity.Type;
 
 public class CafeView {
 
@@ -30,8 +34,10 @@ public class CafeView {
 	
 	private String close;
 	
+	private List<MealView> meals = new ArrayList<>();
+	
 	public CafeView(Integer id, BigDecimal rate, String name, String photoUrl, int version, String address,
-			String fullDescription, String type, String phone, String email, LocalTime open, LocalTime close) {
+			String fullDescription, Type type, String phone, String email, LocalTime open, LocalTime close) {
 		super();
 		this.id = id;
 		this.rate = rate;
@@ -40,7 +46,7 @@ public class CafeView {
 		this.version = version;
 		this.address = address;
 		this.fullDescription = fullDescription;
-		this.type = type;
+		this.type = type.name();
 		this.phone = phone;
 		this.email = email;
 		this.open = open.format(DateTimeFormatter.ofPattern("HH:mm"));
@@ -143,11 +149,12 @@ public class CafeView {
 		this.close = close;
 	}
 
-	@Override
-	public String toString() {
-		return "CafeView [id=" + id + ", rate=" + rate + ", name=" + name + ", photoUrl=" + photoUrl + ", version="
-				+ version + ", address=" + address + ", fullDescription=" + fullDescription + ", type=" + type
-				+ ", phone=" + phone + ", email=" + email + ", open=" + open + ", close=" + close + "]";
+	public List<MealView> getMeals() {
+		return meals;
+	}
+
+	public void setMeals(List<MealView> meals) {
+		this.meals = meals;
 	}
 	
 }

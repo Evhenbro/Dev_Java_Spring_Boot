@@ -19,11 +19,11 @@ import ua.com.yarema.service.OpenCloseService;
 @SessionAttributes("open_close")
 public class AdminOpenCloseController {
 
-	private final OpenCloseService service;
+	private final OpenCloseService openCloseService;
 	
 	@Autowired
 	public AdminOpenCloseController(OpenCloseService service) {
-		this.service = service;
+		this.openCloseService = service;
 	}
 	
 	@ModelAttribute("open_close")
@@ -33,25 +33,25 @@ public class AdminOpenCloseController {
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("times", service.findAll());
+		model.addAttribute("times", openCloseService.findAll());
 		return "times";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
-		service.delete(id);
+		openCloseService.delete(id);
 		return "redirect:/admin/times";
 	}
 	
 	@PostMapping
 	public String save(@ModelAttribute("open_close") OpenClose openClose, SessionStatus sessionStatus) {
-		service.save(openClose);
+		openCloseService.save(openClose);
 		return cancel(sessionStatus);
 	}
 	
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("time", service.findOne(id));
+		model.addAttribute("time", openCloseService.findOne(id));
 		return show(model);	
 	}
 	

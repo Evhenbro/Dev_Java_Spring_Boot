@@ -3,7 +3,7 @@
 	<div  class="mx-auto text-center">
 		<h2>Welcome Admin</h2>
 	</div>
-	<a href="/admin/cafe">Cafe</a>
+	<a href="/admin/cafes">Cafe</a>
 	<a href="/admin/comment">Comment</a>
 	<a href="/admin/cuisine">Cuisine</a>
 	<a href="/admin/ingredient">Ingredient</a>

@@ -1,9 +1,20 @@
 package ua.com.yarema.service;
 
-import ua.com.yarema.entity.Cafe;
-import ua.com.yarema.model.request.CafeRequest;
+import java.util.List;
 
-public interface CafeService extends CrudService<Cafe, Integer> {
+import ua.com.yarema.model.request.CafeRequest;
+import ua.com.yarema.model.view.CafeShortView;
+import ua.com.yarema.model.view.CafeView;
+
+public interface CafeService {
 
 	void save(CafeRequest cafeRequest);
+
+	CafeRequest findOne(Integer id);
+	
+	void delete(Integer id);
+
+	List<CafeShortView> findAllCafeShortView();
+
+	List<CafeView> findCafeView();
 }

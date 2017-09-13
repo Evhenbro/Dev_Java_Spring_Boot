@@ -14,9 +14,9 @@ public class MainController {
 		return "index";
 	}
 	
-	@GetMapping("/catalogcafes")
+	@GetMapping("/allCafes")
 	public String client() {
-		return "catalog_cafes";
+		return "cafes";
 	}
 	
 	@GetMapping("/administrator")

@@ -40,6 +40,9 @@ public class Meal extends AbstractEntity {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Cafe cafe;
+
+	@OneToMany(mappedBy="meal")
+	private List<Comment> comments = new ArrayList<>();
 	
 	public Meal() {
 	}
@@ -54,9 +57,6 @@ public class Meal extends AbstractEntity {
 		this.ingredients = ingredients;
 		this.cafe = cafe;
 	}
-
-	@OneToMany(mappedBy="meal")
-	private List<Comment> comments = new ArrayList<>();
 
 	public String getTitle() {
 		return title;
