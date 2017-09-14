@@ -29,15 +29,15 @@ public class MainController {
 		return "admin";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
-	
-	@GetMapping("/registration")
-	public String registration() {
-		return "registration";
-	}
+//	@GetMapping("/login")
+//	public String login() {
+//		return "login";
+//	}
+//	
+//	@GetMapping("/registration")
+//	public String registration() {
+//		return "registration";
+//	}
 	
 	@GetMapping("/search")
 	public String search() {

@@ -53,6 +53,9 @@ public class Cafe extends AbstractEntityName {
 	@OneToMany(mappedBy="cafe")
 	private List<Comment> comments = new ArrayList<>();
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private User user;
+	
 	public BigDecimal getRate() {
 		return rate;
 	}

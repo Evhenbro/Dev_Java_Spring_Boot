@@ -1,7 +1,8 @@
 package ua.com.yarema.service;
 
-import ua.com.yarema.entity.User;
+import ua.com.yarema.model.request.RegistrationRequest;
 
-public interface UserService extends CrudService<User, Integer> {
+public interface UserService {
 
+	void save(RegistrationRequest registrationRequest);
 }

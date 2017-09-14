@@ -25,8 +25,9 @@
 					      	<a class="nav-item nav-link" href="/admin"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a>
 					    </div>
 			    		<div class="navbar-nav ml-auto">
-			    			<a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#loginInSystem"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
-			    			<%@ include file="modal.jsp"%>
+			    			<a class="nav-item nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
+			    			<!-- data-toggle="modal" data-target="#loginInSystem" -->
+			    			<%-- <%@ include file="modal.jsp"%> --%>
 			    			<a class="nav-item nav-link" href="/registration">Sign up</a>
 					      	<a class="nav-item nav-link" href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
 			    		</div>
