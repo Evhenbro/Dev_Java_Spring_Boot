@@ -51,7 +51,7 @@ public class AdminOpenCloseController {
 	
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("time", openCloseService.findOne(id));
+		model.addAttribute("open_close", openCloseService.findOne(id));
 		return show(model);	
 	}
 	
