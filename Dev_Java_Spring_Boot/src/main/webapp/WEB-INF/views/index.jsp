@@ -9,7 +9,7 @@
 		<div class="col-2 bg-warning">adsasdfsadf</div>
 	</div>	
 	<div class="row align-items-end mt-3">
-			<a href="/catalogcafes" class="btn btn-outline-success btn-lg btn-block">Show all cafes</a>			
+			<a href="/allCafes" class="btn btn-outline-success btn-lg btn-block">Show all cafes</a>			
 	</div>
 </div>
 <%@ include file="footer.jsp"%>

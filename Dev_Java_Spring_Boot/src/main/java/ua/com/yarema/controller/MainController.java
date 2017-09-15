@@ -3,7 +3,10 @@ package ua.com.yarema.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import ua.com.yarema.model.request.CafeRequest;
 
 @Controller
 @RequestMapping("/")
@@ -14,9 +17,14 @@ public class MainController {
 		return "index";
 	}
 	
+	@ModelAttribute("cafe")
+	public CafeRequest getForm() {
+		return new CafeRequest();
+	}
+	
 	@GetMapping("/allCafes")
 	public String client() {
-		return "cafes";
+		return "cafe";
 	}
 	
 	@GetMapping("/administrator")
