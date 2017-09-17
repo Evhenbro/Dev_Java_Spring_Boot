@@ -21,7 +21,7 @@
 			  		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			    		<div class="navbar-nav">
 					     	<a class="nav-item nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-					     	<a class="nav-item nav-link" href="/allCafes"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Client</a>
+					     	<a class="nav-item nav-link" href="/cafe"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Client</a>
 					     	<a class="nav-item nav-link" href="/administrator"><i class="fa fa-cube" aria-hidden="true"></i> Administrator</a>
 					      	<sec:authorize access="hasRole('ROLE_ADMIN')">
 					      		<a class="nav-item nav-link" href="/admin"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a>

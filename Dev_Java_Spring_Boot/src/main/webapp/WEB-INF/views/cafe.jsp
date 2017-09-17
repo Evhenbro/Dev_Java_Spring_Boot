@@ -7,22 +7,18 @@
 						<th class="text-center">Name</th>
 						<th class="text-center">Address</th>
 						<th class="text-center">Rate</th>
+						<th class="text-center">Type</th>
 						<th class="text-center">Short desc.</th>
 						<th class="text-center">Photo Url</th>
-						<th class="text-center">Type</th>
-						<th class="text-center">Open</th>
-						<th class="text-center">Close</th>
 					</tr>
-					<c:forEach var="fullCafe" items="${fullCafes}">
+					<c:forEach var="cafe" items="${cafeShortView}">
 						<tr>
-							<td>${fullCafe.name}</td>
-							<td>${fullCafe.address}</td>
-							<td>${fullCafe.rate}</td>
-							<td>${fullCafe.shortDescription}</td>
-							<td>${fullCafe.photoUrl}</td>
-							<td>${fullCafe.type}</td>
-							<td>${fullCafe.open.time}</td>
-							<td>${fullCafe.close.time}</td>
+							<td>${cafe.name}</td>
+							<td>${cafe.address}</td>
+							<td>${cafe.rate}</td>
+							<td>${cafe.type}</td>
+							<td>${cafe.shortDescription}</td>
+							<td>${cafe.photoUrl}</td>
 						</tr>
 					</c:forEach>
 				</table>

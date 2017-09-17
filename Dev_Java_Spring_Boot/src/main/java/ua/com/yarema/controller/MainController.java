@@ -32,9 +32,9 @@ public class MainController {
 		return new CafeRequest();
 	}
 	
-	@GetMapping("/allCafes")
+	@GetMapping("/cafe")
 	public String client(Model model) {
-		model.addAttribute("fullCafes", cafeService.findAllCafes());
+		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView());
 		return "cafe";
 	}
 	
