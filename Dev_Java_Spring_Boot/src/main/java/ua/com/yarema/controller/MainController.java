@@ -1,16 +1,26 @@
 package ua.com.yarema.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ua.com.yarema.model.request.CafeRequest;
+import ua.com.yarema.service.CafeService;
 
 @Controller
 @RequestMapping("/")
 public class MainController {
+
+	private final CafeService cafeService;
+	
+	@Autowired
+	public MainController(CafeService cafeService) {
+		this.cafeService = cafeService;
+	}
 
 	@GetMapping
 	public String index() {
@@ -23,7 +33,8 @@ public class MainController {
 	}
 	
 	@GetMapping("/allCafes")
-	public String client() {
+	public String client(Model model) {
+		model.addAttribute("fullCafes", cafeService.findAllCafes());
 		return "cafe";
 	}
 	

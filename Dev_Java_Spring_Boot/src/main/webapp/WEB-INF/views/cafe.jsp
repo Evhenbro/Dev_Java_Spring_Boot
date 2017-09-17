@@ -6,38 +6,23 @@
 					<tr>
 						<th class="text-center">Name</th>
 						<th class="text-center">Address</th>
-						<th class="text-center">Email</th>
-						<th class="text-center">Phone</th>
 						<th class="text-center">Rate</th>
 						<th class="text-center">Short desc.</th>
-						<th class="text-center">Full desc.</th>
 						<th class="text-center">Photo Url</th>
-						<th class="text-center">Version</th>
 						<th class="text-center">Type</th>
 						<th class="text-center">Open</th>
 						<th class="text-center">Close</th>
-						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="fullCafe" items="${fullCafes}">
 						<tr>
 							<td>${fullCafe.name}</td>
 							<td>${fullCafe.address}</td>
-							<td>${fullCafe.email}</td>
-							<td>${fullCafe.phone}</td>
 							<td>${fullCafe.rate}</td>
 							<td>${fullCafe.shortDescription}</td>
-							<td>${fullCafe.fullDescription}</td>
 							<td>${fullCafe.photoUrl}</td>
-							<td>${fullCafe.version}</td>
 							<td>${fullCafe.type}</td>
 							<td>${fullCafe.open.time}</td>
 							<td>${fullCafe.close.time}</td>
-							<td class="text-center">
-								<div>
-									<a href="/admin/cafes/update/${fullCafe.id}" class="btn btn-outline-warning btn-sm">Update</a>
-									<a href="/admin/cafes/delete/${fullCafe.id}" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
-								</div>
-							</td>
 						</tr>
 					</c:forEach>
 				</table>
