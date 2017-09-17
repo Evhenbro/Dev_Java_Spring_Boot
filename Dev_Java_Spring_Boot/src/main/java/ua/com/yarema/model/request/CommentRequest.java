@@ -1,47 +1,43 @@
-package ua.com.yarema.entity;
+package ua.com.yarema.model.request;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import ua.com.yarema.entity.Cafe;
+import ua.com.yarema.entity.Comment;
+import ua.com.yarema.entity.Meal;
 
+public class CommentRequest {
 
-@Entity
-@Table(name="comment")
-public class Comment extends AbstractEntity {
-	
-	@Column(length=1023)
+	private Integer id;
+
 	private String message;
 	
-	private LocalDateTime time;
+	private String time;
 	
-	@ManyToOne
 	private Comment parentComment;
 	
-	@OneToMany(mappedBy="parentComment")
 	private List<Comment> childComment = new ArrayList<>();
 	
-	private BigDecimal rate;
+	private String rate;
 	
-	@Column(name="_like")
 	private int like;
 	
 	private int dislike;
 	
 	private String user;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
 	private Cafe cafe;
 
-	@ManyToOne(fetch=FetchType.LAZY)
 	private Meal meal;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getMessage() {
 		return message;
@@ -51,11 +47,11 @@ public class Comment extends AbstractEntity {
 		this.message = message;
 	}
 
-	public LocalDateTime getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(LocalDateTime time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
@@ -75,11 +71,11 @@ public class Comment extends AbstractEntity {
 		this.childComment = childComment;
 	}
 
-	public BigDecimal getRate() {
+	public String getRate() {
 		return rate;
 	}
 
-	public void setRate(BigDecimal rate) {
+	public void setRate(String rate) {
 		this.rate = rate;
 	}
 
@@ -122,5 +118,5 @@ public class Comment extends AbstractEntity {
 	public void setMeal(Meal meal) {
 		this.meal = meal;
 	}
-
+	
 }

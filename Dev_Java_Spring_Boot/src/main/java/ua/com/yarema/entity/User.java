@@ -53,29 +53,5 @@ public class User extends AbstractEntity {
 	public void setCafes(List<Cafe> cafes) {
 		this.cafes = cafes;
 	}
-	
-	
-	
-//	private String email;
-//	
-//	private String password;
-//	
-//	private String firstName;
-//	
-//	private String lastName;
-//	
-//	private LocalDate birthday;
-//	
-//	private String photoUrl;
-//	
-//	private int version;
-//	
-//	@Column(length=13)
-//	private String phone;
-//	
-//	private String email;
-//	
-//	@OneToMany(mappedBy="user")
-//	private List<Comment> comments = new ArrayList<>();
 
 }

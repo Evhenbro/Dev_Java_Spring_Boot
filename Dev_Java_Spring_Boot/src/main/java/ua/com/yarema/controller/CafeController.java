@@ -32,7 +32,7 @@ public class CafeController {
 	}
 
 	@ModelAttribute("cafe")
-	public CafeRequest getForm() {
+	public CafeRequest getFormCafe() {
 		return new CafeRequest();
 	}
 
@@ -68,4 +68,5 @@ public class CafeController {
 		sessionStatus.setComplete();
 		return "redirect:/admin/cafes";
 	}
+	
 }
