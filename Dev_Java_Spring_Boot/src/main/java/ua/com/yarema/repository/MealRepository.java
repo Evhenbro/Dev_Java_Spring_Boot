@@ -27,4 +27,7 @@ public interface MealRepository extends JpaRepository<Meal, Integer> {
 
 	@Query("SELECT DISTINCT m FROM Meal m JOIN FETCH m.cuisine LEFT JOIN FETCH m.ingredients JOIN FETCH m.cafe WHERE m.id=?1")
 	Meal findOneRequest(Integer id);
+	
+	@Query("SELECT new ua.com.yarema.model.view.MealView(meal.id, meal.title, meal.description, meal.price, meal.photoUrl, meal.version, cuisine.name, cafe.name, meal.weight) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe WHERE meal.id=?1")
+	MealView findMealViewById(Integer id);
 }

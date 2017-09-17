@@ -87,4 +87,10 @@ public class MealServiceImpl implements MealService {
 		return mealRequest;
 	}
 
+	@Override
+	public MealView findMealViewById(Integer id) {
+		MealView mealView = mealRepository.findMealViewById(id);
+		return mealView;
+	}
+
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ua.com.yarema.repository.MealRepository;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.MealService;
 
@@ -19,10 +20,13 @@ public class MainController {
 	
 	private final MealService mealService; 
 	
+	private final MealRepository mealRepository;
+	
 	@Autowired
-	public MainController(CafeService cafeService, MealService mealService) {
+	public MainController(CafeService cafeService, MealService mealService, MealRepository mealRepository) {
 		this.cafeService = cafeService;
 		this.mealService = mealService;
+		this.mealRepository = mealRepository;
 	}
 
 	@GetMapping
@@ -46,6 +50,13 @@ public class MainController {
 	public String showAllMeals(Model model) {
 		model.addAttribute("meals", mealService.findAllViews());
 		return "allMeal";
+	}
+	
+	@GetMapping("/meal/{id}")
+	public String showOneMeal(@PathVariable Integer id, Model model) {
+		model.addAttribute("mealById", mealService.findMealViewById(id));
+		model.addAttribute("ingredients", mealRepository.finfAllIngredientsByMealId(id));
+		return "oneMeal";
 	}
 	
 	@GetMapping("/administrator")

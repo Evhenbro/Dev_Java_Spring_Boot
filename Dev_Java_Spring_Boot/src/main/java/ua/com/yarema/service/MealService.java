@@ -21,4 +21,6 @@ public interface MealService {
 
 	MealRequest findOne(Integer id);
 
+	MealView findMealViewById(Integer id);
+
 }
