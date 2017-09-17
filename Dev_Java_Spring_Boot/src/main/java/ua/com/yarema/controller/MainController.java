@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ua.com.yarema.service.CafeService;
+import ua.com.yarema.service.MealService;
 
 @Controller
 @RequestMapping("/")
@@ -16,9 +17,12 @@ public class MainController {
 
 	private final CafeService cafeService;
 	
+	private final MealService mealService; 
+	
 	@Autowired
-	public MainController(CafeService cafeService) {
+	public MainController(CafeService cafeService, MealService mealService) {
 		this.cafeService = cafeService;
+		this.mealService = mealService;
 	}
 
 	@GetMapping
@@ -27,15 +31,21 @@ public class MainController {
 	}
 	
 	@GetMapping("/cafe")
-	public String client(Model model) {
+	public String showAllCafes(Model model) {
 		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView());
-		return "cafe_all";
+		return "allCafe";
 	}
 	
 	@GetMapping("/cafe/{id}")
 	public String showOneCafe(@PathVariable Integer id, Model model) {
 		model.addAttribute("cafeById", cafeService.findCafeViewById(id));
-		return "cafe_one";
+		return "oneCafe";
+	}
+	
+	@GetMapping("/meal")
+	public String showAllMeals(Model model) {
+		model.addAttribute("meals", mealService.findAllViews());
+		return "allMeal";
 	}
 	
 	@GetMapping("/administrator")

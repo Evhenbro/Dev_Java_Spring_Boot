@@ -10,6 +10,7 @@
 	</div>	
 	<div class="row align-items-end mt-3">
 			<a href="/cafe" class="btn btn-outline-success btn-lg btn-block">Show all cafes</a>			
+			<a href="/meal" class="btn btn-outline-info btn-lg btn-block">Show all meals</a>		
 	</div>
 </div>
 <%@ include file="footer.jsp"%>
