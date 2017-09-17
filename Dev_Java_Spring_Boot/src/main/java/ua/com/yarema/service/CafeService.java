@@ -20,4 +20,6 @@ public interface CafeService {
 	List<CafeView> findAllCafeView();
 
 	List<Cafe> findAllCafes();
+
+	CafeView findCafeViewById(Integer id);
 }

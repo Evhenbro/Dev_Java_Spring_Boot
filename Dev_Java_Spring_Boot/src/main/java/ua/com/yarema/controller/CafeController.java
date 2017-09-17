@@ -19,7 +19,7 @@ import ua.com.yarema.service.OpenCloseService;
 @Controller
 @RequestMapping("/admin/cafes")
 @SessionAttributes("cafe")
-public class AdminCafeController {
+public class CafeController {
 	
 	private final CafeService cafeService;
 	
@@ -27,7 +27,7 @@ public class AdminCafeController {
 	private OpenCloseService openCloseService;
 	
 	@Autowired
-	public AdminCafeController(CafeService cafeService) {
+	public CafeController(CafeService cafeService) {
 		this.cafeService = cafeService;
 	}
 

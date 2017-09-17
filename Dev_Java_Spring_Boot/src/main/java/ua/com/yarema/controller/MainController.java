@@ -5,10 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.service.CafeService;
 
 @Controller
@@ -27,15 +26,16 @@ public class MainController {
 		return "index";
 	}
 	
-	@ModelAttribute("cafe")
-	public CafeRequest getForm() {
-		return new CafeRequest();
-	}
-	
 	@GetMapping("/cafe")
 	public String client(Model model) {
 		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView());
-		return "cafe";
+		return "cafe_all";
+	}
+	
+	@GetMapping("/cafe/{id}")
+	public String showOneCafe(@PathVariable Integer id, Model model) {
+		model.addAttribute("cafeById", cafeService.findCafeViewById(id));
+		return "cafe_one";
 	}
 	
 	@GetMapping("/administrator")

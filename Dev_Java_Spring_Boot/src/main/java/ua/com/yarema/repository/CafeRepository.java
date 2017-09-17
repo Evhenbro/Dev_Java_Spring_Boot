@@ -21,4 +21,7 @@ public interface CafeRepository extends JpaNameRepository<Cafe> {
 
 	@Query("SELECT c FROM Cafe c LEFT JOIN c.open open LEFT JOIN c.close close")
 	List<Cafe> findAllCafes();
+
+	@Query("SELECT new ua.com.yarema.model.view.CafeView(cafe.id, cafe.rate, cafe.name, cafe.photoUrl, cafe.version, cafe.address, cafe.fullDescription, cafe.type, cafe.phone, cafe.email, open.time, close.time) FROM Cafe cafe LEFT JOIN cafe.open open LEFT JOIN cafe.close close WHERE cafe.id=?1")
+	CafeView findCafeViewById(Integer id);
 }
