@@ -12,34 +12,34 @@
 	</head>
 	<body>
 		<header>
-			<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-				<a class="navbar-brand" href="/">ReSt_FoOd</a>
+			<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #214865;">
+				<a class="navbar-brand" href="/"><strong><span class="text-danger">R</span><span class="text-success">e</span><span class="text-warning">S</span><span class="text-primary">t</span><span class="text-dark">_</span><span class="text-warning">F</span><span class="text-danger">o</span><span class="text-primary">O</span><span class="text-success">d</span></strong></a>
 			  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 						<i class="fa fa-bars" aria-hidden="true"></i>
 					</button>
 			
 			  		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			    		<div class="navbar-nav">
-					     	<a class="nav-item nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-					     	<a class="nav-item nav-link" href="/cafe"><i class="fa fa-user-circle-o" aria-hidden="true"></i>For Client</a>
-					     	<a class="nav-item nav-link" href="/administrator"><i class="fa fa-cube" aria-hidden="true"></i> Administrator</a>
+					     	<a class="nav-item nav-link text-white" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+					     	<a class="nav-item nav-link text-info" href="/cafe"><i class="fa fa-user-circle-o" aria-hidden="true"></i>For Client</a>
+					     	<a class="nav-item nav-link text-white" href="/administrator"><i class="fa fa-cube" aria-hidden="true"></i> Administrator</a>
 					      	<sec:authorize access="hasRole('ROLE_ADMIN')">
-					      		<a class="nav-item nav-link" href="/admin"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a>
+					      		<a class="nav-item nav-link text-white" href="/admin"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a>
 					      	</sec:authorize>
 					    </div>
 			    		<div class="navbar-nav ml-auto">
 			    			<sec:authorize access="isAnonymous()">
-			    				<a class="nav-item nav-link" href="/registration"><i class="fa fa-sign-in" aria-hidden="true"></i> Registration</a>
-			    				<a class="nav-item nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
+			    				<a class="nav-item nav-link text-white" href="/registration"><i class="fa fa-sign-in" aria-hidden="true"></i> Registration</a>
+			    				<a class="nav-item nav-link text-info" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
 			    			</sec:authorize>
 			    			<!-- data-toggle="modal" data-target="#loginInSystem" -->
 			    			<%-- <%@ include file="modal.jsp"%> --%>
 			    			<sec:authorize access="isAuthenticated()">
 			    				<form:form action="/logout">
-			    					<button class="nav-item nav-link btn btn-link">Sign up</button>
+			    					<button class="nav-item nav-link btn btn-link text-info">Sign up</button>
 			    				</form:form>
 			    			</sec:authorize>
-					      	<a class="nav-item nav-link" href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+					      	<a class="nav-item nav-link text-white" href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
 			    		</div>
 			  </div>
 			</nav>
