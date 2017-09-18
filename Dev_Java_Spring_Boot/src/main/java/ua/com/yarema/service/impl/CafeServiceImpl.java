@@ -87,7 +87,6 @@ public class CafeServiceImpl implements CafeService {
 
 	@Override
 	public CafeView findCafeViewById(Integer id) {
-		CafeView cafeView = cafeRepository.findCafeViewById(id);
-		return cafeView;
+		return cafeRepository.findCafeViewById(id);
 	}
 }

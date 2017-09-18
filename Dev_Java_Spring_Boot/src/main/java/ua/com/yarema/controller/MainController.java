@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.model.request.CommentRequest;
 import ua.com.yarema.repository.MealRepository;
@@ -17,6 +20,7 @@ import ua.com.yarema.service.MealService;
 
 @Controller
 @RequestMapping("/")
+@SessionAttributes("comment")
 public class MainController {
 
 	private final CafeService cafeService;
@@ -77,16 +81,6 @@ public class MainController {
 		return "admin";
 	}
 	
-//	@GetMapping("/login")
-//	public String login() {
-//		return "login";
-//	}
-//	
-//	@GetMapping("/registration")
-//	public String registration() {
-//		return "registration";
-//	}
-	
 	@GetMapping("/search")
 	public String search() {
 		return "search";
@@ -97,4 +91,27 @@ public class MainController {
 		return new CommentRequest();
 	}
 	
+	@PostMapping("/cafe/{id}")
+	public String saveCommentToCafe(@ModelAttribute("comment") CommentRequest commentRequest, @PathVariable Integer id, SessionStatus sessionStatus) {
+		commentService.saveCommentToCafe(commentRequest, id);
+		return cancelCafe(sessionStatus);
+	}
+	
+	@PostMapping("/meal/{id}")
+	public String saveCommentToMeal(@ModelAttribute("comment") CommentRequest commentRequest, @PathVariable Integer id, SessionStatus sessionStatus) {
+		commentService.saveCommentToMeal(commentRequest, id);
+		return cancelMale(sessionStatus);
+	}
+	
+	@GetMapping("/cafe/{id}/cancel")
+	public String cancelCafe(SessionStatus sessionStatus) {
+		sessionStatus.setComplete();
+		return "redirect:/cafe/{id}";
+	}
+	
+	@GetMapping("/meal/{id}/cancel")
+	public String cancelMale(SessionStatus sessionStatus) {
+		sessionStatus.setComplete();
+		return "redirect:/meal/{id}";
+	}
 }

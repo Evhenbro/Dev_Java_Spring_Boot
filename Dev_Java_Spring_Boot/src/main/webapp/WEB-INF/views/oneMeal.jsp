@@ -1,7 +1,7 @@
 <%@ include file="header.jsp"%>
 	<div class="container">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-12 rounded border border-info">
 				<div class="col">
 					<h3>${mealById.title}</h3>
 				</div>
@@ -20,6 +20,56 @@
 						${ingredient}  
 					</c:forEach>
 				</div>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-12 rounded border border-info">
+				<form:form action="/meal/${mealById.id}" method="POST" modelAttribute="comment">
+					<div class="form-group row mt-3">
+						<label class="col-2 col-form-label" for="user">User:</label>
+						<div class="col-10">
+							<form:input class="form-control" id="user" path="user"/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label" for="rate">Rate:</label>
+						<div class="col-10">
+							<form:input class="form-control" id="rate" path="rate"/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label" for="message">Message:</label>
+						<div class="col-10">
+							<form:textarea class="form-control" id="message" path="message" rows="4"/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-10 ml-auto">
+							<button class="btn btn-sm btn-outline-success">Save</button>
+							<a href="/meal/{id}/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+						</div>
+					</div>
+				</form:form>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-12 rounded border border-info">
+				<table class="table table-bordered mt-3">
+					<tr>
+						<th class="text-center">User</th>
+						<th class="text-center">Time</th>
+						<th class="text-center">Rate</th>
+						<th class="text-center">Message</th>
+					</tr>
+					<c:forEach var="comment" items="${comments}">
+						<tr>
+							<td>${comment.user}</td>
+							<td>${comment.time}</td>
+							<td>${comment.rate}</td>
+							<td>${comment.message}</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</div>
 	</div>

@@ -18,13 +18,11 @@ public class CommentView {
 	
 	private String meal;
  	
-	public CommentView(String message, LocalDateTime time, BigDecimal rate, String user, String cafe, String meal) {
+	public CommentView(String message, LocalDateTime time, BigDecimal rate, String user) {
 		this.message = message;
 		this.time = time.format(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy"));
 		this.rate = rate;
 		this.user = user;
-		this.cafe = cafe;
-		this.meal = meal;
 	}
 
 	public String getMessage() {
