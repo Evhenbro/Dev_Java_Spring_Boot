@@ -32,12 +32,6 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-2 col-form-label" for="rate">Rate:</label>
-						<div class="col-10">
-							<form:input class="form-control" id="rate" path="rate"/>
-						</div>
-					</div>
-					<div class="form-group row">
 						<label class="col-2 col-form-label" for="message">Message:</label>
 						<div class="col-10">
 							<form:textarea class="form-control" id="message" path="message" rows="4"/>
@@ -58,14 +52,12 @@
 					<tr>
 						<th class="text-center">User</th>
 						<th class="text-center">Time</th>
-						<th class="text-center">Rate</th>
 						<th class="text-center">Message</th>
 					</tr>
 					<c:forEach var="comment" items="${comments}">
 						<tr>
 							<td>${comment.user}</td>
 							<td>${comment.time}</td>
-							<td>${comment.rate}</td>
 							<td>${comment.message}</td>
 						</tr>
 					</c:forEach>
