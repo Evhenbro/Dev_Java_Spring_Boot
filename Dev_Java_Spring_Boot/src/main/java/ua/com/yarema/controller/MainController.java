@@ -1,6 +1,8 @@
 package ua.com.yarema.controller;
 
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +42,12 @@ public class MainController {
 	}
 
 	@GetMapping
-	public String index() {
+	public String index(Model model, Principal principal) {
+		if(principal!=null){
+			model.addAttribute("message", "Hello " + principal.getName() + "!");
+		} else {
+			model.addAttribute("message", "Hello unregistered user!");
+		}
 		return "index";
 	}
 	

@@ -1,5 +1,7 @@
 package ua.com.yarema.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,8 @@ public class RegistrationController {
 	}
 	
 	@GetMapping("/login")
-	public String login() {
+	public String login(Principal principal) {
+		if(principal!=null) System.out.println(principal.getName());
 		return "login";
 	}
 	

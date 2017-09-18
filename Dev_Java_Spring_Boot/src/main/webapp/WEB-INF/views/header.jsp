@@ -21,17 +21,24 @@
 			  		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			    		<div class="navbar-nav">
 					     	<a class="nav-item nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-					     	<a class="nav-item nav-link" href="/cafe"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Client</a>
+					     	<a class="nav-item nav-link" href="/cafe"><i class="fa fa-user-circle-o" aria-hidden="true"></i>For Client</a>
 					     	<a class="nav-item nav-link" href="/administrator"><i class="fa fa-cube" aria-hidden="true"></i> Administrator</a>
 					      	<sec:authorize access="hasRole('ROLE_ADMIN')">
 					      		<a class="nav-item nav-link" href="/admin"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a>
 					      	</sec:authorize>
 					    </div>
 			    		<div class="navbar-nav ml-auto">
-			    			<a class="nav-item nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
+			    			<sec:authorize access="isAnonymous()">
+			    				<a class="nav-item nav-link" href="/registration"><i class="fa fa-sign-in" aria-hidden="true"></i> Registration</a>
+			    				<a class="nav-item nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
+			    			</sec:authorize>
 			    			<!-- data-toggle="modal" data-target="#loginInSystem" -->
 			    			<%-- <%@ include file="modal.jsp"%> --%>
-			    			<a class="nav-item nav-link" href="/registration">Sign up</a>
+			    			<sec:authorize access="isAuthenticated()">
+			    				<form:form action="/logout">
+			    					<button class="nav-item nav-link btn btn-link">Sign up</button>
+			    				</form:form>
+			    			</sec:authorize>
 					      	<a class="nav-item nav-link" href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
 			    		</div>
 			  </div>

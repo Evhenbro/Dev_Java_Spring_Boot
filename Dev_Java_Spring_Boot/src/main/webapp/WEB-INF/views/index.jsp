@@ -1,5 +1,6 @@
 <%@ include file="header.jsp"%>
 <div class="container">
+	<h2 class="text-center">${message}</h2>
 	<div  class="mx-auto text-center mt-2">
 		<h2 class="text-success">TOP 5 CAFES</h2>
 	</div>

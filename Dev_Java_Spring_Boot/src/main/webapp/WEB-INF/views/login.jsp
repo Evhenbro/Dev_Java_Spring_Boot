@@ -1,6 +1,11 @@
 <%@ include file="header.jsp"%>
 	<div class="container mt-3">
 		<div class="row">
+			<c:if test="${param.fail}">
+				<div class="col-12 text-center" style="color:red;">
+					Fail to autorize
+				</div>
+			</c:if>
 			<div class="col-12">
 				<form:form action="/login" method="POST">
 					<div class="form-group row">
