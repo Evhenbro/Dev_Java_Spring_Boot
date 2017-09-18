@@ -53,6 +53,7 @@ public class CommentServiceImpl implements CommentService {
 		comment.setUser(commentRequest.getUser());
 		comment.setTime(LocalDateTime.now());
 		comment.setCafe(cafeRepository.findOneRequest(id));
+//		comment.setCafe(commentRequest.getCafe());
 		commentRepository.save(comment);
 	}
 
@@ -65,6 +66,7 @@ public class CommentServiceImpl implements CommentService {
 		comment.setUser(commentRequest.getUser());
 		comment.setTime(LocalDateTime.now());
 		comment.setMeal(mealRepository.findOneRequest(id));
+//		comment.setMeal(commentRequest.getMeal());
 		commentRepository.save(comment);
 	}
 	
