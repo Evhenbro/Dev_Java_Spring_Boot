@@ -29,7 +29,7 @@
 					    </div>
 			    		<div class="navbar-nav ml-auto">
 			    			<sec:authorize access="isAnonymous()">
-			    				<a class="nav-item nav-link text-white" href="/registration"><i class="fa fa-sign-in" aria-hidden="true"></i> Registration</a>
+			    				<a class="nav-item nav-link text-white" href="/registration">Registration</a>
 			    				<a class="nav-item nav-link text-info" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
 			    			</sec:authorize>
 			    			<!-- data-toggle="modal" data-target="#loginInSystem" -->
@@ -39,7 +39,7 @@
 			    					<button class="nav-item nav-link btn btn-link text-info">Sign up</button>
 			    				</form:form>
 			    			</sec:authorize>
-					      	<a class="nav-item nav-link text-white" href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+					      	<a class="nav-item nav-link text-white" href="/search"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
 			    		</div>
 			  </div>
 			</nav>
