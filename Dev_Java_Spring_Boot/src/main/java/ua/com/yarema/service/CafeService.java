@@ -1,5 +1,6 @@
 package ua.com.yarema.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import ua.com.yarema.entity.Cafe;
@@ -9,7 +10,7 @@ import ua.com.yarema.model.view.CafeView;
 
 public interface CafeService {
 
-	void save(CafeRequest cafeRequest);
+	void save(CafeRequest cafeRequest, Principal principal);
 
 	CafeRequest findOne(Integer id);
 	
@@ -23,5 +24,5 @@ public interface CafeService {
 
 	CafeView findCafeViewById(Integer id);
 
-	List<CafeShortView> findAllOwnCafesByUserLogin(String name);
+	List<CafeShortView> findAllOwnCafesByUserLogin(String login);
 }

@@ -1,9 +1,9 @@
 package ua.com.yarema.service.impl;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.com.yarema.entity.Cafe;
@@ -12,20 +12,23 @@ import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.CafeView;
 import ua.com.yarema.repository.CafeRepository;
+import ua.com.yarema.repository.UserRepository;
 import ua.com.yarema.service.CafeService;
 
 @Service
 public class CafeServiceImpl implements CafeService {
 
-	private CafeRepository cafeRepository;
+	private final CafeRepository cafeRepository;
 	
-	@Autowired
-	public CafeServiceImpl(CafeRepository cafeRepository) {
+	private final UserRepository userRepository; 
+	
+	public CafeServiceImpl(CafeRepository cafeRepository, UserRepository userRepository) {
 		this.cafeRepository = cafeRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
-	public void save(CafeRequest cafeRequest) {
+	public void save(CafeRequest cafeRequest, Principal principal) {
 		Cafe cafe = new Cafe();
 		cafe.setAddress(cafeRequest.getAddress());
 		cafe.setClose(cafeRequest.getClose());
@@ -41,6 +44,7 @@ public class CafeServiceImpl implements CafeService {
 		cafe.setRate(new BigDecimal(cafeRequest.getRate()));
 		cafe.setType(Type.valueOf(cafeRequest.getType()));
 		cafe.setVersion(Integer.valueOf(cafeRequest.getVersion()));
+		cafe.setUser(userRepository.findByLogin(principal.getName()));;
 		cafeRepository.save(cafe);
 	}
 
@@ -62,6 +66,7 @@ public class CafeServiceImpl implements CafeService {
 		cafeRequest.setRate(String.valueOf(cafe.getRate()));
 		cafeRequest.setType(String.valueOf(cafe.getType()));
 		cafeRequest.setVersion(Integer.valueOf(cafe.getVersion()));
+		cafeRequest.setUser(cafe.getUser());
 		return cafeRequest;
 	}
 

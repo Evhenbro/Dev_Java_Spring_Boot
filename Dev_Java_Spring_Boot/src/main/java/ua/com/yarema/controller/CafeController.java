@@ -1,5 +1,7 @@
 package ua.com.yarema.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,13 +33,21 @@ public class CafeController {
 		this.cafeService = cafeService;
 	}
 
+	@GetMapping
+	public String showAllOwnCafes(Model model, Principal principal) {
+		if(principal!=null){
+			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName()));
+		}
+		return "ownCafes";
+	}
+	
 	@ModelAttribute("cafe")
 	public CafeRequest getFormCafe() {
 		return new CafeRequest();
 	}
 
 	@GetMapping("/new")
-	public String show(Model model) {
+	public String showForm(Model model) {
 		model.addAttribute("fullCafes", cafeService.findAllCafes());
 		model.addAttribute("cafes", cafeService.findAllCafeShortView());
 		model.addAttribute("times", openCloseService.findAllTimes());
@@ -52,15 +62,15 @@ public class CafeController {
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("cafe") CafeRequest cafeRequest, SessionStatus sessionStatus) {
-		cafeService.save(cafeRequest);
+	public String save(@ModelAttribute("cafe") CafeRequest cafeRequest, SessionStatus sessionStatus, Principal principal) {
+		cafeService.save(cafeRequest, principal);
 		return cancel(sessionStatus);
 	}
 	
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
 		model.addAttribute("cafe", cafeService.findOne(id));
-		return show(model);
+		return showForm(model);
 	}
 	
 	@GetMapping("/new/cancel")

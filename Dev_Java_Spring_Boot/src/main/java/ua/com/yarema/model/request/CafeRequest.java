@@ -5,6 +5,7 @@ import java.util.List;
 
 import ua.com.yarema.entity.Meal;
 import ua.com.yarema.entity.OpenClose;
+import ua.com.yarema.entity.User;
 
 public class CafeRequest {
 
@@ -33,6 +34,8 @@ public class CafeRequest {
 	private OpenClose open;
 	
 	private OpenClose close;
+	
+	private User user;
 	
 	private List<Meal> meals = new ArrayList<>();
 
@@ -147,5 +150,13 @@ public class CafeRequest {
 	public void setMeals(List<Meal> meals) {
 		this.meals = meals;
 	}
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }

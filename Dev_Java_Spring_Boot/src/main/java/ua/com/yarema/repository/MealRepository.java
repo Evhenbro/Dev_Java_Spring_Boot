@@ -30,4 +30,7 @@ public interface MealRepository extends JpaRepository<Meal, Integer> {
 	
 	@Query("SELECT new ua.com.yarema.model.view.MealView(meal.id, meal.title, meal.description, meal.price, meal.photoUrl, meal.version, cuisine.name, cafe.name, meal.weight) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe WHERE meal.id=?1")
 	MealView findMealViewById(Integer id);
+	
+	@Query("SELECT new ua.com.yarema.model.view.MealView(meal.id, meal.title, meal.description, meal.price, meal.photoUrl, meal.version, cuisine.name, cafe.name, meal.weight) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe LEFT JOIN cafe.user user WHERE user.login=?1")
+	List<MealView> findAllOwnMealsByUserLogin(String login);
 }

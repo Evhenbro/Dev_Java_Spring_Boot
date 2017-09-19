@@ -23,4 +23,6 @@ public interface MealService {
 
 	MealView findMealViewById(Integer id);
 
+	List<MealView> findAllOwnMealsByUserLogin(String login);
+
 }

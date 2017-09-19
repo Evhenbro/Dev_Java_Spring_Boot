@@ -1,5 +1,7 @@
 package ua.com.yarema.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,15 +17,23 @@ import ua.com.yarema.model.request.MealRequest;
 import ua.com.yarema.service.MealService;
 
 @Controller
-@RequestMapping("/admin/meal")
+@RequestMapping("/profile/meal")
 @SessionAttributes("meal")
-public class AdminMealController {
+public class MealController {
 	
 	private final MealService mealService;
 	
 	@Autowired
-	public AdminMealController(MealService mealService) {
+	public MealController(MealService mealService) {
 		this.mealService = mealService;
+	}
+	
+	@GetMapping
+	public String showAllOwnMeals(Model model, Principal principal) {
+		if(principal!=null){
+			model.addAttribute("ownMeals", mealService.findAllOwnMealsByUserLogin(principal.getName()));
+		}
+		return "ownMeals";
 	}
 	
 	@ModelAttribute("meal")
@@ -31,19 +41,19 @@ public class AdminMealController {
 		return new MealRequest();
 	}
 
-	@GetMapping
-	public String show(Model model) {
+	@GetMapping("/new")
+	public String showForm(Model model) {
 		model.addAttribute("ingredients", mealService.findAllIngredients());
 		model.addAttribute("cuisines", mealService.findAllCuisines());
 		model.addAttribute("meals", mealService.findAllViews());
 		model.addAttribute("cafes", mealService.findAllCafes());
-		return "meal";
+		return "meals";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		mealService.delete(id);
-		return "redirect:/admin/meal";
+		return "redirect:/profile/meal";
 	}
 
 	@PostMapping
@@ -55,12 +65,12 @@ public class AdminMealController {
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
 		model.addAttribute("meal", mealService.findOne(id));
-		return show(model);	
+		return showForm(model);	
 	}
 	
-	@GetMapping("/cancel")
+	@GetMapping("/new/cancel")
 	public String cancel(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/admin/meal";
+		return "redirect:/profile/meal/new";
 	}
 }

@@ -93,4 +93,11 @@ public class MealServiceImpl implements MealService {
 		return mealView;
 	}
 
+	@Override
+	public List<MealView> findAllOwnMealsByUserLogin(String login) {
+		List<MealView> views = mealRepository.findAllOwnMealsByUserLogin(login);
+		views.forEach(this::loadIngredients);
+		return views;
+	}
+
 }

@@ -5,7 +5,7 @@
 		</div>
 		<div class="row  mt-3">
 			<div class="col-12">
-				<table class="table table-bordered">
+				<table class="table table-bordered ">
 					<tr>
 						<th class="text-center">Name</th>
 						<th class="text-center">Address</th>
@@ -16,7 +16,7 @@
 						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="cafe" items="${ownCafes}">
-						<tr>
+						<tr class="text-center">
 							<td><a href="/cafe/${cafe.id}">${cafe.name}</a></td>
 							<td>${cafe.address}</td>
 							<td>${cafe.rate}</td>
