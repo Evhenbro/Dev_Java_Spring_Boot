@@ -12,6 +12,7 @@
 						<th class="text-center">Price</th>
 						<th class="text-center">Cafe</th>
 						<th class="text-center">Ingredients</th>
+						<th class="text-center">Photo Url</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="meal" items="${ownMeals}">
@@ -25,6 +26,7 @@
 									${ingredient} 
 								</c:forEach>
 							</td>
+							<td><img src="/resources/food.jpeg" class="img-fluid"></td>
 							<td>
 								<div>
 									<a href="/profile/meal/update/${meal.id}" class="btn btn-outline-warning btn-sm">Update</a>

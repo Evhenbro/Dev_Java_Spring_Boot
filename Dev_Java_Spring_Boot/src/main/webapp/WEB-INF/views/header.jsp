@@ -22,9 +22,11 @@
 			    		<div class="navbar-nav">
 					     	<a class="nav-item nav-link text-white" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
 					     	<a class="nav-item nav-link text-info" href="/cafe"><i class="fa fa-user-circle-o" aria-hidden="true"></i>For Client</a>
-					     	<a class="nav-item nav-link text-white" href="/profile"><i class="fa fa-cube" aria-hidden="true"></i> Administrator</a>
+					     	<sec:authorize access="hasRole('ROLE_CAFE')">
+					     		<a class="nav-item nav-link text-white" href="/profile"><i class="fa fa-cube" aria-hidden="true"></i> Administrator</a>
+					      	</sec:authorize>
 					      	<sec:authorize access="hasRole('ROLE_ADMIN')">
-					      		<a class="nav-item nav-link text-info" href="/admin"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a>
+					      		<a class="nav-item nav-link text-white" href="/admin"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a>
 					      	</sec:authorize>
 					    </div>
 			    		<div class="navbar-nav ml-auto">

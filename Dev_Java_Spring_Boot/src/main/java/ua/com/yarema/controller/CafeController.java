@@ -52,7 +52,7 @@ public class CafeController {
 		model.addAttribute("cafes", cafeService.findAllCafeShortView());
 		model.addAttribute("times", openCloseService.findAllTimes());
 		model.addAttribute("types", Type.values());
-		return "cafes";
+		return "addCafes";
 	}
 	
 	@GetMapping("/delete/{id}")

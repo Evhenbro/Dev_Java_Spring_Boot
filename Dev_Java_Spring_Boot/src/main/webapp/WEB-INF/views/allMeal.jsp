@@ -9,6 +9,7 @@
 						<th class="text-center">Price</th>
 						<th class="text-center">Cafe</th>
 						<th class="text-center">Ingredients</th>
+						<th class="text-center">Photo Url</th>
 					</tr>
 					<c:forEach var="meal" items="${meals}">
 						<tr>
@@ -21,6 +22,7 @@
 									${ingredient} 
 								</c:forEach>
 							</td>
+							<td><img src="/resources/food.jpeg" class="img-fluid"></td>
 						</tr>
 					</c:forEach>
 				</table>

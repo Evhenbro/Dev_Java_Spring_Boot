@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.model.request.MealRequest;
+import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.MealService;
 
 @Controller
@@ -23,11 +24,16 @@ public class MealController {
 	
 	private final MealService mealService;
 	
-	@Autowired
-	public MealController(MealService mealService) {
-		this.mealService = mealService;
-	}
+	private final CafeService cafeService;
 	
+//	private Principal principal;
+	
+	@Autowired
+	public MealController(MealService mealService, CafeService cafeService) {
+		this.mealService = mealService;
+		this.cafeService = cafeService;
+	}
+ 	
 	@GetMapping
 	public String showAllOwnMeals(Model model, Principal principal) {
 		if(principal!=null){
@@ -35,19 +41,21 @@ public class MealController {
 		}
 		return "ownMeals";
 	}
-	
+
 	@ModelAttribute("meal")
 	public MealRequest getForm() {
 		return new MealRequest();
 	}
 
 	@GetMapping("/new")
-	public String showForm(Model model) {
-		model.addAttribute("ingredients", mealService.findAllIngredients());
-		model.addAttribute("cuisines", mealService.findAllCuisines());
-		model.addAttribute("meals", mealService.findAllViews());
-		model.addAttribute("cafes", mealService.findAllCafes());
-		return "meals";
+	public String showForm(Model model, Principal principal) {
+		if(principal!=null){
+			model.addAttribute("ingredients", mealService.findAllIngredients());
+			model.addAttribute("cuisines", mealService.findAllCuisines());
+			model.addAttribute("meals", mealService.findAllViews());
+			model.addAttribute("cafes", cafeService.findAllOwnCafesByUserLogin(principal.getName()));
+		}
+		return "addMeals";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -63,9 +71,9 @@ public class MealController {
 	}
 	
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable Integer id, Model model) {
+	public String update(@PathVariable Integer id, Model model, Principal principal) {
 		model.addAttribute("meal", mealService.findOne(id));
-		return showForm(model);	
+		return showForm(model, principal);	
 	}
 	
 	@GetMapping("/new/cancel")

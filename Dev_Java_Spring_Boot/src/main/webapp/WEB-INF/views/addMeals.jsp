@@ -42,13 +42,13 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-							<form:select class="form-control" path="cafe" items="${cafes}"/>
+							<form:select class="form-control" path="cafe" items="${cafes}" itemLabel="name" itemValue="name"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-10 mr-left">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/meal/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+							<a href="/profile/meal/new/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
 						</div>
 					</div>
 				</form:form>
