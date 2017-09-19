@@ -22,4 +22,6 @@ public interface CafeService {
 	List<Cafe> findAllCafes();
 
 	CafeView findCafeViewById(Integer id);
+
+	List<CafeShortView> findAllOwnCafesByUserLogin(String name);
 }

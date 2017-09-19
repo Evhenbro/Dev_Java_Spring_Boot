@@ -1,6 +1,5 @@
 package ua.com.yarema.controller;
 
-
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,10 +77,10 @@ public class MainController {
 		return "oneMeal";
 	}
 	
-	@GetMapping("/administrator")
-	public String administrator() {
-		return "administrator";
-	}
+//	@GetMapping("/profile")
+//	public String administrator() {
+//		return "administrator";
+//	}
 	
 	@GetMapping("/admin")
 	public String admin() {
