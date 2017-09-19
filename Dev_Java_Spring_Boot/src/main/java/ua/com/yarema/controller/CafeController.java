@@ -17,7 +17,7 @@ import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.OpenCloseService;
 
 @Controller
-@RequestMapping("/admin/cafes")
+@RequestMapping("/profile/cafe")
 @SessionAttributes("cafe")
 public class CafeController {
 	
@@ -36,7 +36,7 @@ public class CafeController {
 		return new CafeRequest();
 	}
 
-	@GetMapping
+	@GetMapping("/new")
 	public String show(Model model) {
 		model.addAttribute("fullCafes", cafeService.findAllCafes());
 		model.addAttribute("cafes", cafeService.findAllCafeShortView());
@@ -48,7 +48,7 @@ public class CafeController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		cafeService.delete(id);
-		return "redirect:/admin/cafes";
+		return "redirect:/profile/cafe";
 	}
 	
 	@PostMapping
@@ -60,13 +60,13 @@ public class CafeController {
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
 		model.addAttribute("cafe", cafeService.findOne(id));
-		return show(model);
+		return "redirect:/profile/cafe";
 	}
 	
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/admin/cafes";
+		return "redirect:/profile/cafe";
 	}
 	
 }

@@ -12,7 +12,7 @@ import ua.com.yarema.service.CafeService;
 
 @Controller
 @RequestMapping("/profile")
-@SessionAttributes("fafa")
+@SessionAttributes("cafe")
 public class AdministratorController {
 
 	private final CafeService cafeService;
@@ -36,4 +36,8 @@ public class AdministratorController {
 		}
 		return "ownCafes";
 	}
+	
+
+	
+	
 }
