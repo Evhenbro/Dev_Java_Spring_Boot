@@ -60,13 +60,13 @@ public class CafeController {
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
 		model.addAttribute("cafe", cafeService.findOne(id));
-		return "redirect:/profile/cafe";
+		return show(model);
 	}
 	
-	@GetMapping("/cancel")
+	@GetMapping("/new/cancel")
 	public String cancel(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/profile/cafe";
+		return "redirect:/profile/cafe/new";
 	}
 	
 }
