@@ -1,4 +1,7 @@
 <%@ include file="header.jsp"%>
+	<div class="text-center">
+		<h4 class="text-primary">THERE YOU CAN ADD OR UPDATE CUISINE</h4>
+	</div>
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col-12">
