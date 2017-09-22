@@ -21,11 +21,6 @@
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
 						<form:select class="form-control" path="cafe" items="${cafes}" itemValue="name" itemLabel="name"/>
-							<%-- <select class="form-control" id="cafe" name="cafe">
-								<c:forEach var="cafe" items="${cafes}">
-									<option value="${cafe.id}">${cafe.name}</option>
-								</c:forEach>
-							</select> --%>
 						</div>
 					</div>
 					<div class="form-group row">

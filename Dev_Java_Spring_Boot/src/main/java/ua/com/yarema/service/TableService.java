@@ -3,14 +3,14 @@ package ua.com.yarema.service;
 import java.util.List;
 
 import ua.com.yarema.entity.Cafe;
-import ua.com.yarema.entity.Table;
 import ua.com.yarema.model.request.TableRequest;
+import ua.com.yarema.model.view.TableView;
 
 public interface TableService {
 	
 	List<Cafe> findAllCafes();
 
-	List<Table> findAll();
+	List<TableView> findAllTableViewByCafeId(Integer id);
 
 	void save(TableRequest tableRequest);
 

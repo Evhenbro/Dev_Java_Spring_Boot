@@ -4,6 +4,8 @@ import ua.com.yarema.entity.Cafe;
 
 public class TableRequest {
 
+	private String number;
+	
 	private Integer id;
 	
 	private Integer countOfPeople;
@@ -11,6 +13,14 @@ public class TableRequest {
 	private boolean isFree;
 	
 	private Cafe cafe;
+	
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
 
 	public Integer getId() {
 		return id;

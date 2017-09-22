@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 @javax.persistence.Table(name="_table")
 public class Table extends AbstractEntity {
 	
+	private String number;
+	
 	private int countOfPeople;
 	
 	private boolean isFree;
@@ -18,12 +20,21 @@ public class Table extends AbstractEntity {
 	public Table() {
 	}
 	
-	public Table(int countOfPeople, boolean isFree, Cafe cafe) {
+	public Table(int countOfPeople, boolean isFree, Cafe cafe, String number) {
 		this.countOfPeople = countOfPeople;
 		this.isFree = isFree;
 		this.cafe = cafe;
+		this.number = number;
 	}
 	
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
 	public int getCountOfPeople() {
 		return countOfPeople;
 	}

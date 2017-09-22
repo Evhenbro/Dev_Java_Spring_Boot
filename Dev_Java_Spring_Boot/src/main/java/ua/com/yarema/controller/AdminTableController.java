@@ -34,7 +34,7 @@ public class AdminTableController {
 	@GetMapping
 	public String show(Model model) {
 		model.addAttribute("cafes", tableService.findAllCafes());
-		model.addAttribute("tables", tableService.findAll());
+		model.addAttribute("tables", tableService.findAllTableView());
 		return "table";
 	}
 	

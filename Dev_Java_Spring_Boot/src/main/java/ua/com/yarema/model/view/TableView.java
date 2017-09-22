@@ -4,14 +4,17 @@ public class TableView {
 
 	private Integer id;
 	
+	private String number;
+	
 	private int countOfPeople;
 	
 	private boolean isFree;
 	
 	private String cafe;
 
-	public TableView(Integer id, int countOfPeople, boolean isFree, String cafe) {
+	public TableView(Integer id, String number, int countOfPeople, boolean isFree, String cafe) {
 		this.id = id;
+		this.number = number;
 		this.countOfPeople = countOfPeople;
 		this.isFree = isFree;
 		this.cafe = cafe;
@@ -23,6 +26,14 @@ public class TableView {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
 	public int getCountOfPeople() {

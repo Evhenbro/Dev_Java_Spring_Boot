@@ -18,6 +18,7 @@ import ua.com.yarema.repository.MealRepository;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.CommentService;
 import ua.com.yarema.service.MealService;
+import ua.com.yarema.service.TableService;
 
 @Controller
 @RequestMapping("/")
@@ -32,12 +33,15 @@ public class MainController {
 	
 	private final CommentService commentService; 
 	
+	private final TableService tableService; 
+	
 	@Autowired
-	public MainController(CafeService cafeService, MealService mealService, MealRepository mealRepository, CommentService commentService) {
+	public MainController(CafeService cafeService, MealService mealService, MealRepository mealRepository, CommentService commentService, TableService tableService) {
 		this.cafeService = cafeService;
 		this.mealService = mealService;
 		this.mealRepository = mealRepository;
 		this.commentService = commentService;
+		this.tableService = tableService;
 	}
 
 	@GetMapping
@@ -119,5 +123,11 @@ public class MainController {
 	public String cancelMale(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		return "redirect:/meal/{id}";
+	}
+	
+	@GetMapping("/cafe/{id}/tables")
+	public String showTables(@PathVariable Integer id, Model model) {
+		model.addAttribute("tables", tableService.findAllTableViewByCafeId(id));
+		return "tableClient";
 	}
 }
