@@ -2,7 +2,7 @@
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col-12">
-				<form:form action="/admin/table" method="POST" modelAttribute="table">
+				<form:form action="/profile/cafe/${cafe.id}/tables" method="POST" modelAttribute="table">
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="countOfPeople">Count Of People:</label>
 						<div class="col-10">
@@ -20,7 +20,7 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-						<form:select class="form-control" path="cafe" items="${cafes}" itemValue="name" itemLabel="name"/>
+						<form:select class="form-control" path="cafe" items="${ownCafes}" itemValue="name" itemLabel="name"/>
 						</div>
 					</div>
 					<div class="form-group row">

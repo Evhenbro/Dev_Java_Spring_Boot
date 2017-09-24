@@ -17,6 +17,9 @@
 					<br><span>${cafeById.fullDescription}</span>
 					<br><strong>${cafeById.open} - ${cafeById.close}</strong>
 				</div>
+				<div class="col-2 ml-auto my-2">
+					<a href="/cafe/${cafeById.id}/tables" class="btn btn-sm btn-outline-success">To order a table</a>
+				</div>
 			</div>
 		</div>
 		<div class="row mt-3">
@@ -43,7 +46,7 @@
 					<div class="form-group row">
 						<div class="col-10 ml-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/cafe/{id}/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+							<a href="/cafe/${cafeById.id}/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
 						</div>
 					</div>
 				</form:form>

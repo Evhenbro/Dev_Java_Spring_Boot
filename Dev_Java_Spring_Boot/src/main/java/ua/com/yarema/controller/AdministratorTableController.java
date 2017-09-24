@@ -1,5 +1,7 @@
 package ua.com.yarema.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,18 +14,22 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.model.request.TableRequest;
+import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.TableService;
 
 @Controller
-@RequestMapping("/admin/table")
+@RequestMapping("/profile/cafe/{id}/tables")
 @SessionAttributes("table")
-public class AdminTableController {
+public class AdministratorTableController {
 	
 	private final TableService tableService;
+	
+	private final CafeService cafeService;
 
 	@Autowired
-	public AdminTableController(TableService tableService) {
+	public AdministratorTableController(TableService tableService, CafeService cafeService) {
 		this.tableService = tableService;
+		this.cafeService = cafeService;
 	}
 	
 	@ModelAttribute("table")
@@ -32,16 +38,20 @@ public class AdminTableController {
 	}
 	
 	@GetMapping
-	public String show(Model model) {
-		model.addAttribute("cafes", tableService.findAllCafes());
-		model.addAttribute("tables", tableService.findAllTableView());
+	public String show(@PathVariable Integer id, Model model, Principal principal) {
+		if(principal!=null){
+			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName()));
+		}
+		System.out.println(id);
+		model.addAttribute("cafe", cafeService.findCafeViewById(id));
+		model.addAttribute("tables", tableService.findAllTableViewByCafeId(id));
 		return "table";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		tableService.delete(id);
-		return "redirect:/admin/table";
+		return "redirect:/profile/cafe/{id}/tables";
 	}
 
 	@PostMapping
@@ -51,15 +61,15 @@ public class AdminTableController {
 	}
 	
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable Integer id, Model model) {
+	public String update(@PathVariable Integer id, Model model, Principal principal) {
 		model.addAttribute("table", tableService.findOne(id));
-		return show(model);	
+		return show(id, model, principal);	
 	}
 	
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/admin/table";
+		return "redirect:/profile/cafe/{id}/tables";
 	}
 	
 }

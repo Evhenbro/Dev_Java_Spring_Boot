@@ -27,6 +27,7 @@
 								<div>
 									<a href="/profile/cafe/update/${cafe.id}" class="btn btn-outline-warning btn-sm">Update</a>
 									<a href="/profile/cafe/delete/${cafe.id}" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+									<a href="/profile/cafe/${cafe.id}/tables" class="btn btn-outline-danger btn-sm">Table</a>
 								</div>
 							</td>
 						</tr>

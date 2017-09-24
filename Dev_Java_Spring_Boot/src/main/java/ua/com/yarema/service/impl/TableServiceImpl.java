@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Table;
 import ua.com.yarema.model.request.TableRequest;
+import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.TableView;
 import ua.com.yarema.repository.TableRepository;
 import ua.com.yarema.service.TableService;
@@ -24,17 +24,12 @@ public class TableServiceImpl implements TableService {
 	}
 
 	@Override
-	public List<Cafe> findAllCafes() {
-		return tableRepository.findAllCafes();
-	}
-
-	@Override
 	public void save(TableRequest tableRequest) {
 		Table table = new Table();
 		table.setNumber(tableRequest.getNumber());
 		table.setCafe(tableRequest.getCafe());
 		table.setCountOfPeople(Integer.valueOf(tableRequest.getCountOfPeople()));
-		table.setId(tableRequest.getId());
+//		table.setId(tableRequest.getId());
 		table.setIsFree(Boolean.valueOf(tableRequest.getIsFree()));
 		tableRepository.save(table);
 	}
@@ -59,6 +54,11 @@ public class TableServiceImpl implements TableService {
 	@Override
 	public List<TableView> findAllTableViewByCafeId(Integer id) {
 		return tableRepository.findAllTableViewByCafeId(id);
+	}
+
+	@Override
+	public CafeShortView findOneCafeById(Integer id) {
+		return tableRepository.findOneCafeById(id);
 	}
 
 	

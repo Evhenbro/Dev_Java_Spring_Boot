@@ -41,7 +41,6 @@ public class CafeServiceImpl implements CafeService {
 		cafe.setOpen(cafeRequest.getOpen());
 		cafe.setPhone(cafeRequest.getPhone());
 		cafe.setPhotoUrl(cafeRequest.getPhotoUrl());
-		System.out.println(cafeRequest.getRate());
 		cafe.setRate(new BigDecimal(cafeRequest.getRate()));
 		cafe.setType(Type.valueOf(cafeRequest.getType()));
 		cafe.setVersion(Integer.valueOf(cafeRequest.getVersion()));

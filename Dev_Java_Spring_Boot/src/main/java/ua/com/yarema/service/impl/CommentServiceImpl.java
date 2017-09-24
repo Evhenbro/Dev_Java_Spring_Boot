@@ -38,7 +38,6 @@ public class CommentServiceImpl implements CommentService {
 		return commentRepository.findAllCommentByCafeId(id);
 	}
 
-
 	@Override
 	public List<CommentView> findAllCommentByMealId(Integer id) {
 		return commentRepository.findAllCommentByMealId(id);
@@ -47,30 +46,22 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public void saveCommentToCafe(CommentRequest commentRequest, Integer id) {
 		Comment comment = new Comment();
-		comment.setId(commentRequest.getId());
-		comment.setRate(new BigDecimal(commentRequest.getRate()));
+		comment.setRate(commentRequest.getRate()=="" ? new BigDecimal(0.0) : new BigDecimal(commentRequest.getRate()));
 		comment.setMessage(commentRequest.getMessage());
 		comment.setUser(commentRequest.getUser());
 		comment.setTime(LocalDateTime.now());
 		comment.setCafe(cafeRepository.findOneRequest(id));
-//		comment.setCafe(commentRequest.getCafe());
 		commentRepository.save(comment);
 	}
 
 	@Override
 	public void saveCommentToMeal(CommentRequest commentRequest, Integer id) {
 		Comment comment = new Comment();
-		comment.setId(commentRequest.getId());
-		comment.setRate(new BigDecimal(commentRequest.getRate()));
 		comment.setMessage(commentRequest.getMessage());
 		comment.setUser(commentRequest.getUser());
 		comment.setTime(LocalDateTime.now());
 		comment.setMeal(mealRepository.findOneRequest(id));
-//		comment.setMeal(commentRequest.getMeal());
 		commentRepository.save(comment);
 	}
 	
-	
-	
-
 }
