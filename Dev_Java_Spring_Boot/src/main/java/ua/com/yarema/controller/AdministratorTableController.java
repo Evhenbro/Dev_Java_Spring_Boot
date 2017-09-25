@@ -25,6 +25,8 @@ public class AdministratorTableController {
 	private final TableService tableService;
 	
 	private final CafeService cafeService;
+	
+	private Integer idi = 0;
 
 	@Autowired
 	public AdministratorTableController(TableService tableService, CafeService cafeService) {
@@ -42,15 +44,19 @@ public class AdministratorTableController {
 		if(principal!=null){
 			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName()));
 		}
-		System.out.println(id);
+		System.out.println("/profile/cafe/{id}/tables " + id);
+		idi = id;
 		model.addAttribute("cafe", cafeService.findCafeViewById(id));
 		model.addAttribute("tables", tableService.findAllTableViewByCafeId(id));
 		return "table";
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Integer id) {
+	public String delete(@PathVariable Integer id, Model model, Principal principal) {
+		System.out.println("/delete/{id} " + id);
 		tableService.delete(id);
+		id = idi;
+		System.out.println("/delete/{id} " + id);
 		return "redirect:/profile/cafe/{id}/tables";
 	}
 
@@ -62,7 +68,9 @@ public class AdministratorTableController {
 	
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model, Principal principal) {
+		System.out.println("/update/{id} " + id);
 		model.addAttribute("table", tableService.findOne(id));
+		id = idi;
 		return show(id, model, principal);	
 	}
 	

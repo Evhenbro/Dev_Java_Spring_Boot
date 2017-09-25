@@ -29,7 +29,7 @@ public class TableServiceImpl implements TableService {
 		table.setNumber(tableRequest.getNumber());
 		table.setCafe(tableRequest.getCafe());
 		table.setCountOfPeople(Integer.valueOf(tableRequest.getCountOfPeople()));
-//		table.setId(tableRequest.getId());
+		table.setId(tableRequest.getId());
 		table.setIsFree(Boolean.valueOf(tableRequest.getIsFree()));
 		tableRepository.save(table);
 	}

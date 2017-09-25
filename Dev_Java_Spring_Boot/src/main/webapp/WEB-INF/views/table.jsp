@@ -26,7 +26,7 @@
 					<div class="form-group row">
 						<div class="col-10 ml-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/table/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+							<a href="/profile/cafe/${cafe.id}/tables/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
 						</div>
 					</div>
 				</form:form>
@@ -47,8 +47,8 @@
 							<td>${table.isFree}</td>
 							<td>${table.cafe}</td>
 							<td class="text-center">
-								<a href="/admin/table/update/${table.id}" class="btn btn-outline-success btn-sm">Update</a>
-								<a href="/admin/table/delete/${table.id}" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/profile/cafe/${cafe.id}/tables/update/${table.id}" class="btn btn-outline-success btn-sm">Update</a>
+								<a href="/profile/cafe/${cafe.id}/tables/delete/${table.id}" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>
