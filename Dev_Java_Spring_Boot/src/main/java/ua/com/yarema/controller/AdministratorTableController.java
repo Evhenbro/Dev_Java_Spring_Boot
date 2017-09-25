@@ -26,7 +26,7 @@ public class AdministratorTableController {
 	
 	private final CafeService cafeService;
 	
-	private Integer idi = 0;
+	private Integer idCafe;
 
 	@Autowired
 	public AdministratorTableController(TableService tableService, CafeService cafeService) {
@@ -43,20 +43,22 @@ public class AdministratorTableController {
 	public String show(@PathVariable Integer id, Model model, Principal principal) {
 		if(principal!=null){
 			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName()));
+//			model.addAttribute("onecafe", tableService.findOneCafeById(id));
 		}
 		System.out.println("/profile/cafe/{id}/tables " + id);
-		idi = id;
+		idCafe = id;
 		model.addAttribute("cafe", cafeService.findCafeViewById(id));
 		model.addAttribute("tables", tableService.findAllTableViewByCafeId(id));
 		return "table";
 	}
 	
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Integer id, Model model, Principal principal) {
-		System.out.println("/delete/{id} " + id);
-		tableService.delete(id);
-		id = idi;
-		System.out.println("/delete/{id} " + id);
+	@GetMapping("/delete/{idTable}")
+	public String delete(@PathVariable Integer idTable, Model model, Principal principal) {
+//		System.out.println("/delete/{id} " + id);
+		tableService.delete(idTable);
+//		id = idi;
+//		System.out.println("/delete/{id} " + id);
+//		return show(id, model, principal);	
 		return "redirect:/profile/cafe/{id}/tables";
 	}
 
@@ -66,12 +68,12 @@ public class AdministratorTableController {
 		return cancel(sessionStatus);
 	}
 	
-	@GetMapping("/update/{id}")
-	public String update(@PathVariable Integer id, Model model, Principal principal) {
-		System.out.println("/update/{id} " + id);
-		model.addAttribute("table", tableService.findOne(id));
-		id = idi;
-		return show(id, model, principal);	
+	@GetMapping("/update/{idTable}")
+	public String update(@PathVariable Integer idTable, Model model, Principal principal) {
+//		System.out.println("/update/{id} " + id);
+		model.addAttribute("table", tableService.findOne(idTable));
+//		id = idi;
+		return show(idCafe, model, principal);	
 	}
 	
 	@GetMapping("/cancel")

@@ -15,6 +15,8 @@ public interface TableService {
 	void delete(Integer id);
 
 	TableRequest findOne(Integer id);
+	
+	List<CafeShortView> findOneCafeById(Integer id);
 
-	CafeShortView findOneCafeById(Integer id);
+	void saveReservation(TableRequest tableRequest, Integer idTable);
 }

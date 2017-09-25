@@ -1,5 +1,6 @@
 package ua.com.yarema.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -14,19 +15,26 @@ public class Table extends AbstractEntity {
 	
 	private boolean isFree;
 	
+	private String user;
+	
+	@Column(length=15)
+	private String userPhone;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Cafe cafe;
 	
 	public Table() {
 	}
 	
-	public Table(int countOfPeople, boolean isFree, Cafe cafe, String number) {
+	public Table(String number, int countOfPeople, boolean isFree, String user, String userPhone, Cafe cafe) {
+		this.number = number;
 		this.countOfPeople = countOfPeople;
 		this.isFree = isFree;
+		this.user = user;
+		this.userPhone = userPhone;
 		this.cafe = cafe;
-		this.number = number;
 	}
-	
+
 	public String getNumber() {
 		return number;
 	}
@@ -49,6 +57,22 @@ public class Table extends AbstractEntity {
 
 	public void setIsFree(boolean isFree) {
 		this.isFree = isFree;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 
 	public Cafe getCafe() {

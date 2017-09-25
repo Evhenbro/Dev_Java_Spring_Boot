@@ -33,7 +33,7 @@ public class Cafe extends AbstractEntityName {
 	@Enumerated
 	private Type type;
 	
-	@Column(length=13)
+	@Column(length=15)
 	private String phone;
 	
 	private String email;

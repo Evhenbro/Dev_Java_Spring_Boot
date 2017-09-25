@@ -10,13 +10,19 @@ public class TableView {
 	
 	private boolean isFree;
 	
+	private String user;
+	
+	private String userPhone;
+	
 	private String cafe;
 
-	public TableView(Integer id, String number, int countOfPeople, boolean isFree, String cafe) {
+	public TableView(Integer id, String number, int countOfPeople, boolean isFree, String user, String userPhone, String cafe) {
 		this.id = id;
 		this.number = number;
 		this.countOfPeople = countOfPeople;
 		this.isFree = isFree;
+		this.user = user;
+		this.userPhone = userPhone;
 		this.cafe = cafe;
 	}
 
@@ -52,6 +58,22 @@ public class TableView {
 		this.isFree = isFree;
 	}
 
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
+
 	public String getCafe() {
 		return cafe;
 	}
@@ -59,7 +81,5 @@ public class TableView {
 	public void setCafe(String cafe) {
 		this.cafe = cafe;
 	}
-	
-	
 	
 }

@@ -4,6 +4,12 @@
 			<div class="col-12">
 				<form:form action="/profile/cafe/${cafe.id}/tables" method="POST" modelAttribute="table">
 					<div class="form-group row">
+						<label class="col-2 col-form-label" for="number">Number:</label>
+						<div class="col-10">
+							<form:input class="form-control" id="number" path="number"/>
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-2 col-form-label" for="countOfPeople">Count Of People:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="countOfPeople" path="countOfPeople"/>
@@ -36,16 +42,22 @@
 			<div class="col-12">
 				<table class="table table-bordered">
 					<tr>
+						<th class="text-center">Number</th>
 						<th class="text-center">Count Of People</th>
 						<th class="text-center">Free</th>
 						<th class="text-center">Cafe</th>
+						<th class="text-center">User</th>
+						<th class="text-center">User phone</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="table" items="${tables}">
 						<tr>
+							<td>${table.number}</td>
 							<td>${table.countOfPeople}</td>
 							<td>${table.isFree}</td>
 							<td>${table.cafe}</td>
+							<td>${table.user}</td>
+							<td>${table.userPhone}</td>
 							<td class="text-center">
 								<a href="/profile/cafe/${cafe.id}/tables/update/${table.id}" class="btn btn-outline-success btn-sm">Update</a>
 								<a href="/profile/cafe/${cafe.id}/tables/delete/${table.id}" class="btn btn-outline-danger btn-sm">Delete</a>

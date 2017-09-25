@@ -17,7 +17,7 @@
 							<td>${table.isFree}</td>
 							<td>${table.cafe}</td>
 							<td class="text-center">
-								<a href="/admin/table/update/${table.id}" class="btn btn-outline-success btn-sm">Reserve</a>
+								<a href="/cafe/${cafe.id}/tables/${table.id}" class="btn btn-outline-success btn-sm">Reserve</a>
 							</td>
 						</tr>
 					</c:forEach>

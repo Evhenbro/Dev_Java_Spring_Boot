@@ -57,8 +57,21 @@ public class TableServiceImpl implements TableService {
 	}
 
 	@Override
-	public CafeShortView findOneCafeById(Integer id) {
+	public List<CafeShortView> findOneCafeById(Integer id) {
 		return tableRepository.findOneCafeById(id);
+	}
+
+	@Override
+	public void saveReservation(TableRequest request, Integer idTable) {
+		Table table = new Table();
+		table.setId(request.getId());
+		table.setNumber(request.getNumber());
+		table.setCountOfPeople(request.getCountOfPeople());
+		table.setIsFree(Boolean.FALSE);
+		table.setCafe(request.getCafe());
+		table.setUser(request.getUser());
+		table.setUserPhone(request.getUserPhone());
+		tableRepository.save(table);
 	}
 
 	

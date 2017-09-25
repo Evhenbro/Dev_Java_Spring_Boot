@@ -20,7 +20,7 @@ import ua.com.yarema.service.MealService;
 @Controller
 @RequestMapping("/profile/meal")
 @SessionAttributes("meal")
-public class MealController {
+public class AdministratorMealController {
 	
 	private final MealService mealService;
 	
@@ -29,7 +29,7 @@ public class MealController {
 //	private Principal principal;
 	
 	@Autowired
-	public MealController(MealService mealService, CafeService cafeService) {
+	public AdministratorMealController(MealService mealService, CafeService cafeService) {
 		this.mealService = mealService;
 		this.cafeService = cafeService;
 	}

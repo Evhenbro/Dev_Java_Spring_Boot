@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.model.request.CommentRequest;
+import ua.com.yarema.model.request.TableRequest;
 import ua.com.yarema.repository.MealRepository;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.CommentService;
@@ -20,9 +20,8 @@ import ua.com.yarema.service.TableService;
 
 @Controller
 @RequestMapping("/cafe")
-@SessionAttributes("comment")
-public class ClientCafeController {
-
+public class ClientTableReservController {
+	
 	private final CafeService cafeService;
 	
 	private final MealService mealService; 
@@ -34,7 +33,7 @@ public class ClientCafeController {
 	private final TableService tableService; 
 	
 	@Autowired
-	public ClientCafeController(CafeService cafeService, MealService mealService, MealRepository mealRepository, CommentService commentService, TableService tableService) {
+	public ClientTableReservController(CafeService cafeService, MealService mealService, MealRepository mealRepository, CommentService commentService, TableService tableService) {
 		this.cafeService = cafeService;
 		this.mealService = mealService;
 		this.mealRepository = mealRepository;
@@ -42,35 +41,33 @@ public class ClientCafeController {
 		this.tableService = tableService;
 	}
 	
-	@GetMapping
-	public String showAllCafes(Model model) {
-		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView());
-		return "allCafe";
+	@GetMapping("/{id}/tables")
+	public String showTables(@PathVariable Integer id, Model model) {
+		model.addAttribute("cafe", cafeService.findCafeViewById(id));
+		model.addAttribute("tables", tableService.findAllTableViewByCafeId(id));
+		return "tableClient";
 	}
 	
-	@GetMapping("/{id}")
-	public String showOneCafe(@PathVariable Integer id, Model model) {
-		model.addAttribute("cafeById", cafeService.findCafeViewById(id));
-		model.addAttribute("comments", commentService.findAllCommentByCafeId(id));
-		return "oneCafe";
+	@ModelAttribute("reserv")
+	public TableRequest getFormRezerv() {
+		return new TableRequest();
 	}
 	
-	@ModelAttribute("comment")
-	public CommentRequest getFormComment() {
-		return new CommentRequest();
-	}
+	@GetMapping("/{id}/tables/{idTable}")
+	public String saveTableReserv(@PathVariable Integer id, @PathVariable Integer idTable, Model model, @ModelAttribute("reserv") TableRequest tableRequest) {
+		model.addAttribute("cafe", cafeService.findCafeViewById(id));
+		model.addAttribute("reserv", tableService.findOne(idTable));
+		TableRequest request = tableService.findOne(idTable);
+		request.setUser(tableRequest.getUser());
+		request.setUserPhone(tableRequest.getUserPhone());
+		tableService.saveReservation(request, idTable);
+		return "reservTable";
+	} 
 	
-	@PostMapping("/{id}")
-	public String saveCommentToCafe(@ModelAttribute("comment") CommentRequest commentRequest, @PathVariable Integer id, SessionStatus sessionStatus) {
-		commentService.saveCommentToCafe(commentRequest, id);
-		return cancelCafe(sessionStatus);
-	}
-	
-	@GetMapping("/{id}/cancel")
-	public String cancelCafe(SessionStatus sessionStatus) {
+	@GetMapping("{id}/tables/{idTable}/cancel")
+	public String cancelReserv(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/cafe/{id}";
+		return "redirect:/cafe/{id}/tables";
 	}
-	
 	
 }

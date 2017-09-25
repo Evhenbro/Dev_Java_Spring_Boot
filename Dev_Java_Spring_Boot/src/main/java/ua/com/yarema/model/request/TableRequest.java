@@ -12,6 +12,10 @@ public class TableRequest {
 	
 	private boolean isFree;
 	
+	private String user;
+	
+	private String userPhone;
+	
 	private Cafe cafe;
 	
 	public String getNumber() {
@@ -44,6 +48,22 @@ public class TableRequest {
 
 	public void setIsFree(boolean isFree) {
 		this.isFree = isFree;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 
 	public Cafe getCafe() {
