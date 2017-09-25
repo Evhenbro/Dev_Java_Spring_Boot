@@ -26,7 +26,8 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-						<form:select class="form-control" path="cafe" items="${ownCafes}" itemValue="name" itemLabel="name"/>
+						<form:hidden path="cafe" value="${onecafe.id}"/>
+						<%-- <form:select class="form-control" path="cafe" items="${ownCafes}" itemValue="name" itemLabel="name"/> --%>
 						</div>
 					</div>
 					<div class="form-group row">

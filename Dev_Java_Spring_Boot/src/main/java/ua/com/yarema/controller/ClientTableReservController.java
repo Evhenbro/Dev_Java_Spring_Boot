@@ -53,7 +53,7 @@ public class ClientTableReservController {
 		return new TableRequest();
 	}
 	
-	@GetMapping("/{id}/tables/{idTable}")
+	@PostMapping("/{id}/tables/{idTable}")
 	public String saveTableReserv(@PathVariable Integer id, @PathVariable Integer idTable, Model model, @ModelAttribute("reserv") TableRequest tableRequest) {
 		model.addAttribute("cafe", cafeService.findCafeViewById(id));
 		model.addAttribute("reserv", tableService.findOne(idTable));

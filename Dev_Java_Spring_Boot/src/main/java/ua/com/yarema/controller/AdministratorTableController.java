@@ -18,7 +18,7 @@ import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.TableService;
 
 @Controller
-@RequestMapping("/profile/cafe/{id}/tables")
+@RequestMapping("/profile/cafe/{idCafe}/tables")
 @SessionAttributes("table")
 public class AdministratorTableController {
 	
@@ -26,7 +26,7 @@ public class AdministratorTableController {
 	
 	private final CafeService cafeService;
 	
-	private Integer idCafe;
+//	private Integer idCafe;
 
 	@Autowired
 	public AdministratorTableController(TableService tableService, CafeService cafeService) {
@@ -40,26 +40,26 @@ public class AdministratorTableController {
 	}
 	
 	@GetMapping
-	public String show(@PathVariable Integer id, Model model, Principal principal) {
+	public String show(@PathVariable Integer idCafe, Model model, Principal principal) {
 		if(principal!=null){
-			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName()));
-//			model.addAttribute("onecafe", tableService.findOneCafeById(id));
+//			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName()));
+			model.addAttribute("onecafe", tableService.findOneCafeById(idCafe));
 		}
-		System.out.println("/profile/cafe/{id}/tables " + id);
-		idCafe = id;
-		model.addAttribute("cafe", cafeService.findCafeViewById(id));
-		model.addAttribute("tables", tableService.findAllTableViewByCafeId(id));
+		System.out.println("/profile/cafe/{idCafe}/tables " + idCafe);
+//		idCafe = id;
+		model.addAttribute("cafe", cafeService.findCafeViewById(idCafe));
+		model.addAttribute("tables", tableService.findAllTableViewByCafeId(idCafe));
 		return "table";
 	}
 	
 	@GetMapping("/delete/{idTable}")
-	public String delete(@PathVariable Integer idTable, Model model, Principal principal) {
+	public String delete(@PathVariable Integer idCafe, @PathVariable Integer idTable, Model model, Principal principal) {
 //		System.out.println("/delete/{id} " + id);
 		tableService.delete(idTable);
 //		id = idi;
 //		System.out.println("/delete/{id} " + id);
 //		return show(id, model, principal);	
-		return "redirect:/profile/cafe/{id}/tables";
+		return "redirect:/profile/cafe/{idCafe}/tables";
 	}
 
 	@PostMapping
@@ -69,7 +69,7 @@ public class AdministratorTableController {
 	}
 	
 	@GetMapping("/update/{idTable}")
-	public String update(@PathVariable Integer idTable, Model model, Principal principal) {
+	public String update(@PathVariable Integer idCafe, @PathVariable Integer idTable, Model model, Principal principal) {
 //		System.out.println("/update/{id} " + id);
 		model.addAttribute("table", tableService.findOne(idTable));
 //		id = idi;
@@ -79,7 +79,7 @@ public class AdministratorTableController {
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/profile/cafe/{id}/tables";
+		return "redirect:/profile/cafe/{idCafe}/tables";
 	}
 	
 }

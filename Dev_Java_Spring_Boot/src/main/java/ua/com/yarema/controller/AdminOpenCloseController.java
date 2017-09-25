@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.entity.OpenClose;
+import ua.com.yarema.model.request.OpenCloseRequest;
 import ua.com.yarema.service.OpenCloseService;
 
 @Controller
@@ -27,8 +28,8 @@ public class AdminOpenCloseController {
 	}
 	
 	@ModelAttribute("open_close")
-	public OpenClose getForm(){
-		return new OpenClose();
+	public OpenCloseRequest getForm(){
+		return new OpenCloseRequest();
 	}
 
 	@GetMapping
@@ -44,8 +45,8 @@ public class AdminOpenCloseController {
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("open_close") OpenClose openClose, SessionStatus sessionStatus) {
-		openCloseService.save(openClose);
+	public String save(@ModelAttribute("open_close") OpenCloseRequest openCloseRequest, SessionStatus sessionStatus) {
+		openCloseService.save(openCloseRequest);
 		return cancel(sessionStatus);
 	}
 	

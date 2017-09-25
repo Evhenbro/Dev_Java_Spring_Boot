@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Table;
 import ua.com.yarema.model.request.TableRequest;
 import ua.com.yarema.model.view.CafeShortView;
@@ -30,6 +31,7 @@ public class TableServiceImpl implements TableService {
 		table.setCafe(tableRequest.getCafe());
 		table.setCountOfPeople(Integer.valueOf(tableRequest.getCountOfPeople()));
 		table.setId(tableRequest.getId());
+		System.out.println(tableRequest.getId());
 		table.setIsFree(Boolean.valueOf(tableRequest.getIsFree()));
 		tableRepository.save(table);
 	}
@@ -47,6 +49,7 @@ public class TableServiceImpl implements TableService {
 		tableRequest.setCafe(table.getCafe());
 		tableRequest.setCountOfPeople(Integer.valueOf(table.getCountOfPeople()));
 		tableRequest.setId(table.getId());
+		System.out.println(table.getId());
 		tableRequest.setIsFree(Boolean.valueOf(table.getIsFree()));
 		return tableRequest;
 	}
@@ -57,7 +60,7 @@ public class TableServiceImpl implements TableService {
 	}
 
 	@Override
-	public List<CafeShortView> findOneCafeById(Integer id) {
+	public Cafe findOneCafeById(Integer id) {
 		return tableRepository.findOneCafeById(id);
 	}
 
