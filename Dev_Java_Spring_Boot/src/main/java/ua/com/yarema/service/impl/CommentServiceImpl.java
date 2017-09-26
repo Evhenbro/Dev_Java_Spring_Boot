@@ -46,7 +46,6 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public void saveCommentToCafe(CommentRequest commentRequest, Integer id) {
 		Comment comment = new Comment();
-		comment.setId(commentRequest.getId());
 		comment.setRate(commentRequest.getRate()=="" ? new BigDecimal(0.0) : new BigDecimal(commentRequest.getRate()));
 		comment.setMessage(commentRequest.getMessage());
 		comment.setUser(commentRequest.getUser());
@@ -58,7 +57,6 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public void saveCommentToMeal(CommentRequest commentRequest, Integer id) {
 		Comment comment = new Comment();
-		comment.setId(commentRequest.getId());
 		comment.setMessage(commentRequest.getMessage());
 		comment.setUser(commentRequest.getUser());
 		comment.setTime(LocalDateTime.now());

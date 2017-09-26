@@ -1,9 +1,12 @@
 package ua.com.yarema.service.impl;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.com.yarema.entity.Cafe;
@@ -11,7 +14,9 @@ import ua.com.yarema.entity.Type;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.CafeView;
+import ua.com.yarema.model.view.CommentView;
 import ua.com.yarema.repository.CafeRepository;
+import ua.com.yarema.repository.CommentRepository;
 import ua.com.yarema.repository.UserRepository;
 import ua.com.yarema.service.CafeService;
 
@@ -22,9 +27,13 @@ public class CafeServiceImpl implements CafeService {
 	
 	private final UserRepository userRepository; 
 	
-	public CafeServiceImpl(CafeRepository cafeRepository, UserRepository userRepository) {
+	private final CommentRepository commentRepository;
+	
+	@Autowired
+	public CafeServiceImpl(CafeRepository cafeRepository, UserRepository userRepository, CommentRepository commentRepository) {
 		this.cafeRepository = cafeRepository;
 		this.userRepository = userRepository;
+		this.commentRepository = commentRepository;
 	}
 
 	@Override
@@ -104,4 +113,36 @@ public class CafeServiceImpl implements CafeService {
 	public List<CafeShortView> findOneCafeShortViewById(Integer id) {
 		return cafeRepository.findOneCafeShortViewById(id);
 	}
+
+	@Override
+	public void updateRateToCafeById(Integer id) {
+		List<CommentView> listCommentViews = commentRepository.findAllCommentByCafeId(id);
+		int count = 0;
+		BigDecimal sum = BigDecimal.ZERO;
+		for (CommentView commentView : listCommentViews) {
+			sum = sum.add(commentView.getRate());
+			System.out.println(sum);
+			System.out.println(commentView.getRate());
+			count ++;
+			System.out.println(count);
+		}
+		sum = sum.divide(new BigDecimal(count), 2, RoundingMode.HALF_DOWN);
+		Cafe cafe = cafeRepository.findOne(id);
+		cafe.setRate(sum);
+		cafeRepository.save(cafe);
+	}
+
+	@Override
+	public List<CafeShortView> topFiveCafeShortView() {
+		List<CafeShortView> topCafes = new ArrayList<>();
+		List<CafeShortView> cafeShortViews = cafeRepository.findAllCafeShortView();
+		cafeShortViews.sort((e1, e2) -> e2.getRate().compareTo(e1.getRate()));
+		if (cafeShortViews.size() > 5) {
+			topCafes = cafeShortViews.subList(0, 5);
+		} else {
+			topCafes = cafeShortViews;
+		}
+		return topCafes;
+	}
+	
 }

@@ -38,10 +38,13 @@ public class ClientCafeController {
 	
 	@GetMapping("/{id}")
 	public String showOneCafe(@PathVariable Integer id, Model model) {
+		cafeService.updateRateToCafeById(id);
 		model.addAttribute("cafeById", cafeService.findCafeViewById(id));
 		model.addAttribute("comments", commentService.findAllCommentByCafeId(id));
 		return "oneCafe";
 	}
+	
+//	For comment to cafe
 	
 	@ModelAttribute("comment")
 	public CommentRequest getFormComment() {

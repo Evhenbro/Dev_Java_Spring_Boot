@@ -27,4 +27,8 @@ public interface CafeService {
 	List<CafeShortView> findOneCafeShortViewById(Integer id);
 
 	List<CafeShortView> findAllOwnCafesByUserLogin(String login);
+
+	void updateRateToCafeById(Integer id);
+	
+	List<CafeShortView> topFiveCafeShortView();
 }

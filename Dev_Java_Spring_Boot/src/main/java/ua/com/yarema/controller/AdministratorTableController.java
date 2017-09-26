@@ -45,6 +45,12 @@ public class AdministratorTableController {
 		return "table";
 	}
 	
+	@PostMapping
+	public String save(@ModelAttribute("table") TableRequest tableRequest, SessionStatus sessionStatus){
+		tableService.save(tableRequest);
+		return cancel(sessionStatus);
+	}
+	
 	@GetMapping("/{idTable}")
 	public String dereserveTable(@PathVariable Integer idTable) {
 		tableService.dereserveTable(idTable);
@@ -55,12 +61,6 @@ public class AdministratorTableController {
 	public String delete(@PathVariable Integer idCafe, @PathVariable Integer idTable, Model model, Principal principal) {
 		tableService.delete(idTable);
 		return "redirect:/profile/cafe/{idCafe}/tables";
-	}
-
-	@PostMapping
-	public String save(@ModelAttribute("table") TableRequest tableRequest, SessionStatus sessionStatus){
-		tableService.save(tableRequest);
-		return cancel(sessionStatus);
 	}
 	
 	@GetMapping("/update/{idTable}")
