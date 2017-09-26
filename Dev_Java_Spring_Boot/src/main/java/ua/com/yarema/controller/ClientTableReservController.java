@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.model.request.TableRequest;
-import ua.com.yarema.repository.MealRepository;
 import ua.com.yarema.service.CafeService;
-import ua.com.yarema.service.CommentService;
-import ua.com.yarema.service.MealService;
 import ua.com.yarema.service.TableService;
 
 @Controller
@@ -23,20 +20,11 @@ public class ClientTableReservController {
 	
 	private final CafeService cafeService;
 	
-	private final MealService mealService; 
-	
-	private final MealRepository mealRepository;
-	
-	private final CommentService commentService; 
-	
 	private final TableService tableService; 
 	
 	@Autowired
-	public ClientTableReservController(CafeService cafeService, MealService mealService, MealRepository mealRepository, CommentService commentService, TableService tableService) {
+	public ClientTableReservController(CafeService cafeService, TableService tableService) {
 		this.cafeService = cafeService;
-		this.mealService = mealService;
-		this.mealRepository = mealRepository;
-		this.commentService = commentService;
 		this.tableService = tableService;
 	}
 	

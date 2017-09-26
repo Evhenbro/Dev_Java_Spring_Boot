@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Table;
-import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.TableView;
 
 public interface TableRepository extends JpaRepository<Table, Integer> {

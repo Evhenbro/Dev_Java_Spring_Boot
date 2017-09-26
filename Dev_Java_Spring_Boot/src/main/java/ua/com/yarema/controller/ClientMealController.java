@@ -14,18 +14,14 @@ import org.springframework.web.bind.support.SessionStatus;
 import ua.com.yarema.model.request.CommentRequest;
 import ua.com.yarema.repository.CafeRepository;
 import ua.com.yarema.repository.MealRepository;
-import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.CommentService;
 import ua.com.yarema.service.MealService;
-import ua.com.yarema.service.TableService;
 
 @Controller
 @RequestMapping("/meal")
 @SessionAttributes("comment")
 public class ClientMealController {
 
-	private final CafeService cafeService;
-	
 	private final MealService mealService; 
 	
 	private final MealRepository mealRepository;
@@ -34,15 +30,11 @@ public class ClientMealController {
 	
 	private final CommentService commentService; 
 	
-	private final TableService tableService; 
-	
 	@Autowired
-	public ClientMealController(CafeService cafeService, MealService mealService, MealRepository mealRepository, CommentService commentService, TableService tableService, CafeRepository cafeRepository) {
-		this.cafeService = cafeService;
+	public ClientMealController(MealService mealService, MealRepository mealRepository, CommentService commentService, CafeRepository cafeRepository) {
 		this.mealService = mealService;
 		this.mealRepository = mealRepository;
 		this.commentService = commentService;
-		this.tableService = tableService;
 		this.cafeRepository = cafeRepository;
 	}
 	

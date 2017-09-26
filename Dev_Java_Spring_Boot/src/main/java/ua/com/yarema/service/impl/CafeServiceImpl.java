@@ -99,4 +99,9 @@ public class CafeServiceImpl implements CafeService {
 	public List<CafeShortView> findAllOwnCafesByUserLogin(String login) {
 		return cafeRepository.findAllOwnCafesByUserLogin(login);
 	}
+
+	@Override
+	public List<CafeShortView> findOneCafeShortViewById(Integer id) {
+		return cafeRepository.findOneCafeShortViewById(id);
+	}
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.model.request.TableRequest;
-import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.TableView;
 
 public interface TableService {
@@ -20,4 +19,6 @@ public interface TableService {
 	Cafe findOneCafeById(Integer id);
 
 	void saveReservation(TableRequest tableRequest, Integer idTable);
+
+	void dereserveTable(Integer idTable);
 }

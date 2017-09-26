@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.yarema.entity.OpenClose;
 import ua.com.yarema.model.request.OpenCloseRequest;
 import ua.com.yarema.service.OpenCloseService;
 

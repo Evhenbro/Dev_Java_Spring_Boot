@@ -12,12 +12,18 @@
 					</tr>
 					<c:forEach var="table" items="${tables}">
 						<tr>
-							<td>${table.number}</td>
+							<td>#${table.number}</td>
 							<td>${table.countOfPeople}</td>
 							<td>${table.isFree}</td>
 							<td>${table.cafe}</td>
 							<td class="text-center">
-								<a href="/cafe/${cafe.id}/tables/${table.id}" class="btn btn-outline-success btn-sm">Reserve</a>
+								<c:if test="${table.isFree.equals(true)}">
+									<a href="/cafe/${cafe.id}/tables/${table.id}" class="btn btn-outline-success btn-sm">Reserve</a>
+								</c:if>
+								<c:if test="${table.isFree.equals(false)}">
+									<!-- <button class="btn btn-outline-danger btn-sm">Ups...</button> --> 
+									<span class="text-danger font-italic"> The table is reserved!</span> 
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>

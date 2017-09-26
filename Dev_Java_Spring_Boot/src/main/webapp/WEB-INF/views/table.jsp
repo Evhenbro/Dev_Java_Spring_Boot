@@ -26,9 +26,9 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cafe">Cafe:</label>
 						<div class="col-10">
-						<input type="hidden" id="cafe" name="${onecafe.name}" value="${onecafe.name}"/>
+						<%-- <input type="hidden" id="cafe" name="${onecafe.name}" value="${onecafe.name}"/> --%>
 						<%-- <form:hidden path="cafe" value="${onecafe.id}"/> --%> 
-						<%-- <form:select class="form-control" path="cafe" items="${ownCafes}" itemValue="name" itemLabel="name"/> --%>
+						<form:select class="form-control" path="cafe" items="${onecafe}" itemValue="name" itemLabel="name"/>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -51,10 +51,11 @@
 						<th class="text-center">User</th>
 						<th class="text-center">User phone</th>
 						<th class="text-center">Options</th>
+						<th class="text-center">Reserve</th>
 					</tr>
 					<c:forEach var="table" items="${tables}">
 						<tr>
-							<td>${table.number}</td>
+							<td>#${table.number}</td>
 							<td>${table.countOfPeople}</td>
 							<td>${table.isFree}</td>
 							<td>${table.cafe}</td>
@@ -63,6 +64,14 @@
 							<td class="text-center">
 								<a href="/profile/cafe/${cafe.id}/tables/update/${table.id}" class="btn btn-outline-success btn-sm">Update</a>
 								<a href="/profile/cafe/${cafe.id}/tables/delete/${table.id}" class="btn btn-outline-danger btn-sm">Delete</a>
+							</td>
+							<td class="text-center">
+								<c:if test="${table.isFree.equals(true)}">
+									<a href="/cafe/${cafe.id}/tables/${table.id}" class="btn btn-outline-success btn-sm">Reserve</a>
+								</c:if>
+								<c:if test="${table.isFree.equals(false)}">
+									<a href="/profile/cafe/${cafe.id}/tables/${table.id}" class="btn btn-outline-danger btn-sm">Dereserve</a>
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>

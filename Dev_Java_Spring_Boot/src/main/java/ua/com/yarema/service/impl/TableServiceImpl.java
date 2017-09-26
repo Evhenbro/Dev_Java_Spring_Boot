@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Table;
 import ua.com.yarema.model.request.TableRequest;
-import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.TableView;
 import ua.com.yarema.repository.TableRepository;
 import ua.com.yarema.service.TableService;
@@ -74,6 +73,15 @@ public class TableServiceImpl implements TableService {
 		table.setCafe(request.getCafe());
 		table.setUser(request.getUser());
 		table.setUserPhone(request.getUserPhone());
+		tableRepository.save(table);
+	}
+
+	@Override
+	public void dereserveTable(Integer idTable) {
+		Table table = tableRepository.findOne(idTable);
+		table.setIsFree(Boolean.TRUE);
+		table.setUser(null);
+		table.setUserPhone(null);
 		tableRepository.save(table);
 	}
 
