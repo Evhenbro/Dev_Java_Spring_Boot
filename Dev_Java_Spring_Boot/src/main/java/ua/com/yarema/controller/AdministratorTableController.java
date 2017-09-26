@@ -47,6 +47,7 @@ public class AdministratorTableController {
 		}
 		System.out.println("/profile/cafe/{idCafe}/tables " + idCafe);
 //		idCafe = id;
+		model.addAttribute("onecafe", tableService.findOneCafeById(idCafe));
 		model.addAttribute("cafe", cafeService.findCafeViewById(idCafe));
 		model.addAttribute("tables", tableService.findAllTableViewByCafeId(idCafe));
 		return "table";

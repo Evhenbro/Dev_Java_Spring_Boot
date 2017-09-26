@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.yarema.model.request.CommentRequest;
 import ua.com.yarema.model.request.TableRequest;
 import ua.com.yarema.repository.MealRepository;
 import ua.com.yarema.service.CafeService;
@@ -41,10 +40,10 @@ public class ClientTableReservController {
 		this.tableService = tableService;
 	}
 	
-	@GetMapping("/{id}/tables")
-	public String showTables(@PathVariable Integer id, Model model) {
-		model.addAttribute("cafe", cafeService.findCafeViewById(id));
-		model.addAttribute("tables", tableService.findAllTableViewByCafeId(id));
+	@GetMapping("/{idCafe}/tables")
+	public String showTables(@PathVariable Integer idCafe, Model model) {
+		model.addAttribute("cafe", cafeService.findCafeViewById(idCafe));
+		model.addAttribute("tables", tableService.findAllTableViewByCafeId(idCafe));
 		return "tableClient";
 	}
 	
@@ -53,21 +52,29 @@ public class ClientTableReservController {
 		return new TableRequest();
 	}
 	
-	@PostMapping("/{id}/tables/{idTable}")
-	public String saveTableReserv(@PathVariable Integer id, @PathVariable Integer idTable, Model model, @ModelAttribute("reserv") TableRequest tableRequest) {
-		model.addAttribute("cafe", cafeService.findCafeViewById(id));
+	@GetMapping("/{idCafe}/tables/{idTable}")
+	public String showTableReserv(@PathVariable Integer idCafe, @PathVariable Integer idTable, Model model) {
+		model.addAttribute("cafe", cafeService.findCafeViewById(idCafe));
+		model.addAttribute("reserv", tableService.findOne(idTable));
+		return "reservTable";
+	}
+	
+	
+	@PostMapping("/{idCafe}/tables/{idTable}")
+	public String saveTableReserv(@PathVariable Integer idCafe, @PathVariable Integer idTable, Model model, @ModelAttribute("reserv") TableRequest tableRequest, SessionStatus sessionStatus) {
+		model.addAttribute("cafe", cafeService.findCafeViewById(idCafe));
 		model.addAttribute("reserv", tableService.findOne(idTable));
 		TableRequest request = tableService.findOne(idTable);
 		request.setUser(tableRequest.getUser());
 		request.setUserPhone(tableRequest.getUserPhone());
 		tableService.saveReservation(request, idTable);
-		return "reservTable";
+		return cancelReserv(sessionStatus);
 	} 
 	
-	@GetMapping("{id}/tables/{idTable}/cancel")
+	@GetMapping("{idCafe}/tables/cancel")
 	public String cancelReserv(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/cafe/{id}/tables";
+		return "redirect:/cafe/{idCafe}/tables";
 	}
 	
 }
