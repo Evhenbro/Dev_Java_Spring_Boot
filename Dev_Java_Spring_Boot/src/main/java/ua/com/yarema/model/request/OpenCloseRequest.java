@@ -1,9 +1,12 @@
 package ua.com.yarema.model.request;
 
+import ua.com.yarema.validation.annotation.UniqueOpenClose;
+
 public class OpenCloseRequest {
 	
 	private Integer id;
 	
+	@UniqueOpenClose(message="Такий час вже існує в БД.")
 	private String time;
 
 	public Integer getId() {

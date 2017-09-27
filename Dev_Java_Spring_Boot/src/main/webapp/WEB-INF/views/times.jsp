@@ -6,6 +6,11 @@
 		<div class="row">
 			<div class="col-12">
 				<form:form action="/admin/times" method="POST" modelAttribute="open_close">
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="time"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="time">Time:</label>
 						<div class="col-10">
