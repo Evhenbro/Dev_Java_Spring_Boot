@@ -1,8 +1,11 @@
 package ua.com.yarema.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,13 +52,10 @@ public class ClientTableReservController {
 	
 	
 	@PostMapping("/{idCafe}/tables/{idTable}")
-	public String saveTableReserv(@PathVariable Integer idCafe, @PathVariable Integer idTable, Model model, @ModelAttribute("reserv") TableRequest tableRequest, SessionStatus sessionStatus) {
-		model.addAttribute("cafe", cafeService.findCafeViewById(idCafe));
-		model.addAttribute("reserv", tableService.findOne(idTable));
-		TableRequest request = tableService.findOne(idTable);
-		request.setUser(tableRequest.getUser());
-		request.setUserPhone(tableRequest.getUserPhone());
-		tableService.saveReservation(request, idTable);
+	public String saveTableReserv(@PathVariable Integer idCafe, @PathVariable Integer idTable, Model model, @ModelAttribute("reserv") @Valid TableRequest tableRequest, BindingResult bindingResult, SessionStatus sessionStatus) {
+		System.out.println(bindingResult.hasErrors());
+		if (bindingResult.hasErrors()) return showTableReserv(idCafe, idTable, model);
+		tableService.saveReservation(tableRequest, idTable);
 		return cancelReserv(sessionStatus);
 	} 
 	

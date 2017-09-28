@@ -33,7 +33,7 @@
 						<th class="text-center">Name</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="ingredient" items="${ingredients}">
+					<c:forEach var="ingredient" items="${ingredients.content}">
 						<tr>
 							<td>${ingredient.name}</td>
 							<td class="text-center">
@@ -43,6 +43,11 @@
 						</tr>
 					</c:forEach>
 				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 text-center">
+				<custom:pageable page="${ingredients}"/>
 			</div>
 		</div>
 	</div>

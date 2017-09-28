@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import ua.com.yarema.validation.annotation.UniqueCuisine;
 import ua.com.yarema.validation.annotation.UniqueIngredient;
-import ua.com.yarema.validation.flag.CafeFlag;
 import ua.com.yarema.validation.flag.CuisineFlag;
 import ua.com.yarema.validation.flag.IngredientFlag;
 

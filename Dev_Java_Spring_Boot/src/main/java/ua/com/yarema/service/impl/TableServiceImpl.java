@@ -30,7 +30,6 @@ public class TableServiceImpl implements TableService {
 		table.setCafe(tableRequest.getCafe());
 		table.setCountOfPeople(Integer.valueOf(tableRequest.getCountOfPeople()));
 		table.setId(tableRequest.getId());
-		System.out.println(tableRequest.getId());
 		table.setIsFree(Boolean.valueOf(tableRequest.getIsFree()));
 		tableRepository.save(table);
 	}
@@ -48,7 +47,6 @@ public class TableServiceImpl implements TableService {
 		tableRequest.setCafe(table.getCafe());
 		tableRequest.setCountOfPeople(Integer.valueOf(table.getCountOfPeople()));
 		tableRequest.setId(table.getId());
-		System.out.println(table.getId());
 		tableRequest.setIsFree(Boolean.valueOf(table.getIsFree()));
 		return tableRequest;
 	}
@@ -65,12 +63,8 @@ public class TableServiceImpl implements TableService {
 
 	@Override
 	public void saveReservation(TableRequest request, Integer idTable) {
-		Table table = new Table();
-		table.setId(request.getId());
-		table.setNumber(request.getNumber());
-		table.setCountOfPeople(request.getCountOfPeople());
+		Table table = tableRepository.findOne(idTable);
 		table.setIsFree(Boolean.FALSE);
-		table.setCafe(request.getCafe());
 		table.setUser(request.getUser());
 		table.setUserPhone(request.getUserPhone());
 		tableRepository.save(table);

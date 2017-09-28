@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-12">
 				<form:form action="/profile/cafe" method="POST" modelAttribute="cafe">
-					<div class="form-group row">
+					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="name"/>
 						</div>
@@ -20,10 +20,20 @@
 							<form:input class="form-control" id="address" path="address"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="email"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="email">Email:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="email" path="email"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="phone"/>
 						</div>
 					</div>
 					<div class="form-group row">

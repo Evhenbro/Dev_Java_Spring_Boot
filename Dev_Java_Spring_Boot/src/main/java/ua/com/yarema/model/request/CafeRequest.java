@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import ua.com.yarema.entity.Meal;
@@ -34,8 +35,10 @@ public class CafeRequest {
 	
 	private String type;
 	
+	@Pattern(regexp = "^\\+{1}[0-9]{3}[0-9]{6,12}$", message="Введено невірний формат.", groups={CafeFlag.class})
 	private String phone;
 	
+	@Email(message="Введено невірний формат.", groups={CafeFlag.class})
 	private String email;
 	
 	private OpenClose open;

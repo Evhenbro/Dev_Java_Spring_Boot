@@ -1,5 +1,9 @@
 package ua.com.yarema.model.request;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import ua.com.yarema.entity.Cafe;
 
 public class TableRequest {
@@ -12,8 +16,10 @@ public class TableRequest {
 	
 	private boolean isFree;
 	
+	@NotBlank(message="Це поле має бути заповненим.")
 	private String user;
 	
+	@Pattern(regexp = "^\\+{1}[0-9]{3}[0-9]{6,12}$", message="Введено невірний формат.")
 	private String userPhone;
 	
 	private Cafe cafe;
