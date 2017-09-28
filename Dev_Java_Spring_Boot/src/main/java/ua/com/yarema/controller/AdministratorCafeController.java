@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import ua.com.yarema.entity.Type;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.OpenCloseService;
+import ua.com.yarema.validation.flag.CafeFlag;
 
 @Controller
 @RequestMapping("/profile/cafe")
@@ -64,7 +67,8 @@ public class AdministratorCafeController {
 	
 	@PostMapping
 //	@PreAuthorize("")
-	public String save(@ModelAttribute("cafe") CafeRequest cafeRequest, SessionStatus sessionStatus, Principal principal) {
+	public String save(@ModelAttribute("cafe") @Validated(CafeFlag.class) CafeRequest cafeRequest, BindingResult bindingResult, Model model, SessionStatus sessionStatus, Principal principal) {
+		if (bindingResult.hasErrors()) return showForm(model);
 		cafeService.save(cafeRequest, principal);
 		return cancel(sessionStatus);
 	}

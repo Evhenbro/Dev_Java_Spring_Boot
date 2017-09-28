@@ -3,9 +3,14 @@ package ua.com.yarema.model.request;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import ua.com.yarema.entity.Meal;
 import ua.com.yarema.entity.OpenClose;
 import ua.com.yarema.entity.User;
+import ua.com.yarema.validation.flag.CafeFlag;
 
 public class CafeRequest {
 
@@ -13,6 +18,8 @@ public class CafeRequest {
 	
 	private String rate;
 	
+	@NotBlank(message="Це поле має бути заповненим.", groups={CafeFlag.class})
+	@Pattern(regexp = "^[A-Z]{1}[a-zA-Z0-9]+| *$", message="Назва має починатись з веливокї літери.", groups={CafeFlag.class})
 	private String name;
 	
 	private String photoUrl;

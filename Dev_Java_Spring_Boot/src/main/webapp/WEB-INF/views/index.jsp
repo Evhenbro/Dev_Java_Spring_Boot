@@ -9,7 +9,7 @@
 			<div class="row mt-2">
 				<div class="col-12 rounded border border-info">
 					<div class="col">
-						<h3>${topFive.name}</h3>
+						<h3><a href="/cafe/${topFive.id}">${topFive.name}</a></h3>
 					</div>
 					<div class="col-6">
 						<img src="/resources/cafe.jpg" class="img-fluid">
