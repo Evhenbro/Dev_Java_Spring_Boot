@@ -24,13 +24,11 @@ public class CuisineServiceImpl extends CrudServiceImpl<Cuisine, Integer> implem
 
 	@Override
 	public Page<Cuisine> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
 		return cuisineRepository.findAll(pageable);
 	}
 
 	@Override
 	public Page<Cuisine> findAll(Pageable pageable, SimpleFilter simpleFilter) {
-		// TODO Auto-generated method stub
 		return cuisineRepository.findAll(filter(simpleFilter), pageable);
 	}
 

@@ -28,7 +28,7 @@
 					<div class="form-group row">
 						<div class="col-10 ml-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/cafe/${cafe.id}/tables/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+							<a href="/cafe/${idCafe}/tables/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
 						</div>
 					</div>
 				</form:form>

@@ -4,8 +4,18 @@
 	</div>
 	<div class="container mt-3">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-3">
+				<form:form action="/admin/times" method="GET" modelAttribute="filter">
+					<div class="form-group row">
+						<div class="col-12">
+							<form:input class="form-control" path="search" placeholder="Search"/>
+						</div>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-9">
 				<form:form action="/admin/times" method="POST" modelAttribute="open_close">
+					<custom:hiddenInputs excludeParams="time, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="time"/>
@@ -20,7 +30,7 @@
 					<div class="form-group row">
 						<div class="col-10 ml-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/times/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+							<a href="/admin/times/cancel<custom:allParams/>" class="btn btn-sm btn-outline-info">Cancel</a>
 						</div>
 					</div>
 				</form:form>
@@ -37,16 +47,30 @@
 						<tr>
 							<td>${time.time}</td>
 							<td class="text-center">
-								<a href="/admin/times/update/${time.id}" class="btn btn-sm btn-outline-warning">Update</a>
-								<a href="/admin/times/delete/${time.id}" class="btn btn-sm btn-outline-danger">Delete</a>
+								<a href="/admin/times/update/${time.id}<custom:allParams/>" class="btn btn-sm btn-outline-warning">Update</a>
+								<a href="/admin/times/delete/${time.id}<custom:allParams/>" class="btn btn-sm btn-outline-danger">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
+			<div class="col-3">
+				<div class="row">
+					<div class="col-6 text-center">
+						<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
+						<div class="dropdown-menu">
+							<custom:sort innerHtml="Name asc" paramValue="name"/>
+							<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+						</div>
+					</div>
+					<div class="col-6 text-center">
+						<custom:size posibleSizes="1,2,5,10" size="${times.size}" />
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
- 			<div class="col-12">
+ 			<div class="col-9">
  				<custom:pageable page="${times}"/>
  			</div>
  		</div>

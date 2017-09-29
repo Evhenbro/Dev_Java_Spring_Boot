@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.com.yarema.entity.OpenClose;
+import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.OpenCloseRequest;
 
 public interface OpenCloseService {
@@ -20,6 +21,8 @@ public interface OpenCloseService {
 	OpenCloseRequest findOne(Integer id);
 
 	List<LocalTime> findAllTimes();
+
+	Page<OpenClose> findAll(Pageable pageable, SimpleFilter simpleFilter);
 
 
 }

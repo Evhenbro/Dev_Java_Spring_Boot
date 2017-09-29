@@ -57,12 +57,11 @@
 			<div class="col-3">
 				<div class="row">
 					<div class="col-6 text-center">
-							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort
-							</button>
-							<div class="dropdown-menu">
-								<custom:sort innerHtml="Name asc" paramValue="name"/>
-								<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
-							</div>
+						<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
+						<div class="dropdown-menu">
+							<custom:sort innerHtml="Name asc" paramValue="name"/>
+							<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+						</div>
 					</div>
 					<div class="col-6 text-center">
 						<custom:size posibleSizes="1,2,5,10" size="${cuisines.size}" />

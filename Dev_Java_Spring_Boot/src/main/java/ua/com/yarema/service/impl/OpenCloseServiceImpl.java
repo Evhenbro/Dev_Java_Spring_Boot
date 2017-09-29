@@ -1,6 +1,5 @@
 package ua.com.yarema.service.impl;
 
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -8,9 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ua.com.yarema.entity.OpenClose;
+import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.OpenCloseRequest;
 import ua.com.yarema.repository.OpenCloseRepository;
 import ua.com.yarema.service.OpenCloseService;
@@ -27,7 +28,6 @@ public class OpenCloseServiceImpl implements OpenCloseService {
 
 	@Override
 	public Page<OpenClose> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
 		return openCloseRepository.findAll(pageable);
 	}
 
@@ -58,6 +58,17 @@ public class OpenCloseServiceImpl implements OpenCloseService {
 		return openCloseRepository.findAllTimes();
 	}
 
+	@Override
+	public Page<OpenClose> findAll(Pageable pageable, SimpleFilter simpleFilter) {
+		return openCloseRepository.findAll(filter(simpleFilter), pageable);
+	}
+	
+	public Specification<OpenClose> filter(SimpleFilter simpleFilter) {
+		return (root, query, cb) -> {
+			if (simpleFilter.getSearch().isEmpty()) return null;
+			return cb.equal(root.get("time"), LocalTime.parse(simpleFilter.getSearch()));
+		};
+	}
 
 
 }

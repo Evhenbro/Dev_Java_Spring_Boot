@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.yarema.model.request.TableRequest;
 import ua.com.yarema.model.request.TableReservRequest;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.TableService;
@@ -39,11 +38,6 @@ public class ClientTableReservController {
 		model.addAttribute("cafe", cafeService.findCafeViewById(idCafe));
 		model.addAttribute("tables", tableService.findAllTableViewByCafeId(idCafe, pageable));
 		return "tableClient";
-	}
-	
-	@ModelAttribute("reserv")
-	public TableRequest getForm() {
-		return new TableRequest();
 	}
 	
 	@ModelAttribute("reservTable")

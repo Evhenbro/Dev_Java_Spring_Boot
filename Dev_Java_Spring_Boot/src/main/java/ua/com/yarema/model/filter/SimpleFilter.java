@@ -1,7 +1,7 @@
 package ua.com.yarema.model.filter;
 
 public class SimpleFilter {
-
+	
 	private String search = "";
 
 	public String getSearch() {
