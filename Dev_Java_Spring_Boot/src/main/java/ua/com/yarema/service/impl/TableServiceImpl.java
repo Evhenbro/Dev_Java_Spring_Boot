@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Table;
 import ua.com.yarema.model.request.TableRequest;
+import ua.com.yarema.model.request.TableReservRequest;
 import ua.com.yarema.model.view.TableView;
 import ua.com.yarema.repository.TableRepository;
 import ua.com.yarema.service.TableService;
@@ -64,11 +65,11 @@ public class TableServiceImpl implements TableService {
 	}
 
 	@Override
-	public void saveReservation(TableRequest request, Integer idTable) {
+	public void saveReservation(TableReservRequest tableReservRequest, Integer idTable) {
 		Table table = tableRepository.findOne(idTable);
 		table.setIsFree(Boolean.FALSE);
-		table.setUser(request.getUser());
-		table.setUserPhone(request.getUserPhone());
+		table.setUser(tableReservRequest.getUser());
+		table.setUserPhone(tableReservRequest.getUserPhone());
 		tableRepository.save(table);
 	}
 

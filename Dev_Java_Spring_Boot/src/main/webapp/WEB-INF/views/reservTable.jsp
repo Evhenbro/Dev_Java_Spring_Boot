@@ -2,7 +2,7 @@
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col-12">
-				<form:form action="/cafe/${cafe.id}/tables/${reserv.id}" method="POST" modelAttribute="reserv">
+				<form:form action="/cafe/${idCafe}/tables/${idTable}" method="POST" modelAttribute="reservTable">
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="user"></form:errors>

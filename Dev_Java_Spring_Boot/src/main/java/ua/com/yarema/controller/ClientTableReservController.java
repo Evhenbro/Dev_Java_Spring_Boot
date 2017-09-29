@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.model.request.TableRequest;
+import ua.com.yarema.model.request.TableReservRequest;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.TableService;
-import ua.com.yarema.validation.flag.TableReservFlag;
+import ua.com.yarema.validation.flag.TableReservRequestFlag;
 
 @Controller
 @RequestMapping("/cafe")
@@ -41,23 +42,28 @@ public class ClientTableReservController {
 	}
 	
 	@ModelAttribute("reserv")
-	public TableRequest getFormRezerv() {
+	public TableRequest getForm() {
 		return new TableRequest();
+	}
+	
+	@ModelAttribute("reservTable")
+	public TableReservRequest getFormTableRezerv() {
+		return new TableReservRequest();
 	}
 	
 	@GetMapping("/{idCafe}/tables/{idTable}")
 	public String showTableReserv(@PathVariable Integer idCafe, @PathVariable Integer idTable, Model model) {
-		model.addAttribute("cafe", cafeService.findCafeViewById(idCafe));
-		model.addAttribute("reserv", tableService.findOne(idTable));
+		model.addAttribute("idCafe", idCafe);
+		model.addAttribute("idTable", idTable);
 		return "reservTable";
 	}
 	
 	
 	@PostMapping("/{idCafe}/tables/{idTable}")
-	public String saveTableReserv(@PathVariable Integer idCafe, @PathVariable Integer idTable, @ModelAttribute("reserv") @Validated(TableReservFlag.class) TableRequest tableRequest, BindingResult bindingResult, Model model, SessionStatus sessionStatus) {
-		System.out.println(bindingResult.hasErrors());
+	public String saveTableReserv(@ModelAttribute("reservTable") @Validated(TableReservRequestFlag.class) TableReservRequest tableReservRequest, BindingResult bindingResult, @PathVariable Integer idCafe, @PathVariable Integer idTable, Model model, SessionStatus sessionStatus) {
+		System.out.println(bindingResult.getAllErrors());
 		if (bindingResult.hasErrors()) return showTableReserv(idCafe, idTable, model);
-		tableService.saveReservation(tableRequest, idTable);
+		tableService.saveReservation(tableReservRequest, idTable);
 		return cancelReserv(sessionStatus);
 	} 
 	

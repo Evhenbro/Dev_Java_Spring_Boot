@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.model.request.TableRequest;
+import ua.com.yarema.model.request.TableReservRequest;
 import ua.com.yarema.model.view.TableView;
 
 public interface TableService {
@@ -21,7 +22,7 @@ public interface TableService {
 	
 	Cafe findOneCafeById(Integer id);
 
-	void saveReservation(TableRequest tableRequest, Integer idTable);
+	void saveReservation(TableReservRequest tableReservRequest, Integer idTable);
 
 	void dereserveTable(Integer idTable);
 
