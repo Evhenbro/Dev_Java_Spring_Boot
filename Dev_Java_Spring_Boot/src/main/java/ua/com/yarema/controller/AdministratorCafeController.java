@@ -3,6 +3,8 @@ package ua.com.yarema.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,9 +40,9 @@ public class AdministratorCafeController {
 	}
 
 	@GetMapping
-	public String showAllOwnCafes(Model model, Principal principal) {
+	public String showAllOwnCafes(Model model, Principal principal, @PageableDefault Pageable pageable) {
 		if(principal!=null){
-			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName()));
+			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName(), pageable));
 		}
 		return "ownCafes";
 	}

@@ -1,8 +1,13 @@
 package ua.com.yarema.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,8 +36,8 @@ public class ClientCafeController {
 	}
 	
 	@GetMapping
-	public String showAllCafes(Model model) {
-		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView());
+	public String showAllCafes(Model model, @PageableDefault Pageable pageable) {
+		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView(pageable));
 		return "allCafe";
 	}
 	
@@ -52,7 +57,8 @@ public class ClientCafeController {
 	}
 	
 	@PostMapping("/{id}")
-	public String saveCommentToCafe(@ModelAttribute("comment") CommentRequest commentRequest, @PathVariable Integer id, SessionStatus sessionStatus) {
+	public String saveCommentToCafe(@ModelAttribute("comment") @Valid CommentRequest commentRequest, BindingResult bindingResult, Model model, @PathVariable Integer id, SessionStatus sessionStatus) {
+		if (bindingResult.hasErrors()) return showOneCafe(id, model);
 		commentService.saveCommentToCafe(commentRequest, id);
 		return cancelCafe(sessionStatus);
 	}

@@ -11,7 +11,7 @@
 						<th class="text-center">Short desc.</th>
 						<th class="text-center">Photo Url</th>
 					</tr>
-					<c:forEach var="cafe" items="${cafeShortView}">
+					<c:forEach var="cafe" items="${cafeShortView.content}">
 						<tr>
 							<td><a href="/cafe/${cafe.id}">${cafe.name}</a></td>
 							<td>${cafe.address}</td>
@@ -24,5 +24,10 @@
 				</table>
 			</div>
 		</div>
+		<div class="row">
+ 			<div class="col-12">
+ 				<custom:pageable page="${cafeShortView}"/>
+ 			</div>
+ 		</div>
 	</div>
 <%@ include file="footer.jsp"%>

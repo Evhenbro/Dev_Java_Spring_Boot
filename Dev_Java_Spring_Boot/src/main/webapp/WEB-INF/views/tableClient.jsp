@@ -10,7 +10,7 @@
 						<th class="text-center">Cafe</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="table" items="${tables}">
+					<c:forEach var="table" items="${tables.content}">
 						<tr>
 							<td>#${table.number}</td>
 							<td>${table.countOfPeople}</td>
@@ -28,6 +28,11 @@
 						</tr>
 					</c:forEach>
 				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<custom:pageable page="${tables}"/>
 			</div>
 		</div>
 	</div>

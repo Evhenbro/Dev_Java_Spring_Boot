@@ -3,6 +3,9 @@ package ua.com.yarema.service;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.model.view.CafeShortView;
@@ -31,4 +34,8 @@ public interface CafeService {
 	void updateRateToCafeById(Integer id);
 	
 	List<CafeShortView> topFiveCafeShortView();
+
+	Page<CafeShortView> findAllCafeShortView(Pageable pageable);
+
+	Page<CafeShortView> findAllOwnCafesByUserLogin(String login, Pageable pageable);
 }

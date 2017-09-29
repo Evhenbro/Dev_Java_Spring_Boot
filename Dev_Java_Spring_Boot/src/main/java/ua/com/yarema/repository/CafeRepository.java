@@ -2,6 +2,8 @@ package ua.com.yarema.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.com.yarema.entity.Cafe;
@@ -30,6 +32,14 @@ public interface CafeRepository extends JpaNameRepository<Cafe> {
 	
 	@Query("SELECT new ua.com.yarema.model.view.CafeShortView(cafe.id, cafe.rate, cafe.name, cafe.photoUrl, cafe.version, cafe.address, cafe.shortDescription, cafe.type) FROM Cafe cafe LEFT JOIN cafe.user user WHERE user.login=?1")
 	List<CafeShortView> findAllOwnCafesByUserLogin(String login);
+
+	@Query(value="SELECT new ua.com.yarema.model.view.CafeShortView(c.id, c.rate, c.name, c.photoUrl, c.version, c.address, c.shortDescription, c.type) FROM Cafe c",
+			countQuery="SELECT count(c.id) FROM Cafe c")
+	Page<CafeShortView> findAllCafeShortView(Pageable pageable);
+
+	@Query(value="SELECT new ua.com.yarema.model.view.CafeShortView(cafe.id, cafe.rate, cafe.name, cafe.photoUrl, cafe.version, cafe.address, cafe.shortDescription, cafe.type) FROM Cafe cafe LEFT JOIN cafe.user user WHERE user.login=?1",
+			countQuery="SELECT count(cafe.id) FROM Cafe cafe LEFT JOIN cafe.user user WHERE user.login=?1")
+	Page<CafeShortView> findAllOwnCafesByUserLogin(String login, Pageable pageable);
 	
 	
 }

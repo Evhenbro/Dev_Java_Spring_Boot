@@ -33,7 +33,7 @@
 						<th class="text-center">Time</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="time" items="${times}">
+					<c:forEach var="time" items="${times.content}">
 						<tr>
 							<td>${time.time}</td>
 							<td class="text-center">
@@ -45,5 +45,10 @@
 				</table>
 			</div>
 		</div>
+		<div class="row">
+ 			<div class="col-12">
+ 				<custom:pageable page="${times}"/>
+ 			</div>
+ 		</div>
 	</div>
 <%@ include file="footer.jsp"%>

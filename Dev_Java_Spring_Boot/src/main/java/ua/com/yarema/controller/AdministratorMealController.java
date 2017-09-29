@@ -2,9 +2,14 @@ package ua.com.yarema.controller;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,9 +40,9 @@ public class AdministratorMealController {
 	}
  	
 	@GetMapping
-	public String showAllOwnMeals(Model model, Principal principal) {
+	public String showAllOwnMeals(Model model, Principal principal, @PageableDefault Pageable pageable) {
 		if(principal!=null){
-			model.addAttribute("ownMeals", mealService.findAllOwnMealsByUserLogin(principal.getName()));
+			model.addAttribute("ownMeals", mealService.findAllOwnMealsByUserLogin(principal.getName(), pageable));
 		}
 		return "ownMeals";
 	}
@@ -65,7 +70,8 @@ public class AdministratorMealController {
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("meal") MealRequest mealRequest, SessionStatus status) {
+	public String save(@ModelAttribute("meal") @Valid MealRequest mealRequest, BindingResult bindingResult, Model model, Principal principal, SessionStatus status) {
+		if (bindingResult.hasErrors()) return showForm(model, principal);
 		mealService.save(mealRequest);
 		return cancel(status);
 	}

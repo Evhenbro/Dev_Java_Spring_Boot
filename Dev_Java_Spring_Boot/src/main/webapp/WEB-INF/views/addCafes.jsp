@@ -3,8 +3,8 @@
 		<div class="row">
 			<div class="col-12">
 				<form:form action="/profile/cafe" method="POST" modelAttribute="cafe">
-					<div class="row">
-						<div class="col-10 ml-auto" style="color: red;">
+					<div class="row" style="color: red;">
+						<div class="col-10 ml-auto">
 							<form:errors path="name"/>
 						</div>
 					</div>
@@ -14,14 +14,19 @@
 							<form:input class="form-control" id="name" path="name"/>
 						</div>
 					</div>
+					<div class="row" style="color: red;">
+						<div class="col-10 ml-auto">
+							<form:errors path="address"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="address">Address:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="address" path="address"/>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-10 ml-auto" style="color: red;">
+					<div class="row" style="color: red;">
+						<div class="col-10 ml-auto">
 							<form:errors path="email"/>
 						</div>
 					</div>
@@ -31,8 +36,8 @@
 							<form:input class="form-control" id="email" path="email"/>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-10 ml-auto" style="color: red;">
+					<div class="row" style="color: red;">
+						<div class="col-10 ml-auto">
 							<form:errors path="phone"/>
 						</div>
 					</div>
@@ -42,10 +47,20 @@
 							<form:input class="form-control" id="phone" path="phone"/>
 						</div>
 					</div>
+					<div class="row" style="color: red;">
+						<div class="col-10 ml-auto">
+							<form:errors path="rate"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="rate">Rate:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="rate" path="rate"/>
+						</div>
+					</div>
+					<div class="row" style="color: red;">
+						<div class="col-10 ml-auto">
+							<form:errors path="shortDescription"/>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -54,10 +69,20 @@
 							<form:textarea class="form-control" id="shortDescription" path="shortDescription" rows="3"/>
 						</div>
 					</div>
+					<div class="row" style="color: red;">
+						<div class="col-10 ml-auto">
+							<form:errors path="fullDescription"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="fullDescription">Full Description:</label>
 						<div class="col-10">
 							<form:textarea class="form-control" id="fullDescription" path="fullDescription" rows="5"/>
+						</div>
+					</div>
+					<div class="row" style="color: red;">
+						<div class="col-10 ml-auto">
+							<form:errors path="photoUrl"/>
 						</div>
 					</div>
 					<div class="form-group row">

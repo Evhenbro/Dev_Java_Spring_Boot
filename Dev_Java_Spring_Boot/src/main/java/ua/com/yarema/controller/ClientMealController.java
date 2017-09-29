@@ -1,6 +1,8 @@
 package ua.com.yarema.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,8 +41,8 @@ public class ClientMealController {
 	}
 	
 	@GetMapping
-	public String showAllMeals(Model model) {
-		model.addAttribute("meals", mealService.findAllViews());
+	public String showAllMeals(Model model, @PageableDefault Pageable pageable) {
+		model.addAttribute("meals", mealService.findAllViews(pageable));
 		return "allMeal";
 	}
 	

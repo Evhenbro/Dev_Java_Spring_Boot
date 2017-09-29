@@ -3,6 +3,8 @@ package ua.com.yarema.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.com.yarema.entity.Cafe;
@@ -77,6 +79,11 @@ public class TableServiceImpl implements TableService {
 		table.setUser(null);
 		table.setUserPhone(null);
 		tableRepository.save(table);
+	}
+
+	@Override
+	public Page<TableView> findAllTableViewByCafeId(Integer idCafe, Pageable pageable) {
+		return tableRepository.findAllTableViewByCafeId(idCafe, pageable);
 	}
 
 	

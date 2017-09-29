@@ -17,27 +17,35 @@ public class CafeRequest {
 
 	private Integer id;
 	
+	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
+	@Pattern(regexp = "^([0-9]{1}\\.{1}[0-9]{1,2})|([1]{1}[0]{1}\\.{1}[0-9]{1,2})|([0-9]{1})|(10{1})| *$", message="Ви ввели невірний формат(Вірно: 7 або 5.58 та максимум це 10.00).", groups=CafeFlag.class)
 	private String rate;
 	
-	@NotBlank(message="Це поле має бути заповненим.", groups={CafeFlag.class})
-	@Pattern(regexp = "^[A-Z]{1}[a-zA-Z0-9]+| *$", message="Назва має починатись з веливокї літери.", groups={CafeFlag.class})
+	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
+	@Pattern(regexp = "^[A-Z]{1}[a-zA-Z0-9]+| *$", message="Назва має починатись з веливокї літери.", groups=CafeFlag.class)
 	private String name;
 	
+	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
 	private String photoUrl;
 	
 	private Integer version;
 	
+	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
+	@Pattern(regexp = "^[A-Z]{1}[\\.\\,\\ a-zA-Z0-9]+| *$", message="Адреса має починатись з веливокї літери.", groups=CafeFlag.class)
 	private String address;
 	
+	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
 	private String fullDescription;
 	
+	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
 	private String shortDescription;
 	
 	private String type;
 	
-	@Pattern(regexp = "^\\+{1}[0-9]{3}[0-9]{6,12}$", message="Введено невірний формат.", groups={CafeFlag.class})
+	@Pattern(regexp = "^\\+{1}[0-9]{3}[0-9]{6,12}$", message="Введено невірний формат.", groups=CafeFlag.class)
 	private String phone;
 	
+	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
 	@Email(message="Введено невірний формат.", groups={CafeFlag.class})
 	private String email;
 	

@@ -1,6 +1,8 @@
 package ua.com.yarema.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,8 +37,8 @@ public class AdminOpenCloseController {
 	}
 
 	@GetMapping
-	public String show(Model model) {
-		model.addAttribute("times", openCloseService.findAll());
+	public String show(Model model, @PageableDefault Pageable pageable) {
+		model.addAttribute("times", openCloseService.findAll(pageable));
 		return "times";
 	}
 
@@ -47,16 +49,16 @@ public class AdminOpenCloseController {
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("open_close") @Validated(OpenCloseFlag.class) OpenCloseRequest openCloseRequest, BindingResult bindingResult, Model model, SessionStatus sessionStatus) {
-		if (bindingResult.hasErrors()) return show(model);
+	public String save(@ModelAttribute("open_close") @Validated(OpenCloseFlag.class) OpenCloseRequest openCloseRequest, BindingResult bindingResult, Model model, Pageable pageable, SessionStatus sessionStatus) {
+		if (bindingResult.hasErrors()) return show(model, pageable);
 		openCloseService.save(openCloseRequest);
 		return cancel(sessionStatus);
 	}
 	
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable Integer id, Model model) {
+	public String update(@PathVariable Integer id, Model model, Pageable pageable) {
 		model.addAttribute("open_close", openCloseService.findOne(id));
-		return show(model);	
+		return show(model, pageable);	
 	}
 	
 	@GetMapping("/cancel")

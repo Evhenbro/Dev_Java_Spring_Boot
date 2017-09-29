@@ -15,7 +15,7 @@
 						<th class="text-center">Photo Url</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="meal" items="${ownMeals}">
+					<c:forEach var="meal" items="${ownMeals.content}">
 						<tr class="text-center">
 							<td><a href="/meal/${meal.id}">${meal.title}</a></td>
 							<td>${meal.cuisine}</td>
@@ -36,6 +36,11 @@
 						</tr>
 					</c:forEach>
 				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<custom:pageable page="${ownMeals}"/>
 			</div>
 		</div>
 	</div>

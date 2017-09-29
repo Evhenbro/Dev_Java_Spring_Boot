@@ -3,6 +3,8 @@ package ua.com.yarema.model.request;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Pattern;
+
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Comment;
 import ua.com.yarema.entity.Meal;
@@ -19,6 +21,7 @@ public class CommentRequest {
 	
 	private List<Comment> childComment = new ArrayList<>();
 	
+	@Pattern(regexp = "^([0-9]{1}\\.{1}[0-9]{1,2})|([1]{1}[0]{1}\\.{1}[0-9]{1,2})|([0-9]{1})|(10{1})$", message="Ви ввели невірний формат(Вірно: 7 або 5.58 та максимум це 10.00).")
 	private String rate;
 	
 	private int like;

@@ -4,6 +4,8 @@ package ua.com.yarema.service.impl;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -98,6 +100,20 @@ public class MealServiceImpl implements MealService {
 		List<MealView> views = mealRepository.findAllOwnMealsByUserLogin(login);
 		views.forEach(this::loadIngredients);
 		return views;
+	}
+
+	@Override
+	public Page<MealView> findAllViews(Pageable pageable) {
+		Page<MealView> mealViews = mealRepository.findAllViews(pageable);
+		mealViews.forEach(this::loadIngredients);
+		return mealViews;
+	}
+
+	@Override
+	public Page<MealView> findAllOwnMealsByUserLogin(String name, Pageable pageable) {
+		Page<MealView> mealViews = mealRepository.findAllOwnMealsByUserLogin(name, pageable);
+		mealViews.forEach(this::loadIngredients);
+		return mealViews;
 	}
 
 }

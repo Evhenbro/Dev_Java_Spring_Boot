@@ -11,7 +11,7 @@
 						<th class="text-center">Ingredients</th>
 						<th class="text-center">Photo Url</th>
 					</tr>
-					<c:forEach var="meal" items="${meals}">
+					<c:forEach var="meal" items="${meals.content}">
 						<tr>
 							<td><a href="/meal/${meal.id}">${meal.title}</a></td>
 							<td>${meal.cuisine}</td>
@@ -27,6 +27,11 @@
 					</c:forEach>
 				</table>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<custom:pageable page="${meals}"/>
+			</div>	
 		</div>
 	</div>
 <%@ include file="footer.jsp"%>

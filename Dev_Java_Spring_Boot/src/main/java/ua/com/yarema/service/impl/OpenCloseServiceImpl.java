@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.com.yarema.entity.OpenClose;
@@ -24,9 +26,9 @@ public class OpenCloseServiceImpl implements OpenCloseService {
 	}
 
 	@Override
-	public List<OpenClose> findAll() {
+	public Page<OpenClose> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return openCloseRepository.findAll();
+		return openCloseRepository.findAll(pageable);
 	}
 
 	@Override

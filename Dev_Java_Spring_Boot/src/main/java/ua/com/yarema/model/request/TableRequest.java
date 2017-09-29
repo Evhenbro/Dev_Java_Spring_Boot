@@ -5,6 +5,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotBlank;
 
 import ua.com.yarema.entity.Cafe;
+import ua.com.yarema.validation.flag.TableReservFlag;
 
 public class TableRequest {
 
@@ -16,10 +17,10 @@ public class TableRequest {
 	
 	private boolean isFree;
 	
-	@NotBlank(message="Це поле має бути заповненим.")
+	@NotBlank(message="Це поле має бути заповненим.", groups=TableReservFlag.class)
 	private String user;
 	
-	@Pattern(regexp = "^\\+{1}[0-9]{3}[0-9]{6,12}$", message="Введено невірний формат.")
+	@Pattern(regexp = "^\\+{1}[0-9]{3}[0-9]{6,12}$", message="Введено невірний формат.", groups=TableReservFlag.class)
 	private String userPhone;
 	
 	private Cafe cafe;

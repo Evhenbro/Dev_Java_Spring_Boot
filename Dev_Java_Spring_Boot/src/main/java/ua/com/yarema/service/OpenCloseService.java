@@ -3,12 +3,15 @@ package ua.com.yarema.service;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import ua.com.yarema.entity.OpenClose;
 import ua.com.yarema.model.request.OpenCloseRequest;
 
 public interface OpenCloseService {
 
-	List<OpenClose> findAll();
+	Page<OpenClose> findAll(Pageable pageable);
 
 	void save(OpenCloseRequest openCloseRequest);
 

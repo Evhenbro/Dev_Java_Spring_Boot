@@ -2,6 +2,8 @@ package ua.com.yarema.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -33,4 +35,12 @@ public interface MealRepository extends JpaRepository<Meal, Integer> {
 	
 	@Query("SELECT new ua.com.yarema.model.view.MealView(meal.id, meal.title, meal.description, meal.price, meal.photoUrl, meal.version, cuisine.name, cafe.name, meal.weight) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe LEFT JOIN cafe.user user WHERE user.login=?1")
 	List<MealView> findAllOwnMealsByUserLogin(String login);
+
+	@Query(value="SELECT new ua.com.yarema.model.view.MealView(m.id, m.title, m.description, m.price, m.photoUrl, m.version, c.name, ca.name, m.weight) FROM Meal m JOIN m.cuisine c JOIN m.cafe ca",
+			countQuery="SELECT count(m.id) FROM Meal m JOIN m.cuisine c JOIN m.cafe ca")
+	Page<MealView> findAllViews(Pageable pageable);
+
+	@Query(value="SELECT new ua.com.yarema.model.view.MealView(meal.id, meal.title, meal.description, meal.price, meal.photoUrl, meal.version, cuisine.name, cafe.name, meal.weight) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe LEFT JOIN cafe.user user WHERE user.login=?1",
+			countQuery="SELECT count(meal.id) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe LEFT JOIN cafe.user user WHERE user.login=?1")
+	Page<MealView> findAllOwnMealsByUserLogin(String name, Pageable pageable);
 }
