@@ -9,10 +9,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Type;
+import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.CafeView;
@@ -156,6 +158,18 @@ public class CafeServiceImpl implements CafeService {
 	@Override
 	public Page<CafeShortView> findAllOwnCafesByUserLogin(String login, Pageable pageable) {
 		return cafeRepository.findAllOwnCafesByUserLogin(login, pageable);
+	}
+
+	@Override
+	public Page<CafeShortView> findAllCafeShortView(Pageable pageable, SimpleFilter simpleFilter) {
+		return cafeRepository.findAll(filter(simpleFilter), pageable);
+	}
+	
+	public Specification<CafeShortView> filter(SimpleFilter simpleFilter) {
+		return (root, query, cb) -> {
+				if(simpleFilter.getSearch().isEmpty()) return null;
+				return cb.like(root.get("name"), simpleFilter.getSearch() + "%");
+		};
 	}
 	
 }

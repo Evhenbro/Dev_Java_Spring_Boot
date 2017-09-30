@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.com.yarema.entity.Meal;
 import ua.com.yarema.model.view.MealView;
 
-public interface MealRepository extends JpaRepository<Meal, Integer> {
+public interface MealRepository extends JpaRepository<Meal, Integer>, JpaSpecificationExecutor<MealView> {
 
 	@Query("SELECT c.name FROM Cuisine c")
 	List<String> findAllCuisines();

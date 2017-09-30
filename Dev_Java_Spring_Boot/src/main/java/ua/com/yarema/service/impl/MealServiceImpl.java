@@ -1,15 +1,16 @@
 package ua.com.yarema.service.impl;
 
-
 import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.com.yarema.entity.Meal;
+import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.MealRequest;
 import ua.com.yarema.model.view.MealView;
 import ua.com.yarema.repository.MealRepository;
@@ -114,6 +115,18 @@ public class MealServiceImpl implements MealService {
 		Page<MealView> mealViews = mealRepository.findAllOwnMealsByUserLogin(name, pageable);
 		mealViews.forEach(this::loadIngredients);
 		return mealViews;
+	}
+	
+	@Override
+	public Page<MealView> findAllViews(Pageable pageable, SimpleFilter simpleFilter) {
+		return mealRepository.findAll(filter(simpleFilter), pageable);
+	}
+	
+	public Specification<MealView> filter(SimpleFilter simpleFilter) {
+		return (root, query, cb) -> {
+			if (simpleFilter.getSearch().isEmpty()) return null;
+			return cb.like(root.get("title"), simpleFilter.getSearch() + "%");
+		};
 	}
 
 }

@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
+			<div class="col-9">
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Time</th>
@@ -59,8 +59,8 @@
 					<div class="col-6 text-center">
 						<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
 						<div class="dropdown-menu">
-							<custom:sort innerHtml="Name asc" paramValue="name"/>
-							<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+							<custom:sort innerHtml="Time asc" paramValue="time"/>
+							<custom:sort innerHtml="Time desc" paramValue="time,desc"/>
 						</div>
 					</div>
 					<div class="col-6 text-center">
@@ -70,7 +70,7 @@
 			</div>
 		</div>
 		<div class="row">
- 			<div class="col-9">
+ 			<div class="col-12">
  				<custom:pageable page="${times}"/>
  			</div>
  		</div>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.CommentRequest;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.CommentService;
@@ -35,11 +36,18 @@ public class ClientCafeController {
 		this.commentService = commentService;
 	}
 	
+	@ModelAttribute("filter")
+	public SimpleFilter getFilter() {
+		return new SimpleFilter();
+	}
+	
 	@GetMapping
-	public String showAllCafes(Model model, @PageableDefault Pageable pageable) {
-		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView(pageable));
+	public String showAllCafes(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter simpleFilter) {
+		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView(pageable, simpleFilter));
 		return "allCafe";
 	}
+	
+//	To show one cafe
 	
 	@GetMapping("/{id}")
 	public String showOneCafe(@PathVariable Integer id, Model model) {

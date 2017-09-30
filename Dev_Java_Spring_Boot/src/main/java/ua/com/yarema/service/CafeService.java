@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.com.yarema.entity.Cafe;
+import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.CafeView;
@@ -35,7 +36,9 @@ public interface CafeService {
 	
 	List<CafeShortView> topFiveCafeShortView();
 
-	Page<CafeShortView> findAllCafeShortView(Pageable pageable);
-
 	Page<CafeShortView> findAllOwnCafesByUserLogin(String login, Pageable pageable);
+
+	Page<CafeShortView> findAllCafeShortView(Pageable pageable);
+	
+	Page<CafeShortView> findAllCafeShortView(Pageable pageable, SimpleFilter simpleFilter);
 }

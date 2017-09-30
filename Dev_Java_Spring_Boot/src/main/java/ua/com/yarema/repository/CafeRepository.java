@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.model.view.CafeView;
 
-public interface CafeRepository extends JpaNameRepository<Cafe> {
+public interface CafeRepository extends JpaNameRepository<Cafe>, JpaSpecificationExecutor<CafeShortView> {
 	
 	@Query("SELECT new ua.com.yarema.model.view.CafeView(cafe.id, cafe.rate, cafe.name, cafe.photoUrl, cafe.version, cafe.address, cafe.fullDescription, cafe.type, cafe.phone, cafe.email, open.time, close.time) FROM Cafe cafe JOIN cafe.open open JOIN cafe.close close")
 	List<CafeView> findAllCafeView();

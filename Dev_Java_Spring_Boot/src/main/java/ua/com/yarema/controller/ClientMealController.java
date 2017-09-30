@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.CommentRequest;
 import ua.com.yarema.repository.CafeRepository;
 import ua.com.yarema.repository.MealRepository;
@@ -40,11 +41,18 @@ public class ClientMealController {
 		this.cafeRepository = cafeRepository;
 	}
 	
+	@ModelAttribute("filter")
+	public SimpleFilter getFilter() {
+		return new SimpleFilter();
+	}
+	
 	@GetMapping
-	public String showAllMeals(Model model, @PageableDefault Pageable pageable) {
-		model.addAttribute("meals", mealService.findAllViews(pageable));
+	public String showAllMeals(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter simpleFilter) {
+		model.addAttribute("meals", mealService.findAllViews(pageable, simpleFilter));
 		return "allMeal";
 	}
+	
+//	To show one meal
 	
 	@GetMapping("/{id}")
 	public String showOneMeal(@PathVariable Integer id, Model model) {
@@ -54,6 +62,8 @@ public class ClientMealController {
 		model.addAttribute("comments", commentService.findAllCommentByMealId(id));
 		return "oneMeal";
 	}
+	
+//	For comment to meal
 	
 	@ModelAttribute("comment")
 	public CommentRequest getFormComment() {
