@@ -128,5 +128,5 @@ public class MealServiceImpl implements MealService {
 			return cb.like(root.get("title"), simpleFilter.getSearch() + "%");
 		};
 	}
-
+	
 }

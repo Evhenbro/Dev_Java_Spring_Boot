@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.MealRequest;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.MealService;
@@ -31,16 +32,19 @@ public class AdministratorMealController {
 	
 	private final CafeService cafeService;
 	
-//	private Principal principal;
-	
 	@Autowired
 	public AdministratorMealController(MealService mealService, CafeService cafeService) {
 		this.mealService = mealService;
 		this.cafeService = cafeService;
 	}
  	
+	@ModelAttribute("filter")
+	public SimpleFilter geFilter() {
+		return new SimpleFilter();
+	}
+	
 	@GetMapping
-	public String showAllOwnMeals(Model model, Principal principal, @PageableDefault Pageable pageable) {
+	public String showAllOwnMeals(Model model, Principal principal, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter simpleFilter) {
 		if(principal!=null){
 			model.addAttribute("ownMeals", mealService.findAllOwnMealsByUserLogin(principal.getName(), pageable));
 		}

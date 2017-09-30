@@ -1,5 +1,30 @@
 <%@ include file="header.jsp"%>
 	<div class="container">
+		<div class="row">
+			<div class="col-6">
+				<form:form action="/meal" method="GET" modelAttribute="filter">
+					<div class="form-group row">
+						<div class="col-12">
+							<form:input class="form-control" path="search" placeholder="Search"/>
+						</div>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-6">
+				<div class="row">
+					<div class="col-2 text-center ml-auto">
+						<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
+						<div class="dropdown-menu">
+							<custom:sort innerHtml="Title asc" paramValue="title"/>
+							<custom:sort innerHtml="Title desc" paramValue="title,desc"/>
+						</div>
+					</div>
+					<div class="col-2 text-center ml-auto">
+						<custom:size posibleSizes="1,2,5,10" size="${meals.size}" />
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row align-items-end mt-3">
 			<a href="/profile/meal/new" class="btn btn-outline-success btn-lg btn-block">Add new meal</a>			
 		</div>
@@ -40,7 +65,7 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<custom:pageable page="${ownMeals}"/>
+				<custom:pageable page="${ownMeals.content}"/>
 			</div>
 		</div>
 	</div>

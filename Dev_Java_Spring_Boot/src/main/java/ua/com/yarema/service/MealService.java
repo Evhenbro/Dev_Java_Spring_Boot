@@ -34,5 +34,5 @@ public interface MealService {
 	Page<MealView> findAllOwnMealsByUserLogin(String name, Pageable pageable);
 
 	Page<MealView> findAllViews(Pageable pageable, SimpleFilter simpleFilter);
-
+	
 }
