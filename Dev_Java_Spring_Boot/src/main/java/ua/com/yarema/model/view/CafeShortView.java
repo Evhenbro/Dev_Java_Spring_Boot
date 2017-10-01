@@ -22,9 +22,7 @@ public class CafeShortView {
 	
 	private String type;
 
-	
-	public CafeShortView(Integer id, BigDecimal rate, String name, String photoUrl, int version, String address,
-			String shortDescription, Type type) {
+	public CafeShortView(Integer id, BigDecimal rate, String name, String photoUrl, int version, String address, String shortDescription, Type type) {
 		this.id = id;
 		this.rate = rate;
 		this.name = name;

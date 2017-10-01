@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.com.yarema.model.filter.CafeFilter;
 import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.CommentRequest;
+import ua.com.yarema.repository.CafeViewRepository;
+import ua.com.yarema.repository.MealRepository;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.CommentService;
 
@@ -25,15 +28,21 @@ import ua.com.yarema.service.CommentService;
 @RequestMapping("/cafe")
 @SessionAttributes("comment")
 public class ClientCafeController {
-
+	
 	private final CafeService cafeService;
 	
 	private final CommentService commentService; 
 	
+	private final CafeViewRepository cafeViewRepository;
+	
+	private final MealRepository mealRepository;
+	
 	@Autowired
-	public ClientCafeController(CafeService cafeService, CommentService commentService) {
+	public ClientCafeController(CafeService cafeService, CommentService commentService, CafeViewRepository cafeViewRepository, MealRepository mealRepository) {
 		this.cafeService = cafeService;
 		this.commentService = commentService;
+		this.cafeViewRepository = cafeViewRepository;
+		this.mealRepository = mealRepository;
 	}
 	
 	@ModelAttribute("filter")
@@ -41,9 +50,16 @@ public class ClientCafeController {
 		return new SimpleFilter();
 	}
 	
+	@ModelAttribute("cafeFilter")
+	public CafeFilter getCafeFilter() {
+		return new CafeFilter();
+	}
+	
 	@GetMapping
-	public String showAllCafes(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter simpleFilter) {
-		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView(pageable, simpleFilter));
+	public String showAllCafes(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter simpleFilter, @ModelAttribute("cafeFilter") CafeFilter cafeFilter) {
+		model.addAttribute("cafes", cafeViewRepository.findAll(cafeFilter, pageable));
+		model.addAttribute("meals", mealRepository.findAll());
+//		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView(pageable, simpleFilter));
 		return "allCafe";
 	}
 	
