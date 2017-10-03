@@ -3,6 +3,7 @@ package ua.com.yarema.repository.impl;
 import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,8 @@ import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Cafe_;
 import ua.com.yarema.entity.Meal;
 import ua.com.yarema.entity.Meal_;
+import ua.com.yarema.entity.OpenClose;
+import ua.com.yarema.entity.OpenClose_;
 import ua.com.yarema.model.filter.CafeFilter;
 import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.repository.CafeViewRepository;
@@ -103,12 +106,44 @@ public class CafeViewRepositoryImpl implements CafeViewRepository {
 			}
 		}
 		
+		void findByMinOpen() {
+			if (!cafeFilter.getMinOpen().isEmpty()) {
+				Join<Cafe, OpenClose> join = root.join("open");
+				predicates.add(cb.greaterThanOrEqualTo(join.get(OpenClose_.time), LocalTime.parse(cafeFilter.getMinOpen())));
+			}
+		}
+		
+		void findByMaxOpen() {
+			if (!cafeFilter.getMaxOpen().isEmpty()) {
+				Join<Cafe, OpenClose> join = root.join("open");
+				predicates.add(cb.lessThanOrEqualTo(join.get(OpenClose_.time), LocalTime.parse(cafeFilter.getMaxOpen())));
+			}
+		}
+		
+		void findByMinClose() {
+			if (!cafeFilter.getMinClose().isEmpty()) {
+				Join<Cafe, OpenClose> join = root.join("open");
+				predicates.add(cb.greaterThanOrEqualTo(join.get(OpenClose_.time), LocalTime.parse(cafeFilter.getMinClose())));
+			}
+		}
+		
+		void findByMaxClose() {
+			if (!cafeFilter.getMaxClose().isEmpty()) {
+				Join<Cafe, OpenClose> join = root.join("open");
+				predicates.add(cb.greaterThanOrEqualTo(join.get(OpenClose_.time), LocalTime.parse(cafeFilter.getMaxClose())));
+			}
+		}
+		
 		Predicate toPredicate() {
 			findByMinRate();
 			findByMaxRate();
 			findByTypes();
 			findByMeals();
 			findByName();
+			findByMinOpen();
+			findByMaxOpen();
+			findByMinClose();
+			findByMaxClose();
 //			return cb.and(predicates.stream().toArray(Predicate[]::new));
 			return cb.and(predicates.toArray(new Predicate[predicates.size()]));
 		} 

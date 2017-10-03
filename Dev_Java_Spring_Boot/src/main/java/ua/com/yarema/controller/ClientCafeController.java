@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.model.filter.CafeFilter;
-import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.CommentRequest;
 import ua.com.yarema.repository.CafeViewRepository;
 import ua.com.yarema.repository.MealRepository;
@@ -45,21 +44,15 @@ public class ClientCafeController {
 		this.mealRepository = mealRepository;
 	}
 	
-	@ModelAttribute("filter")
-	public SimpleFilter getFilter() {
-		return new SimpleFilter();
-	}
-	
 	@ModelAttribute("cafeFilter")
 	public CafeFilter getCafeFilter() {
 		return new CafeFilter();
 	}
 	
 	@GetMapping
-	public String showAllCafes(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter simpleFilter, @ModelAttribute("cafeFilter") CafeFilter cafeFilter) {
+	public String showAllCafes(Model model, @PageableDefault Pageable pageable, @ModelAttribute("cafeFilter") CafeFilter cafeFilter) {
 		model.addAttribute("cafes", cafeViewRepository.findAll(cafeFilter, pageable));
 		model.addAttribute("meals", mealRepository.findAll());
-//		model.addAttribute("cafeShortView", cafeService.findAllCafeShortView(pageable, simpleFilter));
 		return "allCafe";
 	}
 	

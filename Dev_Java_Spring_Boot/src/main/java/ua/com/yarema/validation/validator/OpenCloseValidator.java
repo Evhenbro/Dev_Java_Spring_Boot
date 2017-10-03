@@ -25,8 +25,7 @@ public class OpenCloseValidator implements ConstraintValidator<UniqueOpenClose, 
 
 	@Override
 	public boolean isValid(String arg0, ConstraintValidatorContext arg1) {
-		if (arg0.matches("^[0-9]:[0-5][0-9]$")) arg0 = "0"+arg0;
-		if (!arg0.trim().isEmpty()) {
+		if ((!arg0.trim().isEmpty())&&(arg0.matches("^([0-2][0-3]:[0-5][0-9])|(0{1}[0-9]:[0-5][0-9])|(1{1}[0-9]:[0-5][0-9])$"))) {
 			OpenClose time = openCloseRepository.findByTime(LocalTime.parse(arg0));
 			if (time!=null) {
 				return false;

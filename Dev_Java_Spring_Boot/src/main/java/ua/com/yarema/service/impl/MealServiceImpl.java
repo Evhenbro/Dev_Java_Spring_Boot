@@ -10,19 +10,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.com.yarema.entity.Meal;
+import ua.com.yarema.model.filter.MealFilter;
 import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.MealRequest;
 import ua.com.yarema.model.view.MealView;
 import ua.com.yarema.repository.MealRepository;
+import ua.com.yarema.repository.impl.MealViewRepositoryImpl;
 import ua.com.yarema.service.MealService;
 
 @Service
 public class MealServiceImpl implements MealService {
 
 	private final MealRepository mealRepository;
+	
+	private final MealViewRepositoryImpl mealViewRepositoryImpl;
 
-	public MealServiceImpl(MealRepository mealRepository) {
+	public MealServiceImpl(MealRepository mealRepository, MealViewRepositoryImpl mealViewRepositoryImpl) {
 		this.mealRepository = mealRepository;
+		this.mealViewRepositoryImpl = mealViewRepositoryImpl;
 	}
 
 	@Override
@@ -127,6 +132,13 @@ public class MealServiceImpl implements MealService {
 			if (simpleFilter.getSearch().isEmpty()) return null;
 			return cb.like(root.get("title"), simpleFilter.getSearch() + "%");
 		};
+	}
+
+	@Override
+	public Page<MealView> findAll(MealFilter mealFilter, Pageable pageable) {
+		Page<MealView> pages = mealViewRepositoryImpl.findAll(mealFilter, pageable);
+		pages.forEach(this::loadIngredients);
+		return pages;
 	}
 	
 }

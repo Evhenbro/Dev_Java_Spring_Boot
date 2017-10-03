@@ -8,7 +8,7 @@
 				<form:form action="/admin/times" method="GET" modelAttribute="filter">
 					<div class="form-group row">
 						<div class="col-12">
-							<form:input class="form-control" path="search" placeholder="Search"/>
+							<form:input class="form-control" path="searchTime" placeholder="Search"/>
 						</div>
 					</div>
 				</form:form>

@@ -54,9 +54,14 @@ public class OpenCloseServiceImpl implements OpenCloseService {
 	}
 
 	@Override
-	public List<LocalTime> findAllTimes() {
+	public List<String> findAllTimes() {
 		return openCloseRepository.findAllTimes();
 	}
+	
+//	@Override
+//	public List<LocalTime> findAllTimes() {
+//		return openCloseRepository.findAllTimes();
+//	}
 
 	@Override
 	public Page<OpenClose> findAll(Pageable pageable, SimpleFilter simpleFilter) {
@@ -65,8 +70,8 @@ public class OpenCloseServiceImpl implements OpenCloseService {
 	
 	public Specification<OpenClose> filter(SimpleFilter simpleFilter) {
 		return (root, query, cb) -> {
-			if (simpleFilter.getSearch().isEmpty()) return null;
-			return cb.equal(root.get("time"), LocalTime.parse(simpleFilter.getSearch()));
+			if (simpleFilter.getSearchTime().isEmpty()) return null;
+			return cb.equal(root.get("time"), LocalTime.parse(simpleFilter.getSearchTime()));
 		};
 	}
 

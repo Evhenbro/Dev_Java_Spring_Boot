@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.yarema.model.filter.SimpleFilter;
+import ua.com.yarema.model.filter.MealFilter;
 import ua.com.yarema.model.request.CommentRequest;
 import ua.com.yarema.repository.CafeRepository;
+import ua.com.yarema.repository.CuisineRepository;
 import ua.com.yarema.repository.MealRepository;
+import ua.com.yarema.repository.MealViewRepository;
 import ua.com.yarema.service.CommentService;
 import ua.com.yarema.service.MealService;
 
@@ -31,24 +33,32 @@ public class ClientMealController {
 	
 	private final CafeRepository cafeRepository;
 	
-	private final CommentService commentService; 
+	private final CommentService commentService;
+
+	private final MealViewRepository mealViewRepository; 
+	
+	private final CuisineRepository cuisineRepository; 
 	
 	@Autowired
-	public ClientMealController(MealService mealService, MealRepository mealRepository, CommentService commentService, CafeRepository cafeRepository) {
+	public ClientMealController(MealService mealService, MealRepository mealRepository, CommentService commentService, CafeRepository cafeRepository, MealViewRepository mealViewRepository, CuisineRepository cuisineRepository) {
 		this.mealService = mealService;
 		this.mealRepository = mealRepository;
 		this.commentService = commentService;
 		this.cafeRepository = cafeRepository;
+		this.mealViewRepository = mealViewRepository;
+		this.cuisineRepository = cuisineRepository;
 	}
 	
-	@ModelAttribute("filter")
-	public SimpleFilter getFilter() {
-		return new SimpleFilter();
+	@ModelAttribute("filterMeal")
+	public MealFilter getMealFilter() {
+		return new MealFilter();
 	}
 	
 	@GetMapping
-	public String showAllMeals(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter simpleFilter) {
-		model.addAttribute("meals", mealService.findAllViews(pageable, simpleFilter));
+	public String showAllMeals(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filterMeal") MealFilter mealFilter) {
+		model.addAttribute("meals", mealService.findAll(mealFilter, pageable));
+		model.addAttribute("cafes", cafeRepository.findAll());
+		model.addAttribute("cuisines", cuisineRepository.findAll());
 		return "allMeal";
 	}
 	

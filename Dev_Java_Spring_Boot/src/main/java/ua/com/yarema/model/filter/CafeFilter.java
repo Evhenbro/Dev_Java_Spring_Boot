@@ -8,9 +8,9 @@ import ua.com.yarema.entity.Type;
 
 public class CafeFilter {
 
-	private static final Pattern INT_PATTERN = Pattern.compile("^[0-9]{1,10}$");
+	private static final Pattern TIME_PATTERN = Pattern.compile("^([0-2][0-3]:[0-5][0-9])|(0{1}[0-9]:[0-5][0-9])|(1{1}[0-9]:[0-5][0-9])$");
 	
-	private static final Pattern DECIMAL_PATTERN = Pattern.compile("^([0-9]{1,18}\\.[0-9]{0,2})|([0-9]{1,18}\\,[0-9]{0,2})|([0-9]{1,18})$");
+	private static final Pattern RATE_PATTERN = Pattern.compile("^([0-9]{1}\\.[0-9]{0,2})|([0-9]{1}\\,[0-9]{0,2})|([0-9]{1})|(10{1}\\.0{0,2})$");
 
 	private String search = "";
 	
@@ -28,10 +28,6 @@ public class CafeFilter {
 	
 	private String maxClose = "";
 	
-	private String minCount = "";
-	
-	private String maxCount = "";
-	
 	private List<Integer> mealsIds = new ArrayList<>();
 
 	public String getMinRate() {
@@ -39,7 +35,7 @@ public class CafeFilter {
 	}
 
 	public void setMinRate(String minRate) {
-		if (DECIMAL_PATTERN.matcher(minRate).matches())
+		if (RATE_PATTERN.matcher(minRate).matches())
 		this.minRate = minRate;
 	}
 
@@ -48,7 +44,7 @@ public class CafeFilter {
 	}
 
 	public void setMaxRate(String maxRate) {
-		if (DECIMAL_PATTERN.matcher(maxRate).matches())
+		if (RATE_PATTERN.matcher(maxRate).matches())
 		this.maxRate = maxRate;
 	}
 
@@ -65,6 +61,7 @@ public class CafeFilter {
 	}
 
 	public void setMinOpen(String minOpen) {
+		if (TIME_PATTERN.matcher(minOpen).matches())
 		this.minOpen = minOpen;
 	}
 
@@ -73,6 +70,7 @@ public class CafeFilter {
 	}
 
 	public void setMaxOpen(String maxOpen) {
+		if (TIME_PATTERN.matcher(maxOpen).matches())
 		this.maxOpen = maxOpen;
 	}
 
@@ -81,6 +79,7 @@ public class CafeFilter {
 	}
 
 	public void setMinClose(String minClose) {
+		if (TIME_PATTERN.matcher(minClose).matches())
 		this.minClose = minClose;
 	}
 
@@ -89,25 +88,8 @@ public class CafeFilter {
 	}
 
 	public void setMaxClose(String maxClose) {
+		if (TIME_PATTERN.matcher(maxClose).matches())
 		this.maxClose = maxClose;
-	}
-
-	public String getMinCount() {
-		return minCount;
-	}
-
-	public void setMinCount(String minCount) {
-		if (INT_PATTERN.matcher(minCount).matches())
-		this.minCount = minCount;
-	}
-
-	public String getMaxCount() {
-		return maxCount;
-	}
-
-	public void setMaxCount(String maxCount) {
-		if (INT_PATTERN.matcher(maxCount).matches())
-		this.maxCount = maxCount;
 	}
 
 	public List<Integer> getMealsIds() {

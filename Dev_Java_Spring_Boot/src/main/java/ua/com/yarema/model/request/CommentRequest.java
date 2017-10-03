@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Comment;
 import ua.com.yarema.entity.Meal;
@@ -28,6 +30,7 @@ public class CommentRequest {
 	
 	private int dislike;
 	
+	@NotBlank
 	private String user;
 	
 	private Cafe cafe;

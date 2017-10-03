@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import ua.com.yarema.entity.Meal;
-import ua.com.yarema.entity.OpenClose;
 import ua.com.yarema.entity.User;
 import ua.com.yarema.validation.flag.CafeFlag;
 
@@ -49,9 +48,9 @@ public class CafeRequest {
 	@Email(message="Введено невірний формат.", groups={CafeFlag.class})
 	private String email;
 	
-	private OpenClose open;
+	private String open;
 	
-	private OpenClose close;
+	private String close;
 	
 	private User user;
 	
@@ -145,19 +144,19 @@ public class CafeRequest {
 		this.email = email;
 	}
 
-	public OpenClose getOpen() {
+	public String getOpen() {
 		return open;
 	}
 
-	public void setOpen(OpenClose open) {
+	public void setOpen(String open) {
 		this.open = open;
 	}
 
-	public OpenClose getClose() {
+	public String getClose() {
 		return close;
 	}
 
-	public void setClose(OpenClose close) {
+	public void setClose(String close) {
 		this.close = close;
 	}
 
@@ -175,6 +174,37 @@ public class CafeRequest {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((close == null) ? 0 : close.hashCode());
+		result = prime * result + ((open == null) ? 0 : open.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CafeRequest other = (CafeRequest) obj;
+		if (close == null) {
+			if (other.close != null)
+				return false;
+		} else if (!close.equals(other.close))
+			return false;
+		if (open == null) {
+			if (other.open != null)
+				return false;
+		} else if (!open.equals(other.open))
+			return false;
+		return true;
 	}
 
 }

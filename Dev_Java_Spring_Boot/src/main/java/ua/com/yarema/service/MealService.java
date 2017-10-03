@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ua.com.yarema.model.filter.MealFilter;
 import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.MealRequest;
 import ua.com.yarema.model.view.MealView;
@@ -34,5 +35,7 @@ public interface MealService {
 	Page<MealView> findAllOwnMealsByUserLogin(String name, Pageable pageable);
 
 	Page<MealView> findAllViews(Pageable pageable, SimpleFilter simpleFilter);
+	
+	Page<MealView> findAll(MealFilter mealFilter, Pageable pageable);
 	
 }

@@ -65,7 +65,7 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<custom:pageable page="${ownMeals.content}"/>
+				<custom:pageable page="${ownMeals}"/>
 			</div>
 		</div>
 	</div>

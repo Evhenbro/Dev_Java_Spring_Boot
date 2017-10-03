@@ -3,6 +3,7 @@ package ua.com.yarema.service.impl;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.Principal;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import ua.com.yarema.model.view.CafeView;
 import ua.com.yarema.model.view.CommentView;
 import ua.com.yarema.repository.CafeRepository;
 import ua.com.yarema.repository.CommentRepository;
+import ua.com.yarema.repository.OpenCloseRepository;
 import ua.com.yarema.repository.UserRepository;
 import ua.com.yarema.service.CafeService;
 
@@ -33,25 +35,28 @@ public class CafeServiceImpl implements CafeService {
 	
 	private final CommentRepository commentRepository;
 	
+	private final OpenCloseRepository openCloseRepository;
+	
 	@Autowired
-	public CafeServiceImpl(CafeRepository cafeRepository, UserRepository userRepository, CommentRepository commentRepository) {
+	public CafeServiceImpl(CafeRepository cafeRepository, UserRepository userRepository, CommentRepository commentRepository,OpenCloseRepository openCloseRepository) {
 		this.cafeRepository = cafeRepository;
 		this.userRepository = userRepository;
 		this.commentRepository = commentRepository;
+		this.openCloseRepository = openCloseRepository;
 	}
 
 	@Override
 	public void save(CafeRequest cafeRequest, Principal principal) {
 		Cafe cafe = new Cafe();
 		cafe.setAddress(cafeRequest.getAddress());
-		cafe.setClose(cafeRequest.getClose());
+		cafe.setClose(openCloseRepository.findByTime(LocalTime.parse(cafeRequest.getClose())));
 		cafe.setEmail(cafeRequest.getEmail());
 		cafe.setFullDescription(cafeRequest.getFullDescription());
 		cafe.setShortDescription(cafeRequest.getShortDescription());
 		cafe.setId(cafeRequest.getId());
 		cafe.setMeals(cafeRequest.getMeals());
 		cafe.setName(cafeRequest.getName());
-		cafe.setOpen(cafeRequest.getOpen());
+		cafe.setOpen(openCloseRepository.findByTime(LocalTime.parse(cafeRequest.getOpen())));
 		cafe.setPhone(cafeRequest.getPhone());
 		cafe.setPhotoUrl(cafeRequest.getPhotoUrl());
 		cafe.setRate(new BigDecimal(cafeRequest.getRate()));
@@ -66,14 +71,14 @@ public class CafeServiceImpl implements CafeService {
 		Cafe cafe = cafeRepository.findOneRequest(id);
 		CafeRequest cafeRequest = new CafeRequest();
 		cafeRequest.setAddress(cafe.getAddress());
-		cafeRequest.setClose(cafe.getClose());
+		cafeRequest.setClose(cafe.getClose().toString());
 		cafeRequest.setEmail(cafe.getEmail());
 		cafeRequest.setFullDescription(cafe.getFullDescription());
 		cafeRequest.setShortDescription(cafe.getShortDescription());
 		cafeRequest.setId(cafe.getId());
 		cafeRequest.setMeals(cafe.getMeals());
 		cafeRequest.setName(cafe.getName());
-		cafeRequest.setOpen(cafe.getOpen());
+		cafeRequest.setOpen(cafe.getOpen().toString());
 		cafeRequest.setPhone(cafe.getPhone());
 		cafeRequest.setPhotoUrl(cafe.getPhotoUrl());
 		cafeRequest.setRate(String.valueOf(cafe.getRate()));
