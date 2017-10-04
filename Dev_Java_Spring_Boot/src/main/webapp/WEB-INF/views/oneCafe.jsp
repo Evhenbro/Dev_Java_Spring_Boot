@@ -25,33 +25,40 @@
 		<div class="row mt-3">
 			<div class="col-12 rounded border border-info">
 				<form:form action="/cafe/${cafeById.id}" method="POST" modelAttribute="comment">
-					<div class="form-group row mt-3">
-						<label class="col-2 col-form-label" for="user">User:</label>
-						<div class="col-10">
-							<form:input class="form-control" id="user" path="user"/>
+					<div class="mt-3">
+						<div class="row" style="color: red;">
+							<div class="col-10 ml-auto">
+								<form:errors path="user"/>
+							</div>
 						</div>
-					</div>
-					<div class="row" style="color: red;">
-						<div class="col-10 ml-auto">
-							<form:errors path="rate"/>
+						<div class="form-group row">
+							<label class="col-2 col-form-label" for="user">User:</label>
+							<div class="col-10">
+								<form:input class="form-control" id="user" path="user"/>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label" for="rate">Rate:</label>
-						<div class="col-10">
-							<form:input class="form-control" id="rate" path="rate"/>
+						<div class="row" style="color: red;">
+							<div class="col-10 ml-auto">
+								<form:errors path="rate"/>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label" for="message">Message:</label>
-						<div class="col-10">
-							<form:textarea class="form-control" id="message" path="message" rows="4"/>
+						<div class="form-group row">
+							<label class="col-2 col-form-label" for="rate">Rate:</label>
+							<div class="col-10">
+								<form:input class="form-control" id="rate" path="rate"/>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-10 ml-auto">
-							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/cafe/${cafeById.id}/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+						<div class="form-group row">
+							<label class="col-2 col-form-label" for="message">Message:</label>
+							<div class="col-10">
+								<form:textarea class="form-control" id="message" path="message" rows="4"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-10 ml-auto">
+								<button class="btn btn-sm btn-outline-success">Save</button>
+								<a href="/cafe/${cafeById.id}/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+							</div>
 						</div>
 					</div>
 				</form:form>

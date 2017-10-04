@@ -30,7 +30,7 @@ public class CommentRequest {
 	
 	private int dislike;
 	
-	@NotBlank
+	@NotBlank(message="Це поле не може бути пустим.")
 	private String user;
 	
 	private Cafe cafe;

@@ -1,10 +1,13 @@
 package ua.com.yarema.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,7 +80,8 @@ public class ClientMealController {
 	}
 	
 	@PostMapping("/{id}")
-	public String saveCommentToMeal(@ModelAttribute("comment") CommentRequest commentRequest, @PathVariable Integer id, SessionStatus sessionStatus) {
+	public String saveCommentToMeal(@ModelAttribute("comment") @Valid CommentRequest commentRequest, BindingResult bindingResult, @PathVariable Integer id, SessionStatus sessionStatus, Model model) {
+		if (bindingResult.hasErrors()) return showOneMeal(id, model);
 		commentService.saveCommentToMeal(commentRequest, id);
 		return cancelMale(sessionStatus);
 	}
