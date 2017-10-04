@@ -3,6 +3,78 @@
 		<div class="row align-items-end mt-3">
 			<a href="/profile/cafe/new" class="btn btn-outline-success btn-lg btn-block">Add new cafe</a>			
 		</div>
+		<div class="container mt-3">
+			<div class="row">
+				<div class="col-12">
+					<form:form action="/profile/cafe" method="GET" modelAttribute="cafeFilter">
+						<div class="form-group row">
+							<div class="col-6">
+								<div class="form-group row">
+									<div class="col-12">
+										<form:input class="form-control" path="search" placeholder="Search"/>
+									</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row">
+									<div class="col-2 text-center ml-auto">
+										<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
+										<div class="dropdown-menu">
+											<custom:sort innerHtml="Name asc" paramValue="name"/>
+											<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+										</div>
+									</div>
+									<div class="col-2 text-center ml-auto">
+										<custom:size posibleSizes="1,2,5,10" size="${ownCafes.size}" />
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<div class="col-6">
+								<form:input path="minRate" class="form-control" placeholder="Min rate"/>
+							</div>
+							<div class="col-6">
+								<form:input path="maxRate" class="form-control" placeholder="Max rate"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-12">
+								<div>
+									<label>Pub <form:checkbox path="types" value="PUB"/></label>
+									<label>Sushy <form:checkbox path="types" value="SUSHY"/></label>
+									<label>Bar <form:checkbox path="types" value="BAR"/></label>
+									<label>Cafe <form:checkbox path="types" value="CAFE"/></label>
+									<label>Restaurant <form:checkbox path="types" value="RESTAURANT"/></label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-6">
+								<form:input path="minOpen" class="form-control" placeholder="Min open"/>
+							</div>
+							<div class="col-6">
+								<form:input path="maxOpen" class="form-control" placeholder="Max open"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-6">
+								<form:input path="minClose" class="form-control" placeholder="Min close"/>
+							</div>
+							<div class="col-6">
+								<form:input path="maxClose" class="form-control" placeholder="Max close"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-12">
+	        					<button type="submit" class="btn btn-outline-success btn-sm">Search</button>
+	      					</div>
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
 		<div class="row  mt-3">
 			<div class="col-12">
 				<table class="table table-bordered ">

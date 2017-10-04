@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.yarema.entity.Type;
+import ua.com.yarema.model.filter.CafeFilter;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.OpenCloseService;
@@ -31,18 +32,23 @@ public class AdministratorCafeController {
 	
 	private final CafeService cafeService;
 	
-	@Autowired
-	private OpenCloseService openCloseService;
+	private final OpenCloseService openCloseService;
 	
 	@Autowired
-	public AdministratorCafeController(CafeService cafeService) {
+	public AdministratorCafeController(CafeService cafeService, OpenCloseService openCloseService) {
 		this.cafeService = cafeService;
+		this.openCloseService = openCloseService;
 	}
 
+	@ModelAttribute("cafeFilter")
+	public CafeFilter getCafeFilter() {
+		return new CafeFilter();
+	}
+	
 	@GetMapping
-	public String showAllOwnCafes(Model model, Principal principal, @PageableDefault Pageable pageable) {
+	public String showAllOwnCafes(Model model, Principal principal, @PageableDefault Pageable pageable, @ModelAttribute("cafeFilter") CafeFilter cafeFilter) {
 		if(principal!=null){
-			model.addAttribute("ownCafes", cafeService.findAllOwnCafesByUserLogin(principal.getName(), pageable));
+			model.addAttribute("ownCafes", cafeService.findAll(cafeFilter, pageable, principal));
 		}
 		return "ownCafes";
 	}

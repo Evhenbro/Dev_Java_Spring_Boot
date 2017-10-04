@@ -3,6 +3,7 @@ package ua.com.yarema.repository.impl;
 import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.support.PageableExecutionUtils;
@@ -26,23 +28,28 @@ import ua.com.yarema.entity.Meal;
 import ua.com.yarema.entity.Meal_;
 import ua.com.yarema.entity.OpenClose;
 import ua.com.yarema.entity.OpenClose_;
+import ua.com.yarema.entity.User_;
 import ua.com.yarema.model.filter.CafeFilter;
 import ua.com.yarema.model.view.CafeShortView;
-import ua.com.yarema.repository.CafeViewRepository;
+import ua.com.yarema.repository.OwnCafeViewRepository;
+import ua.com.yarema.repository.UserRepository;
 
 @Repository
-public class CafeViewRepositoryImpl implements CafeViewRepository {
+public class OwnCafeViewRepositoryImpl implements OwnCafeViewRepository {
 
 	@PersistenceContext
 	private EntityManager em;
 	
+	@Autowired
+	private UserRepository userRepository; 
+	
 	@Override
-	public Page<CafeShortView> findAll(CafeFilter cafeFilter, Pageable pageable) {
+	public Page<CafeShortView> findAll(CafeFilter cafeFilter, Pageable pageable, Principal principal) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<CafeShortView> cq = cb.createQuery(CafeShortView.class);
 		Root<Cafe> root = cq.from(Cafe.class);
 		cq.multiselect(root.get(Cafe_.id), root.get("rate"), root.get("name"), root.get("photoUrl"), root.get("version"), root.get("address"), root.get("shortDescription"), root.get("type"));
-		PredicateBuilder builder = new PredicateBuilder(cafeFilter, cb, root);
+		PredicateBuilder builder = new PredicateBuilder(cafeFilter, cb, root, principal);
 		Predicate predicate = builder.toPredicate();
 		if (predicate!=null) cq.where(predicate);
 		cq.orderBy(toOrders(pageable.getSort(), root, cb));
@@ -53,13 +60,13 @@ public class CafeViewRepositoryImpl implements CafeViewRepository {
 		CriteriaQuery<Long> cqCount = cb.createQuery(Long.class);
 		Root<Cafe> rootCount = cqCount.from(Cafe.class);
 		cqCount.select(cb.count(rootCount));
-		PredicateBuilder builderCount = new PredicateBuilder(cafeFilter, cb, rootCount);
+		PredicateBuilder builderCount = new PredicateBuilder(cafeFilter, cb, root, principal);
 		Predicate predicateCount = builderCount.toPredicate();
 		if(predicateCount!=null) cqCount.where(predicateCount);
 		return PageableExecutionUtils.getPage(content, pageable, ()->em.createQuery(cqCount).getSingleResult());
 	}
 	
-	private static class PredicateBuilder {
+		private class PredicateBuilder {
 		
 		final CafeFilter cafeFilter;
 		
@@ -67,12 +74,15 @@ public class CafeViewRepositoryImpl implements CafeViewRepository {
 		
 		final Root<Cafe> root;
 		
+		Principal principal;
+		
 		final List<Predicate> predicates = new ArrayList<>();
 
-		public PredicateBuilder(CafeFilter cafeFilter, CriteriaBuilder cb, Root<Cafe> root) {
+		public PredicateBuilder(CafeFilter cafeFilter, CriteriaBuilder cb, Root<Cafe> root, Principal principal) {
 			this.cafeFilter = cafeFilter;
 			this.cb = cb;
 			this.root = root;
+			this.principal = principal;
 		}
 
 		void findByMinRate() {
@@ -134,6 +144,11 @@ public class CafeViewRepositoryImpl implements CafeViewRepository {
 			}
 		}
 		
+		void findOwnCafes(Principal principal) {
+			if (principal.getName()!=null)
+			predicates.add(cb.equal(root.get(Cafe_.user).get(User_.id), userRepository.findByLogin(principal.getName()).getId()));
+		}
+		
 		Predicate toPredicate() {
 			findByMinRate();
 			findByMaxRate();
@@ -144,11 +159,9 @@ public class CafeViewRepositoryImpl implements CafeViewRepository {
 			findByMaxOpen();
 			findByMinClose();
 			findByMaxClose();
+			findOwnCafes(principal);
 //			return cb.and(predicates.stream().toArray(Predicate[]::new));
 			return cb.and(predicates.toArray(new Predicate[predicates.size()]));
 		} 
 	}
-	
-	
-
 }

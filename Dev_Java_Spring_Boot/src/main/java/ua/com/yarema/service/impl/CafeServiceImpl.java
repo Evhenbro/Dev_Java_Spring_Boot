@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import ua.com.yarema.entity.Cafe;
 import ua.com.yarema.entity.Type;
+import ua.com.yarema.model.filter.CafeFilter;
 import ua.com.yarema.model.filter.SimpleFilter;
 import ua.com.yarema.model.request.CafeRequest;
 import ua.com.yarema.model.view.CafeShortView;
@@ -23,6 +24,7 @@ import ua.com.yarema.repository.CafeRepository;
 import ua.com.yarema.repository.CommentRepository;
 import ua.com.yarema.repository.OpenCloseRepository;
 import ua.com.yarema.repository.UserRepository;
+import ua.com.yarema.repository.impl.OwnCafeViewRepositoryImpl;
 import ua.com.yarema.service.CafeService;
 
 @Service
@@ -36,12 +38,15 @@ public class CafeServiceImpl implements CafeService {
 	
 	private final OpenCloseRepository openCloseRepository;
 	
+	private final OwnCafeViewRepositoryImpl ownCafeViewRepositoryImpl;
+	
 	@Autowired
-	public CafeServiceImpl(CafeRepository cafeRepository, UserRepository userRepository, CommentRepository commentRepository,OpenCloseRepository openCloseRepository) {
+	public CafeServiceImpl(CafeRepository cafeRepository, UserRepository userRepository, CommentRepository commentRepository,OpenCloseRepository openCloseRepository, OwnCafeViewRepositoryImpl ownCafeViewRepositoryImpl) {
 		this.cafeRepository = cafeRepository;
 		this.userRepository = userRepository;
 		this.commentRepository = commentRepository;
 		this.openCloseRepository = openCloseRepository;
+		this.ownCafeViewRepositoryImpl = ownCafeViewRepositoryImpl;
 	}
 
 	@Override
@@ -178,6 +183,11 @@ public class CafeServiceImpl implements CafeService {
 				if(simpleFilter.getSearch().isEmpty()) return null;
 				return cb.like(root.get("name"), simpleFilter.getSearch() + "%");
 		};
+	}
+
+	@Override
+	public Page<CafeShortView> findAll(CafeFilter cafeFilter, Pageable pageable, Principal principal) {
+		return ownCafeViewRepositoryImpl.findAll(cafeFilter, pageable, principal);
 	}
 	
 }
