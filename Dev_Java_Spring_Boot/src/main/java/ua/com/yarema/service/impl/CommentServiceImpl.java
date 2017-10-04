@@ -63,5 +63,11 @@ public class CommentServiceImpl implements CommentService {
 		comment.setMeal(mealRepository.findOneRequest(id));
 		commentRepository.save(comment);
 	}
+
+	@Override
+	public List<Comment> findAll() {
+		List<Comment> list = commentRepository
+		return null;
+	}
 	
 }
