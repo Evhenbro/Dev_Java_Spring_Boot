@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.yarema.model.filter.SimpleFilter;
+import ua.com.yarema.model.filter.MealFilter;
 import ua.com.yarema.model.request.MealRequest;
+import ua.com.yarema.repository.CuisineRepository;
 import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.MealService;
 
@@ -32,21 +33,26 @@ public class AdministratorMealController {
 	
 	private final CafeService cafeService;
 	
+	private final CuisineRepository cuisineRepository; 
+	
 	@Autowired
-	public AdministratorMealController(MealService mealService, CafeService cafeService) {
+	public AdministratorMealController(MealService mealService, CafeService cafeService, CuisineRepository cuisineRepository) {
 		this.mealService = mealService;
 		this.cafeService = cafeService;
+		this.cuisineRepository = cuisineRepository;
 	}
  	
-	@ModelAttribute("filter")
-	public SimpleFilter geFilter() {
-		return new SimpleFilter();
+	@ModelAttribute("filterMeal")
+	public MealFilter getMealFilter() {
+		return new MealFilter();
 	}
 	
 	@GetMapping
-	public String showAllOwnMeals(Model model, Principal principal, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter simpleFilter) {
+	public String showAllOwnMeals(Model model, Principal principal, @PageableDefault Pageable pageable, @ModelAttribute("filterMeal") MealFilter mealFilter) {
 		if(principal!=null){
-			model.addAttribute("ownMeals", mealService.findAllOwnMealsByUserLogin(principal.getName(), pageable));
+			model.addAttribute("ownMeals", mealService.findAll(mealFilter, pageable, principal));
+			model.addAttribute("cafes", cafeService.findAllCafes());
+			model.addAttribute("cuisines", cuisineRepository.findAll());
 		}
 		return "ownMeals";
 	}

@@ -1,6 +1,7 @@
 package ua.com.yarema.service.impl;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -16,6 +17,7 @@ import ua.com.yarema.model.request.MealRequest;
 import ua.com.yarema.model.view.MealView;
 import ua.com.yarema.repository.MealRepository;
 import ua.com.yarema.repository.impl.MealViewRepositoryImpl;
+import ua.com.yarema.repository.impl.OwnMealViewRepositoryImpl;
 import ua.com.yarema.service.MealService;
 
 @Service
@@ -24,10 +26,13 @@ public class MealServiceImpl implements MealService {
 	private final MealRepository mealRepository;
 	
 	private final MealViewRepositoryImpl mealViewRepositoryImpl;
+	
+	private final OwnMealViewRepositoryImpl ownMealViewRepositoryImpl;
 
-	public MealServiceImpl(MealRepository mealRepository, MealViewRepositoryImpl mealViewRepositoryImpl) {
+	public MealServiceImpl(MealRepository mealRepository, MealViewRepositoryImpl mealViewRepositoryImpl, OwnMealViewRepositoryImpl ownMealViewRepositoryImpl) {
 		this.mealRepository = mealRepository;
 		this.mealViewRepositoryImpl = mealViewRepositoryImpl;
+		this.ownMealViewRepositoryImpl = ownMealViewRepositoryImpl;
 	}
 
 	@Override
@@ -137,6 +142,13 @@ public class MealServiceImpl implements MealService {
 	@Override
 	public Page<MealView> findAll(MealFilter mealFilter, Pageable pageable) {
 		Page<MealView> pages = mealViewRepositoryImpl.findAll(mealFilter, pageable);
+		pages.forEach(this::loadIngredients);
+		return pages;
+	}
+
+	@Override
+	public Page<MealView> findAll(MealFilter mealFilter, Pageable pageable, Principal principal) {
+		Page<MealView> pages = ownMealViewRepositoryImpl.findAll(mealFilter, pageable, principal);
 		pages.forEach(this::loadIngredients);
 		return pages;
 	}

@@ -18,7 +18,6 @@ import ua.com.yarema.model.request.CommentRequest;
 import ua.com.yarema.repository.CafeRepository;
 import ua.com.yarema.repository.CuisineRepository;
 import ua.com.yarema.repository.MealRepository;
-import ua.com.yarema.repository.MealViewRepository;
 import ua.com.yarema.service.CommentService;
 import ua.com.yarema.service.MealService;
 
@@ -35,17 +34,14 @@ public class ClientMealController {
 	
 	private final CommentService commentService;
 
-	private final MealViewRepository mealViewRepository; 
-	
 	private final CuisineRepository cuisineRepository; 
 	
 	@Autowired
-	public ClientMealController(MealService mealService, MealRepository mealRepository, CommentService commentService, CafeRepository cafeRepository, MealViewRepository mealViewRepository, CuisineRepository cuisineRepository) {
+	public ClientMealController(MealService mealService, MealRepository mealRepository, CommentService commentService, CafeRepository cafeRepository, CuisineRepository cuisineRepository) {
 		this.mealService = mealService;
 		this.mealRepository = mealRepository;
 		this.commentService = commentService;
 		this.cafeRepository = cafeRepository;
-		this.mealViewRepository = mealViewRepository;
 		this.cuisineRepository = cuisineRepository;
 	}
 	

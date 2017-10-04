@@ -44,4 +44,5 @@ public interface CafeService {
 	Page<CafeShortView> findAllCafeShortView(Pageable pageable, SimpleFilter simpleFilter);
 	
 	Page<CafeShortView> findAll(CafeFilter cafeFilter, Pageable pageable, Principal principal);
+	
 }

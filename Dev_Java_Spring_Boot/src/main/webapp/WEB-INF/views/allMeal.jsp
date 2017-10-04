@@ -31,10 +31,10 @@
 						
 						<div class="form-group row">
 							<div class="col-6">
-								<form:input path="minPrice" class="form-control" placeholder="Min rate"/>
+								<form:input path="minPrice" class="form-control" placeholder="Min price"/>
 							</div>
 							<div class="col-6">
-								<form:input path="maxPrice" class="form-control" placeholder="Max rate"/>
+								<form:input path="maxPrice" class="form-control" placeholder="Max price"/>
 							</div>
 						</div>
 						<div class="form-group row">

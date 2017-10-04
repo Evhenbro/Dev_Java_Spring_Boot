@@ -1,27 +1,58 @@
 <%@ include file="header.jsp"%>
 	<div class="container">
-		<div class="row">
-			<div class="col-6">
-				<form:form action="/meal" method="GET" modelAttribute="filter">
-					<div class="form-group row">
-						<div class="col-12">
-							<form:input class="form-control" path="search" placeholder="Search"/>
+		<div class="container mt-3">
+			<div class="row">
+				<div class="col-12">
+					<form:form action="/profile/meal" method="GET" modelAttribute="filterMeal">
+						
+						<div class="form-group row">
+							<div class="col-6">
+								<div class="form-group row">
+									<div class="col-12">
+										<form:input class="form-control" path="search" placeholder="Search"/>
+									</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row">
+									<div class="col-2 text-center ml-auto">
+										<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
+										<div class="dropdown-menu">
+											<custom:sort innerHtml="Name asc" paramValue="title"/>
+											<custom:sort innerHtml="Name desc" paramValue="title,desc"/>
+										</div>
+									</div>
+									<div class="col-2 text-center ml-auto">
+										<custom:size posibleSizes="1,2,5,10" size="${ownMeals.size}" />
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-				</form:form>
-			</div>
-			<div class="col-6">
-				<div class="row">
-					<div class="col-2 text-center ml-auto">
-						<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
-						<div class="dropdown-menu">
-							<custom:sort innerHtml="Title asc" paramValue="title"/>
-							<custom:sort innerHtml="Title desc" paramValue="title,desc"/>
+						
+						<div class="form-group row">
+							<div class="col-6">
+								<form:input path="minPrice" class="form-control" placeholder="Min price"/>
+							</div>
+							<div class="col-6">
+								<form:input path="maxPrice" class="form-control" placeholder="Max price"/>
+							</div>
 						</div>
-					</div>
-					<div class="col-2 text-center ml-auto">
-						<custom:size posibleSizes="1,2,5,10" size="${meals.size}" />
-					</div>
+						<div class="form-group row">
+							<div class="col-12">
+								<form:select items="${cafes}" path="cafeId" element="div" itemLabel="name" itemValue="id"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-12">
+								<form:checkboxes items="${cuisines}" path="cuisineId" element="div" itemLabel="name" itemValue="id"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-12">
+	        					<button type="submit" class="btn btn-outline-success btn-sm">Search</button>
+	      					</div>
+						</div>
+					</form:form>
 				</div>
 			</div>
 		</div>

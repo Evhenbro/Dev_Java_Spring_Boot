@@ -1,5 +1,6 @@
 package ua.com.yarema.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -37,5 +38,7 @@ public interface MealService {
 	Page<MealView> findAllViews(Pageable pageable, SimpleFilter simpleFilter);
 	
 	Page<MealView> findAll(MealFilter mealFilter, Pageable pageable);
+	
+	Page<MealView> findAll(MealFilter mealFilter, Pageable pageable, Principal principal);
 	
 }
