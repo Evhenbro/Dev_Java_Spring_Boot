@@ -3,7 +3,6 @@ package ua.com.yarema.service.impl;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.Principal;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,14 +48,16 @@ public class CafeServiceImpl implements CafeService {
 	public void save(CafeRequest cafeRequest, Principal principal) {
 		Cafe cafe = new Cafe();
 		cafe.setAddress(cafeRequest.getAddress());
-		cafe.setClose(openCloseRepository.findByTime(LocalTime.parse(cafeRequest.getClose())));
+//		cafe.setClose(openCloseRepository.findByTime(LocalTime.parse(cafeRequest.getClose())));
+		cafe.setClose(openCloseRepository.findByTime(cafeRequest.getClose()));
 		cafe.setEmail(cafeRequest.getEmail());
 		cafe.setFullDescription(cafeRequest.getFullDescription());
 		cafe.setShortDescription(cafeRequest.getShortDescription());
 		cafe.setId(cafeRequest.getId());
 		cafe.setMeals(cafeRequest.getMeals());
 		cafe.setName(cafeRequest.getName());
-		cafe.setOpen(openCloseRepository.findByTime(LocalTime.parse(cafeRequest.getOpen())));
+//		cafe.setOpen(openCloseRepository.findByTime(LocalTime.parse(cafeRequest.getOpen())));
+		cafe.setOpen(openCloseRepository.findByTime(cafeRequest.getOpen()));
 		cafe.setPhone(cafeRequest.getPhone());
 		cafe.setPhotoUrl(cafeRequest.getPhotoUrl());
 		cafe.setRate(new BigDecimal(cafeRequest.getRate()));
@@ -71,14 +72,16 @@ public class CafeServiceImpl implements CafeService {
 		Cafe cafe = cafeRepository.findOneRequest(id);
 		CafeRequest cafeRequest = new CafeRequest();
 		cafeRequest.setAddress(cafe.getAddress());
-		cafeRequest.setClose(cafe.getClose().toString());
+//		cafeRequest.setClose(cafe.getClose().toString());
+		cafeRequest.setClose(cafe.getClose().getTime());
 		cafeRequest.setEmail(cafe.getEmail());
 		cafeRequest.setFullDescription(cafe.getFullDescription());
 		cafeRequest.setShortDescription(cafe.getShortDescription());
 		cafeRequest.setId(cafe.getId());
 		cafeRequest.setMeals(cafe.getMeals());
 		cafeRequest.setName(cafe.getName());
-		cafeRequest.setOpen(cafe.getOpen().toString());
+//		cafeRequest.setOpen(cafe.getOpen().toString());
+		cafeRequest.setOpen(cafe.getOpen().getTime());
 		cafeRequest.setPhone(cafe.getPhone());
 		cafeRequest.setPhotoUrl(cafe.getPhotoUrl());
 		cafeRequest.setRate(String.valueOf(cafe.getRate()));

@@ -14,7 +14,7 @@ public interface OpenCloseRepository extends JpaRepository<OpenClose, Integer>, 
 	OpenClose findByTime(LocalTime time);
 
 	@Query("SELECT openClose.time FROM OpenClose openClose")
-	List<String> findAllTimes();
+	List<LocalTime> findAllTimes();
 
 //	@Query("SELECT openClose.time FROM OpenClose openClose")
 //	List<LocalTime> findAllTimes();

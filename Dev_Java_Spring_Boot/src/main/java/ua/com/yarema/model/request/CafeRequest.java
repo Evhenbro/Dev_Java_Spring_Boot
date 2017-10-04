@@ -1,5 +1,6 @@
 package ua.com.yarema.model.request;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,9 +49,9 @@ public class CafeRequest {
 	@Email(message="Введено невірний формат.", groups={CafeFlag.class})
 	private String email;
 	
-	private String open;
+	private LocalTime open;
 	
-	private String close;
+	private LocalTime close;
 	
 	private User user;
 	
@@ -144,19 +145,19 @@ public class CafeRequest {
 		this.email = email;
 	}
 
-	public String getOpen() {
+	public LocalTime getOpen() {
 		return open;
 	}
 
-	public void setOpen(String open) {
+	public void setOpen(LocalTime open) {
 		this.open = open;
 	}
 
-	public String getClose() {
+	public LocalTime getClose() {
 		return close;
 	}
 
-	public void setClose(String close) {
+	public void setClose(LocalTime close) {
 		this.close = close;
 	}
 

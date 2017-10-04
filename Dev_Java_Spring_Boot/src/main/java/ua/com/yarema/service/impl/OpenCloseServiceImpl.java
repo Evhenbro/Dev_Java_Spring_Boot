@@ -53,15 +53,15 @@ public class OpenCloseServiceImpl implements OpenCloseService {
 		return openCloseRequest;
 	}
 
-	@Override
-	public List<String> findAllTimes() {
-		return openCloseRepository.findAllTimes();
-	}
-	
 //	@Override
-//	public List<LocalTime> findAllTimes() {
+//	public List<String> findAllTimes() {
 //		return openCloseRepository.findAllTimes();
 //	}
+	
+	@Override
+	public List<LocalTime> findAllTimes() {
+		return openCloseRepository.findAllTimes();
+	}
 
 	@Override
 	public Page<OpenClose> findAll(Pageable pageable, SimpleFilter simpleFilter) {

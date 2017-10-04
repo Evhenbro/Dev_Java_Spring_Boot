@@ -1,5 +1,6 @@
 package ua.com.yarema.service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -19,9 +20,9 @@ public interface OpenCloseService {
 
 	OpenCloseRequest findOne(Integer id);
 
-//	List<LocalTime> findAllTimes();
+	List<LocalTime> findAllTimes();
 	
-	List<String> findAllTimes();
+//	List<String> findAllTimes();
 
 	Page<OpenClose> findAll(Pageable pageable, SimpleFilter simpleFilter);
 
