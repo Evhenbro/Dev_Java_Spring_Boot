@@ -111,7 +111,6 @@ public class OwnMealViewRepositoryImpl implements OwnMealViewRepository{
 		}
 		
 		void findOwnMeals(Principal principal) {
-			if (principal.getName()!=null)
 			predicates.add(cb.equal(root.get(Meal_.cafe).get(Cafe_.user), userRepository.findByLogin(principal.getName())));
 		}
 		

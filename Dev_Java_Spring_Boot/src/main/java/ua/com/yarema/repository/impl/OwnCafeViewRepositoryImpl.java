@@ -145,7 +145,6 @@ public class OwnCafeViewRepositoryImpl implements OwnCafeViewRepository {
 		}
 		
 		void findOwnCafes(Principal principal) {
-			if (principal.getName()!=null)
 			predicates.add(cb.equal(root.get(Cafe_.user).get(User_.id), userRepository.findByLogin(principal.getName()).getId()));
 		}
 		
