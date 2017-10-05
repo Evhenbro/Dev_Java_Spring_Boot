@@ -68,7 +68,7 @@ public class ClientMealController {
 		model.addAttribute("thisCafe", cafeRepository.findByName(mealService.findMealViewById(id).getCafe()));
 		model.addAttribute("mealById", mealService.findMealViewById(id));
 		model.addAttribute("ingredients", mealRepository.finfAllIngredientsByMealId(id));
-		model.addAttribute("comments", commentService.findAllCommentByMealId(id));
+		model.addAttribute("comments", commentService.findAllToMeal(id));
 		return "oneMeal";
 	}
 	
@@ -83,13 +83,27 @@ public class ClientMealController {
 	public String saveCommentToMeal(@ModelAttribute("comment") @Valid CommentRequest commentRequest, BindingResult bindingResult, @PathVariable Integer id, SessionStatus sessionStatus, Model model) {
 		if (bindingResult.hasErrors()) return showOneMeal(id, model);
 		commentService.saveCommentToMeal(commentRequest, id);
-		return cancelMale(sessionStatus);
+		return cancelMeal(sessionStatus);
 	}
 	
 	@GetMapping("/{id}/cancel")
-	public String cancelMale(SessionStatus sessionStatus) {
+	public String cancelMeal(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		return "redirect:/meal/{id}";
+	}
+	
+//	For comment to comment
+	
+	@ModelAttribute("commentToComment")
+	public CommentRequest getFormCommentToComment() {
+		return new CommentRequest();
+	}
+	
+	@PostMapping("/{id}/{idComment}")
+	public String saveCommentToComment(@ModelAttribute("commentToComment") @Valid CommentRequest commentRequest, BindingResult bindingResult, Model model, @PathVariable Integer id, @PathVariable Integer idComment, SessionStatus sessionStatus) {
+		if (bindingResult.hasErrors()) return showOneMeal(id, model);
+		commentService.saveCommentToCommentMeal(commentRequest, idComment);
+		return cancelMeal(sessionStatus);
 	}
 	
 }

@@ -3,8 +3,8 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> -->	
 	</body>
 	<footer>
-		<div>
-			<!-- foter_content -->
+		<div class="p-2 mt-3 text-white font-weight-normal text-center" style="background-color: #214865;">
+		<i class="fa fa-copyright" aria-hidden="true"></i> Yevhen Yarema Inc. | All Rights Reserved
 		</div>
 	</footer>
 </html>

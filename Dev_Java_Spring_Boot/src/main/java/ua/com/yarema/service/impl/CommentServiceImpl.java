@@ -69,19 +69,34 @@ public class CommentServiceImpl implements CommentService {
 	public void saveCommentToCommentCafe(CommentRequest commentRequest, Integer idComment) {
 		Comment comment = new Comment();
 		comment.setParentComment(commentRepository.findOneRequest(idComment)); 
-		System.out.println(commentRepository.findOneRequest(idComment).getId());
-		comment.setRate(commentRequest.getRate()=="" ? new BigDecimal(0.0) : new BigDecimal(commentRequest.getRate()));
 		comment.setMessage(commentRequest.getMessage());
 		comment.setUser(commentRequest.getUser());
 		comment.setTime(LocalDateTime.now());
 		commentRepository.save(comment);
-		
 	}
 
 	@Override
+	public void saveCommentToCommentMeal(CommentRequest commentRequest, Integer idComment) {
+		Comment comment = new Comment();
+		comment.setParentComment(commentRepository.findOneRequest(idComment)); 
+		comment.setMessage(commentRequest.getMessage());
+		comment.setUser(commentRequest.getUser());
+		comment.setTime(LocalDateTime.now());
+		commentRepository.save(comment);
+	}
+	
+	@Override
 	@Transactional(readOnly=true)
-	public List<CommentView> findAll(Integer id) {
+	public List<CommentView> findAllToCafe(Integer id) {
 		List<CommentView> list = findAllCommentByCafeId(id);
+		loadChildComments(list);
+		return list;
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<CommentView> findAllToMeal(Integer id) {
+		List<CommentView> list = findAllCommentByMealId(id);
 		loadChildComments(list);
 		return list;
 	}
@@ -92,7 +107,6 @@ public class CommentServiceImpl implements CommentService {
 			loadChildComments(commentViews2);
 			commentView.setChildComment(commentViews2); 
 		}	
-		
 	}
-	
+
 }

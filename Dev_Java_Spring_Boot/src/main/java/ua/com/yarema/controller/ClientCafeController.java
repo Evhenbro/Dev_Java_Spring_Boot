@@ -62,7 +62,7 @@ public class ClientCafeController {
 	public String showOneCafe(@PathVariable Integer id, Model model) {
 		cafeService.updateRateToCafeById(id);
 		model.addAttribute("cafeById", cafeService.findCafeViewById(id));
-		model.addAttribute("comments", commentService.findAll(id));
+		model.addAttribute("comments", commentService.findAllToCafe(id));
 		return "oneCafe";
 	}
 	

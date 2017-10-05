@@ -7,7 +7,9 @@ import ua.com.yarema.model.view.CommentView;
 
 public interface CommentService {
 	
-	List<CommentView> findAll(Integer id);
+	List<CommentView> findAllToCafe(Integer id);
+	
+	List<CommentView> findAllToMeal(Integer id);
 	
 	List<CommentView> findAllCommentByCafeId(Integer id);
 	
@@ -18,4 +20,6 @@ public interface CommentService {
 	void saveCommentToMeal(CommentRequest commentRequest, Integer id);
 
 	void saveCommentToCommentCafe(CommentRequest commentRequest, Integer idComment);
+	
+	void saveCommentToCommentMeal(CommentRequest commentRequest, Integer idComment);
 }

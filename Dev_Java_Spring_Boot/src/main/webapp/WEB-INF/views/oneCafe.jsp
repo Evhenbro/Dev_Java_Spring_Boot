@@ -92,17 +92,6 @@
 										<form:input class="form-control" id="user" path="user"/>
 									</div>
 								</div>
-								<div class="row" style="color: red;">
-									<div class="col-10 ml-auto">
-										<form:errors path="rate"/>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-2 col-form-label" for="rate">Rate:</label>
-									<div class="col-10">
-										<form:input class="form-control" id="rate" path="rate"/>
-									</div>
-								</div>
 								<div class="form-group row">
 									<label class="col-2 col-form-label" for="message">Message:</label>
 									<div class="col-10">
