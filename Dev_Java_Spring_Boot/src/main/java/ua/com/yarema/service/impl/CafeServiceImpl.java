@@ -136,13 +136,10 @@ public class CafeServiceImpl implements CafeService {
 		List<CommentView> listCommentViews = commentRepository.findAllCommentByCafeId(id);
 		int count = 1;
 		BigDecimal sum = BigDecimal.ZERO;
-		sum = sum.add(cafeRepository.findCafeViewById(id).getRate());
+//		sum = sum.add(cafeRepository.findCafeViewById(id).getRate());
 		for (CommentView commentView : listCommentViews) {
 			sum = sum.add(commentView.getRate());
-			System.out.println(sum);
-			System.out.println(commentView.getRate());
 			count ++;
-			System.out.println(count);
 		}			
 		sum = sum.divide(new BigDecimal(count), 2, RoundingMode.HALF_DOWN);
 		Cafe cafe = cafeRepository.findOne(id);

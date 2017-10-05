@@ -62,7 +62,7 @@ public class ClientCafeController {
 	public String showOneCafe(@PathVariable Integer id, Model model) {
 		cafeService.updateRateToCafeById(id);
 		model.addAttribute("cafeById", cafeService.findCafeViewById(id));
-		model.addAttribute("comments", commentService.findAllCommentByCafeId(id));
+		model.addAttribute("comments", commentService.findAll(id));
 		return "oneCafe";
 	}
 	
@@ -86,5 +86,18 @@ public class ClientCafeController {
 		return "redirect:/cafe/{id}";
 	}
 	
+//	For comment to comment
+	
+	@ModelAttribute("commentToComment")
+	public CommentRequest getFormCommentToComment() {
+		return new CommentRequest();
+	}
+	
+	@PostMapping("/{id}/{idComment}")
+	public String saveCommentToComment(@ModelAttribute("commentToComment") @Valid CommentRequest commentRequest, BindingResult bindingResult, Model model, @PathVariable Integer id, @PathVariable Integer idComment, SessionStatus sessionStatus) {
+		if (bindingResult.hasErrors()) return showOneCafe(id, model);
+		commentService.saveCommentToCommentCafe(commentRequest, idComment);
+		return cancelCafe(sessionStatus);
+	}
 	
 }

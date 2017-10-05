@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ua.com.yarema.entity.Comment;
 import ua.com.yarema.model.request.CommentRequest;
@@ -63,11 +64,35 @@ public class CommentServiceImpl implements CommentService {
 		comment.setMeal(mealRepository.findOneRequest(id));
 		commentRepository.save(comment);
 	}
+	
+	@Override
+	public void saveCommentToCommentCafe(CommentRequest commentRequest, Integer idComment) {
+		Comment comment = new Comment();
+		comment.setParentComment(commentRepository.findOneRequest(idComment)); 
+		System.out.println(commentRepository.findOneRequest(idComment).getId());
+		comment.setRate(commentRequest.getRate()=="" ? new BigDecimal(0.0) : new BigDecimal(commentRequest.getRate()));
+		comment.setMessage(commentRequest.getMessage());
+		comment.setUser(commentRequest.getUser());
+		comment.setTime(LocalDateTime.now());
+		commentRepository.save(comment);
+		
+	}
 
 	@Override
-	public List<Comment> findAll() {
-		List<Comment> list = commentRepository
-		return null;
+	@Transactional(readOnly=true)
+	public List<CommentView> findAll(Integer id) {
+		List<CommentView> list = findAllCommentByCafeId(id);
+		loadChildComments(list);
+		return list;
+	}
+	
+	private void loadChildComments(List<CommentView> commentViews) {
+		for (CommentView commentView : commentViews) {
+			List<CommentView> commentViews2 = commentRepository.findAllCommentsByParent(commentView.getId());
+			loadChildComments(commentViews2);
+			commentView.setChildComment(commentViews2); 
+		}	
+		
 	}
 	
 }

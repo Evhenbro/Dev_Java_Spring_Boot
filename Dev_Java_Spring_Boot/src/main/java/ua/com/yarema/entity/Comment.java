@@ -22,7 +22,7 @@ public class Comment extends AbstractEntity {
 	
 	private LocalDateTime time;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Comment parentComment;
 	
 	@OneToMany(mappedBy="parentComment")
