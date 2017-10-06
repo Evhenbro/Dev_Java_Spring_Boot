@@ -17,8 +17,8 @@ public class CafeRequest {
 
 	private Integer id;
 	
-	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
-	@Pattern(regexp = "^([0-9]{1}\\.{1}[0-9]{1,2})|([1]{1}[0]{1}\\.{1}[0-9]{1,2})|([0-9]{1})|(10{1})| *$", message="Ви ввели невірний формат(Вірно: 7 або 5.58 та максимум це 10.00).", groups=CafeFlag.class)
+//	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)
+//	@Pattern(regexp = "^([0-9]{1}\\.{1}[0-9]{1,2})|([1]{1}[0]{1}\\.{1}[0-9]{1,2})|([0-9]{1})|(10{1})| *$", message="Ви ввели невірний формат(Вірно: 7 або 5.58 та максимум це 10.00).", groups=CafeFlag.class)
 	private String rate;
 	
 	@NotBlank(message="Це поле має бути заповненим.", groups=CafeFlag.class)

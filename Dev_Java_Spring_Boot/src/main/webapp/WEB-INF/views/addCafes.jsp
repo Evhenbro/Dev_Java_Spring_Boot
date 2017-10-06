@@ -49,17 +49,6 @@
 					</div>
 					<div class="row" style="color: red;">
 						<div class="col-10 ml-auto">
-							<form:errors path="rate"/>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label" for="rate">Rate:</label>
-						<div class="col-10">
-							<form:input class="form-control" id="rate" path="rate"/>
-						</div>
-					</div>
-					<div class="row" style="color: red;">
-						<div class="col-10 ml-auto">
 							<form:errors path="shortDescription"/>
 						</div>
 					</div>
@@ -89,12 +78,6 @@
 						<label class="col-2 col-form-label" for="photoUrl">Photo Url:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="photoUrl" path="photoUrl"/>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label" for="version">Version:</label>
-						<div class="col-10">
-							<form:input class="form-control" id="version" path="version"/>
 						</div>
 					</div>
 					<div class="form-group row">

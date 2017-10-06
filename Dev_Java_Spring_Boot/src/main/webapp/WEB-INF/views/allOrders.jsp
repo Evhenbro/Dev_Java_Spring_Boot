@@ -1,34 +1,34 @@
 <%@ include file="header.jsp"%>
 <div class = "container mt-3">
 	<div class="row col-1 ml-auto mb-3">
-		<custom:size posibleSizes="1,2,5,10" size="${cuisines.size}" />
+		<custom:size posibleSizes="1,2,5,10" size="${orders.size}" />
 	</div>
 	<div class="row" >
 		<div class = "col-12">
 			<table class= "table table-bordered">
 				<tr>
-					<th class = "text-center">Table</th>
-					<th class = "text-center">Title</th>
-					<th class = "text-center">Price</th>
-					<th class = "text-center">Weight</th>
 					<th class = "text-center">Cafe</th>
-					<th class = "text-center">Ingredients</th>
+					<th class = "text-center">Table</th>
+					<th class = "text-center">Meals</th>
+					<th class = "text-center">Total price</th>
+					<th class = "text-center">Status</th>
 					<th class = "text-center">Option</th>
 				</tr>
-					<c:forEach var="meal" items="${cafeMeals.content}">
+					<c:forEach var="order" items="${orders.content}">
 					<tr>
-						<td>#${cafeTable.number}</td>
-						<td>${meal.title}</td>
-						<td>${meal.price}</td>
-						<td>${meal.weight}</td>
-						<td>${meal.cafe}</td>
+						<td>${thiscafe.name}</td>
+						<td>#${order.table.number}</td>
 						<td>
-							<c:forEach var="ingredient" items="${meal.ingredients}">
-								${ingredient} 
+							<c:forEach var="meal" items="${order.meals}">
+								${meal.title} 
 							</c:forEach>
 						</td>
+						<td>${order.totalPrice}</td>
+						<td>${order.status}</td>
 						<td class = "text-center">
-							<a href = "/profile/cafe/${cafeId}/tables/${cafeTable.id}/order/${meal.id}"  class="btn btn-outline-danger btn-sm">Make order</a>
+							<a href = "/profile/cafe/${cafeId}/tables/${tableId}/orders/ready/${order.id}"  class="btn btn-outline-danger btn-sm">Ready</a>
+							<a href = "/profile/cafe/${cafeId}/tables/${tableId}/orders/accepted/${order.id}"  class="btn btn-outline-danger btn-sm">Accepted</a>
+							<a href = "/profile/cafe/${cafeId}/tables/${tableId}/orders/paid/${order.id}"  class="btn btn-outline-danger btn-sm">Paid</a>
 						</td>
 					</tr>
 					</c:forEach>
@@ -38,7 +38,7 @@
 	</div>
 	<div class="row">
  		<div class="col-12 text-center">
- 			<custom:pageable page="${cafeMeals}"/>
+ 			<custom:pageable page="${orders}"/>
  		</div>
  	</div>
 </div>

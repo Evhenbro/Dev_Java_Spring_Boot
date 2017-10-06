@@ -23,7 +23,7 @@ public class MealRequest {
 	private String description;
 	
 	@NotBlank(message="Це поле має бути заповненим.")
-	@Pattern(regexp = "^([0-9]{1,3}\\.{1}[0-9]{1,2})|([0-9]{1,3})$", message="Ви ввели невірний формат(Вірно: 120 або 95.75).")
+	@Pattern(regexp = "^([0-9]{1,3}\\.{1}[0-9]{1,2})|([0-9]{1,3})| *$", message="Ви ввели невірний формат(Вірно: 120 або 95.75).")
 	private String price;
 	
 	private String photoUrl;
@@ -35,7 +35,7 @@ public class MealRequest {
 	private Cafe cafe;
 	
 	@NotBlank(message="Це поле має бути заповненим.")
-	@Pattern(regexp = "^([0-9]{2,3}\\.{1}0{1,2})|([0-9]{2,3})$", message="Ви ввели невірний формат(Вірно: 12 або 250.00).")
+	@Pattern(regexp = "^([0-9]{2,3}\\.{1}0{1,2})|([0-9]{2,3})| *$", message="Ви ввели невірний формат(Вірно: 12 або 250.00).")
 	private String weight;
 	
 	private List<Ingredient> ingredients = new ArrayList<>();

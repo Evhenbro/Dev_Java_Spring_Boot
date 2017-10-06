@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ua.com.yarema.model.filter.SimpleFilter;
+import ua.com.yarema.service.CafeService;
 import ua.com.yarema.service.MealService;
 import ua.com.yarema.service.OrderService;
 import ua.com.yarema.service.TableService;
@@ -26,11 +27,14 @@ public class AdministratorOrderController {
 	private final TableService tableService;
 	
 	private final OrderService orderService;
+	
+	private final CafeService cafeService;
 
-	public AdministratorOrderController(MealService mealService, TableService tableService, OrderService orderService) {
+	public AdministratorOrderController(MealService mealService, TableService tableService, OrderService orderService, CafeService cafeService) {
 		this.mealService = mealService;
 		this.tableService = tableService;
 		this.orderService = orderService;
+		this.cafeService = cafeService;
 	}
 
 	@GetMapping("/cafe/{idCafe}/tables/{idTable}/order")
@@ -48,6 +52,39 @@ public class AdministratorOrderController {
 		model.addAttribute("cafeTable", tableService.findOneTable(idTable));
 		model.addAttribute("cafeId", idCafe);
 		return "order";
+	}
+//	
+//	@GetMapping("/order")
+//	public String show(Model model, @PageableDefault Pageable pageable ) {
+//		model.addAttribute("orders", orderService.findAllOrders(pageable));
+//		return "allOrders";
+//	}
+	
+	@GetMapping("/cafe/{idCafe}/tables/{idTable}/orders/ready/{idOrder}")
+	public String makeReady(@PathVariable Integer idOrder) {
+		orderService.readyStatus(idOrder);
+		return "redirect:/profile/cafe/{idCafe}/tables/{idTable}/orders";
+	}
+	
+	@GetMapping("/cafe/{idCafe}/tables/{idTable}/orders/accepted/{idOrder}")
+	public String makeAccepted(@PathVariable Integer idOrder) {
+		orderService.acceptedStatus(idOrder);
+		return "redirect:/profile/cafe/{idCafe}/tables/{idTable}/orders";
+	}
+	
+	@GetMapping("/cafe/{idCafe}/tables/{idTable}/orders/paid/{idOrder}")
+	public String makePaid(@PathVariable Integer idOrder) {
+		orderService.paidStatus(idOrder);
+		return "redirect:/profile/cafe/{idCafe}/tables/{idTable}/orders";
+	}
+	
+	@GetMapping("/cafe/{idCafe}/tables/{idTable}/orders")
+	public String showMyOrder(Model model, @PageableDefault Pageable pageable, @PathVariable Integer idCafe, @PathVariable Integer idTable) {
+		model.addAttribute("orders", orderService.findAllOrdersByCafeId(pageable, idCafe));
+		model.addAttribute("thiscafe", cafeService.findOne(idCafe));
+		model.addAttribute("cafeId", idCafe);
+		model.addAttribute("tableId", idTable);
+		return "allOrders";
 	}
 	
 	private String buildParams(Pageable pageable, SimpleFilter filter) {

@@ -72,11 +72,11 @@
 								<form:input path="maxClose" class="form-control" placeholder="Max close"/>
 							</div>
 						</div>
-						<div class="form-group row">
+						<%-- <div class="form-group row">
 							<div class="col-12">
 								<form:checkboxes items="${meals}" path="mealsIds" element="div" itemLabel="title" itemValue="id"/>
 							</div>
-						</div>
+						</div> --%>
 						<div class="form-group row">
 							<div class="col-12">
 	        					<button type="submit" class="btn btn-outline-success btn-sm">Search</button>

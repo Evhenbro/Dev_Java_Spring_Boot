@@ -49,8 +49,8 @@
 			    					<button class="nav-item nav-link btn btn-link text-info">Sign up</button>
 			    				</form:form>
 			    			</sec:authorize>
-					      	<a class="nav-item nav-link text-white" href="/search"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
 			    		</div>
 			  </div>
 			</nav>
 		</header>
+		<div class="container" style="min-height: 100vh;">

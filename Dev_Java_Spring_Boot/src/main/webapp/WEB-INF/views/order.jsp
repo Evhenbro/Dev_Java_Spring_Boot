@@ -2,11 +2,11 @@
 <div class = "container mt-3">
 	<div class="row mb-3">
 		<div class="col-6">
-			<a href = "/profile/cafe/${cafeId}/tables/${cafeTable.id}/order/${meal.id}"  class="btn btn-outline-danger btn-sm">Order</a>
+			<a href = "/profile/cafe/${cafeId}/tables/${cafeTable.id}/orders"  class="btn btn-outline-danger btn-sm">Order</a>
 		</div>
 		<div class="col-6">
 			<div class="col-1 ml-auto">
-				<custom:size posibleSizes="1,2,5,10" size="${cuisines.size}" />
+				<custom:size posibleSizes="1,2,5,10" size="${cafeMeals.size}" />
 			</div>
 		</div>	
 	</div>

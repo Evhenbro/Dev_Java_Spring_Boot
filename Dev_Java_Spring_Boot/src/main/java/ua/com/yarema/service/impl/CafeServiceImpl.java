@@ -65,9 +65,9 @@ public class CafeServiceImpl implements CafeService {
 		cafe.setOpen(openCloseRepository.findByTime(cafeRequest.getOpen()));
 		cafe.setPhone(cafeRequest.getPhone());
 		cafe.setPhotoUrl(cafeRequest.getPhotoUrl());
-		cafe.setRate(new BigDecimal(cafeRequest.getRate()));
+//		cafe.setRate(new BigDecimal(cafeRequest.getRate()));
 		cafe.setType(Type.valueOf(cafeRequest.getType()));
-		cafe.setVersion(Integer.valueOf(cafeRequest.getVersion()));
+//		cafe.setVersion(Integer.valueOf(cafeRequest.getVersion()));
 		cafe.setUser(userRepository.findByLogin(principal.getName()));;
 		cafeRepository.save(cafe);
 	}
@@ -89,9 +89,9 @@ public class CafeServiceImpl implements CafeService {
 		cafeRequest.setOpen(cafe.getOpen().getTime());
 		cafeRequest.setPhone(cafe.getPhone());
 		cafeRequest.setPhotoUrl(cafe.getPhotoUrl());
-		cafeRequest.setRate(String.valueOf(cafe.getRate()));
+//		cafeRequest.setRate(String.valueOf(cafe.getRate()));
 		cafeRequest.setType(String.valueOf(cafe.getType()));
-		cafeRequest.setVersion(Integer.valueOf(cafe.getVersion()));
+//		cafeRequest.setVersion(Integer.valueOf(cafe.getVersion()));
 		cafeRequest.setUser(cafe.getUser());
 		return cafeRequest;
 	}
@@ -151,6 +151,13 @@ public class CafeServiceImpl implements CafeService {
 	public List<CafeShortView> topFiveCafeShortView() {
 		List<CafeShortView> topCafes = new ArrayList<>();
 		List<CafeShortView> cafeShortViews = cafeRepository.findAllCafeShortView();
+		if (!cafeShortViews.isEmpty()) {
+			for (CafeShortView cafeShortView : cafeShortViews) {
+				if (cafeShortView.getRate()==null) {
+					cafeShortView.setRate(BigDecimal.ZERO);
+				}
+			}
+		}
 		cafeShortViews.sort((e1, e2) -> e2.getRate().compareTo(e1.getRate()));
 		if (cafeShortViews.size() > 5) {
 			topCafes = cafeShortViews.subList(0, 5);
