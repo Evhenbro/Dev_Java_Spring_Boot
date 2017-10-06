@@ -1,4 +1,12 @@
 <%@ include file="header.jsp"%>
+	<ul class="nav nav-pills mb-3 mt-3 justify-content-center">
+		<li class="nav-item">
+			<a class="nav-link" href="/cafe">All cafes</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link active" href="/meal" role="tab">All meals</a>
+		</li>
+	</ul>
 	<div class="container mt-3">
 		<div class="container">
 			<div class="row">
@@ -56,8 +64,6 @@
 				</div>
 			</div>
 		</div>
-		
-		
 		<div class="row">
 			<div class="col-12">
 				<table class="table table-bordered">
