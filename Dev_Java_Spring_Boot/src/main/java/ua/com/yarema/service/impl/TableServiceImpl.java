@@ -87,5 +87,10 @@ public class TableServiceImpl implements TableService {
 		return tableRepository.findAllTableViewByCafeId(idCafe, pageable);
 	}
 
+	@Override
+	public TableView findOneTable(Integer idTable) {
+		return tableRepository.findOneTable(idTable);
+	}
+
 	
 }

@@ -40,5 +40,7 @@ public interface MealService {
 	Page<MealView> findAll(MealFilter mealFilter, Pageable pageable);
 	
 	Page<MealView> findAll(MealFilter mealFilter, Pageable pageable, Principal principal);
+
+	Page<MealView> findAllMealsByCafeId(Pageable pageable, Integer idCafe);
 	
 }

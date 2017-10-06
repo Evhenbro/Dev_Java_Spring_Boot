@@ -1,5 +1,8 @@
 <%@ include file="header.jsp"%>
 	<div class="container mt-3">
+		<div class="row col-1 ml-auto mb-3">
+			<custom:size posibleSizes="1,2,5,10" size="${cuisines.size}" />
+		</div>
 		<div class="row">
 			<div class="col-12">
 				<form:form action="/profile/cafe/${cafe.id}/tables" method="POST" modelAttribute="table">
@@ -51,9 +54,10 @@
 						<th class="text-center">User</th>
 						<th class="text-center">User phone</th>
 						<th class="text-center">Options</th>
+						<th class="text-center">Order</th>
 						<th class="text-center">Reserve</th>
 					</tr>
-					<c:forEach var="table" items="${tables}">
+					<c:forEach var="table" items="${tables.content}">
 						<tr>
 							<td>#${table.number}</td>
 							<td>${table.countOfPeople}</td>
@@ -64,6 +68,11 @@
 							<td class="text-center">
 								<a href="/profile/cafe/${cafe.id}/tables/update/${table.id}" class="btn btn-outline-success btn-sm">Update</a>
 								<a href="/profile/cafe/${cafe.id}/tables/delete/${table.id}" class="btn btn-outline-danger btn-sm">Delete</a>
+							</td>
+							<td>
+								<c:if test="${table.isFree.equals(false)}">
+									<a href="/profile/cafe/${cafe.id}/tables/${table.id}/order" class="btn btn-outline-success btn-sm">Order</a>
+								</c:if>
 							</td>
 							<td class="text-center">
 								<c:if test="${table.isFree.equals(true)}">
@@ -78,5 +87,10 @@
 				</table>
 			</div>
 		</div>
+		<div class="row">
+ 		<div class="col-12 text-center">
+ 			<custom:pageable page="${tables}"/>
+ 		</div>
+ 	</div>
 	</div>
 <%@ include file="footer.jsp"%>

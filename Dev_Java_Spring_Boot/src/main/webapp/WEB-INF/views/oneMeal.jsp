@@ -67,7 +67,6 @@
 				<div class="col pl-0">
 					<span class="text-primary font-weight-bold font-italic"><i class="fa fa-user-circle" aria-hidden="true"></i> ${comment.user}</span>
 					<span class="text-dark small font-italic ml-3"><i class="fa fa-clock-o" aria-hidden="true"></i> ${comment.time}</span>
-					<span class="ml-3"><i class="fa fa-area-chart" aria-hidden="true"></i> Rate: ${comment.rate}</span>
 					<a class="text-dark ml-3" data-toggle="collapse" href="#collapseExample${comment.id}" aria-expanded="false" aria-controls="collapseExample${comment.id}"><i class="fa fa-pencil" aria-hidden="true"></i> <u>to comment</u></a>
 					<div>${comment.message}</div>
 					<div class="mt-2 mb-2 collapse" id="collapseExample${comment.id}">
@@ -93,7 +92,7 @@
 								<div class="form-group row">
 									<div class="col-10 ml-auto">
 										<button class="btn btn-sm btn-outline-success">Save</button>
-										<a href="/cafe/${cafeById.id}/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
+										<a href="/cafe/${mealById.id}/cancel" class="btn btn-sm btn-outline-info">Cancel</a>
 									</div>
 								</div>
 							</form:form>
@@ -102,7 +101,7 @@
 				</div>
 			</div>
 			<div class="mr-3">
-	 			<jsp:include page="comments.jsp"/>
+	 			<jsp:include page="commentsMeal.jsp"/>
 			</div>
 		</c:forEach>
 	</div>

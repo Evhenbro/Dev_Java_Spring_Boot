@@ -45,4 +45,7 @@ public interface MealRepository extends JpaRepository<Meal, Integer>, JpaSpecifi
 			countQuery="SELECT count(meal.id) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe LEFT JOIN cafe.user user WHERE user.login=?1")
 	Page<MealView> findAllOwnMealsByUserLogin(String name, Pageable pageable);
 	
+	@Query(value="SELECT new ua.com.yarema.model.view.MealView(meal.id, meal.title, meal.description, meal.price, meal.photoUrl, meal.version, cuisine.name, cafe.name, meal.weight) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe WHERE cafe.id=?1", 
+			countQuery="SELECT count (meal.id) FROM Meal meal JOIN meal.cuisine cuisine LEFT JOIN meal.cafe cafe WHERE cafe.id=?1")
+	Page<MealView> findAllMealsByCafeId(Pageable pageable, Integer idCafe);
 }

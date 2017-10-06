@@ -26,4 +26,6 @@ public interface TableRepository extends JpaRepository<Table, Integer> {
 			countQuery="SELECT count(table) FROM Table table JOIN  table.cafe cafe WHERE cafe.id=?1")
 	Page<TableView> findAllTableViewByCafeId(Integer idCafe, Pageable pageable);
 	
+	@Query("SELECT new ua.com.yarema.model.view.TableView(table.id, table.number, table.countOfPeople, table.isFree, table.user, table.userPhone, cafe.name) FROM Table table WHERE table.id=?1")
+	TableView findOneTable(Integer idTable);
 }

@@ -27,4 +27,6 @@ public interface TableService {
 	void dereserveTable(Integer idTable);
 
 	Page<TableView> findAllTableViewByCafeId(Integer idCafe, Pageable pageable);
+
+	TableView findOneTable(Integer idTable);
 }
