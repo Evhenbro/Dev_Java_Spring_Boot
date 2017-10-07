@@ -5,41 +5,58 @@
 		<h2 class="text-success">TOP 5 CAFES</h2>
 	</div>
 	
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<div id="carouselExampleIndicators" class="carousel slide  text-primary" data-ride="carousel">
 	 	<ol class="carousel-indicators">
 		    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 		    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 		    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+		    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
 	  	</ol>
 	 	<div class="carousel-inner" >
 		    <div class="carousel-item active">
 		   		<img class="d-block w-100" src="/resources/grey.jpg" alt="First slide">
+		   		<div class="carousel-caption d-none d-md-block" >
+		   			<img class="d-block" src="/resources/cafe.jpg" width="750">
+			    	<h3 class=" text-primary"><a href="/cafe/${top5.id}">${top5.name}</a></h3>
+			    	<h5 class="text-dark font-italic"><i class="fa fa-map-marker" aria-hidden="true"></i> ${top5.address}</h5>
+			    	<p class="text-dark">${top5.shortDescription}</p>
+				</div>
+		    </div>
+		    <div class="carousel-item">
+		   		<img class="d-block w-100" src="/resources/grey.jpg" alt="First slide">
 		   		<div class="carousel-caption d-none d-md-block">
-		   			<img class="d-block" src="/resources/food.jpeg" width="750">
-		   			<p></p>
-		   			<p></p>
-			    	<h3>First slide label</h3>
-			    	<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+		   			<img class="d-block" src="/resources/cafe.jpg" width="750">
+			    	<h3 class=" text-primary"><a href="/cafe/${top4.id}">${top4.name}</a></h3>
+			    	<h5 class="text-dark font-italic"><i class="fa fa-map-marker" aria-hidden="true"></i> ${top4.address}</h5>
+			    	<p class="text-dark">${top4.shortDescription}</p>
+				</div>
+		    </div>
+		    <div class="carousel-item">
+		   		<img class="d-block w-100" src="/resources/grey.jpg" alt="First slide">
+		   		<div class="carousel-caption d-none d-md-block">
+		   			<img class="d-block" src="/resources/cafe.jpg" width="750">
+			    	<h3 class=" text-primary"><a href="/cafe/${top3.id}">${top3.name}</a></h3>
+			    	<h5 class="text-dark font-italic"><i class="fa fa-map-marker" aria-hidden="true"></i> ${top3.address}</h5>
+			    	<p class="text-dark">${top3.shortDescription}</p>
 				</div>
 		    </div>
 		    <div class="carousel-item">
 		    	<img class="d-block w-100" src="/resources/grey.jpg" alt="Second slide">
 		    	<div class="carousel-caption d-none d-md-block">
-		    		<img class="d-block" src="/resources/food.jpeg" width="100">
-			    	<p></p>
-		   			<p></p>
-			    	<h3>Second slide label</h3>
-			    	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		    		<img class="d-block" src="/resources/cafe.jpg" width="750">
+			    	<h3 class=" text-primary"><a href="/cafe/${top2.id}">${top2.name}</a></h3>
+			    	<h5 class="text-dark font-italic"><i class="fa fa-map-marker" aria-hidden="true"></i> ${top2.address}</h5>
+			    	<p class="text-dark">${top2.shortDescription}</p>
 				</div>
 		    </div>
 		    <div class="carousel-item">
 		   		<img class="d-block w-100" src="/resources/grey.jpg" alt="Third slide">
 		   		<div class="carousel-caption d-none d-md-block">
-		   			<img class="d-block" src="/resources/food.jpeg" width="100">
-			    	<p></p>
-		   			<p></p>
-			    	<h3>Third slide label</h3>
-			    	<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+		   			<img class="d-block" src="/resources/cafe.jpg" width="750">
+			    	<h3 class=" text-primary"><a href="/cafe/${top1.id}">${top1.name}</a></h3>
+			    	<h5 class="text-dark font-italic"><i class="fa fa-map-marker" aria-hidden="true"></i> ${top1.address}</h5>
+			    	<p class="text-dark">${top1.shortDescription}</p>
 				</div>
 		    </div>
 	  	</div>

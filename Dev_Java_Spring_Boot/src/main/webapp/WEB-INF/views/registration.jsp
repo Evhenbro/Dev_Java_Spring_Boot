@@ -1,5 +1,6 @@
 <%@ include file="header.jsp"%>
 	<div class="container mt-3">
+		<br>
 		<div class="row">
 			<div class="col-12">
 				<form:form action="/registration" method="POST" modelAttribute="registration">

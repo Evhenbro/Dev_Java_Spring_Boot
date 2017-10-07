@@ -1,30 +1,36 @@
 <%@ include file="header.jsp"%>
 	<div class="container">
-		<div class="row">
-			<div class="col-12 rounded border border-info">
-				<div class="col">
-					<h3>${mealById.title}</h3>
-				</div>
-				<div class="col-6">
-					<img src="/resources/food.jpeg" class="img-fluid">
+		<br>	
+		<div class="rounded border border-info">
+			<div class="row m-3">
+				<div class="col text-center">
+					<img src="/resources/food.jpeg" >
 				</div>
 				<div class="col">
-					<h5>${mealById.cuisine}</h5>
-					<br><h5>${mealById.price} UAN</h5>
-					<br><h5>${mealById.cafe}</h5>
-					<br><h5>${mealById.weight} gram</h5>
-					<br><span>${mealById.description}</span>
-				</div>
-				<div class="col font-weight-bold">
-					<c:forEach var="ingredient" items="${ingredients}">
-						${ingredient}  
-					</c:forEach>
-				</div>
-				<div class="col-2 ml-auto my-2">
-					<a href="/cafe/${thisCafe.id}/tables" class="btn btn-sm btn-outline-success">To order a table</a>
+					<h2>${mealById.title}</h2>
+					<p></p>
+					<h4>Cuisine: ${mealById.cuisine}</h4>
+					<p></p>
+					<h4>Price: ${mealById.price} UAH</h4>
+					<p></p>
+					<h4>Weight: ${mealById.weight} gram</h4>
+					<p class="text-center"><a href="/cafe/${thisCafe.id}/tables" class="btn btn-warning">To order a table</a></p>
 				</div>
 			</div>
+			<div class="col row mt-3 ml-3 mr-3 ">
+				<br><br><span class="font-italic">${mealById.description}</span>
+			</div>
+			<div class="col mb-3 ml-3 mr-3 row font-italic">
+				Ingredients: 
+				<c:forEach var="ingredient" items="${ingredients}">
+						${ingredient}  
+					</c:forEach>
+			</div>
 		</div>
+		
+		
+		
+		
 		<div>
 			<p class="mt-2">
 				<a  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-pencil" aria-hidden="true"></i>Add comment</a> 

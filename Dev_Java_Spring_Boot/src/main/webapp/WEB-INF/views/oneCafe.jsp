@@ -1,27 +1,32 @@
 <%@ include file="header.jsp"%>
 	<div class="container">
-		<div class="row">
-			<div class="col-12 rounded border border-info">
-				<div class="col">
-					<h3>${cafeById.name}</h3>
+	<br>	
+	<div class="rounded border border-info">
+		<div class="row m-3">
+			<div class="col text-center">
+				<img src="/resources/cafe.jpg" >
+			</div>
+			<div class="col">
+				<h2>${cafeById.name}</h2>
+				<p></p>
+				<h4>Type: ${cafeById.type}</h4>
+				<h4>Rate:</h4>
+				<div class="progress" style="width: 80%">
+					<div class="progress-bar bg-success" role="progressbar" style="width: ${cafeById.rate*10}%" aria-valuenow="${cafeById.rate}" aria-valuemin="0" aria-valuemax="10">${cafeById.rate}</div>
 				</div>
-				<div class="col-6">
-					<img src="/resources/cafe.jpg" class="img-fluid">
-				</div>
-				<div class="col">
-					<h5>${cafeById.type}</h5>
-					<br><h5>${cafeById.rate}</h5>
-					<br><h5>${cafeById.address}</h5>
-					<br><h5>${cafeById.phone}</h5>
-					<br><h5>${cafeById.email}</h5>
-					<br><span>${cafeById.fullDescription}</span>
-					<br><strong>${cafeById.open} - ${cafeById.close}</strong>
-				</div>
-				<div class="col-2 ml-auto my-2">
-					<a href="/cafe/${cafeById.id}/tables" class="btn btn-sm btn-outline-success">To order a table</a>
-				</div>
+				<br><h4 class="text-dark font-italic"><i class="fa fa-map-marker" aria-hidden="true"></i> Address: ${cafeById.address}</h4>
+				<h5>Phone: ${cafeById.phone}</h5>
+				<h5>e-mail: ${cafeById.email}</h5>
+				<h5>Open - close time:</h5>
+				<h5><strong>${cafeById.open} - ${cafeById.close}</strong></h5>
+				<p class="text-center"><a href="/cafe/${cafeById.id}/tables" class="btn btn-warning ">To order a table</a></p>
 			</div>
 		</div>
+		<div class="col row m-3">
+			<br><br><span class="font-italic">${cafeById.fullDescription}</span>
+		</div>
+	</div>
+		
 		<div>
 			<p class="mt-2">
 				<a  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-pencil" aria-hidden="true"></i>Add comment</a> 

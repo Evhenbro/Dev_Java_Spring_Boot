@@ -1,6 +1,7 @@
 package ua.com.yarema.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ua.com.yarema.model.view.CafeShortView;
 import ua.com.yarema.service.CafeService;
 
 @Controller
@@ -29,7 +31,12 @@ public class MainController {
 //		} else {
 //			model.addAttribute("message", "Hello unregistered user!");
 //		}
-		model.addAttribute("topFives", cafeService.topFiveCafeShortView());
+		int i = 5;
+		List<CafeShortView> topFives = cafeService.topFiveCafeShortView();
+		for (CafeShortView cafeShortView : topFives) {
+			model.addAttribute("top"+ i, cafeShortView);
+			i--;
+		}
 		return "index";
 	}
 	

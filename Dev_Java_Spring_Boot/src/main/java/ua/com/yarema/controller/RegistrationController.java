@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,14 +22,20 @@ public class RegistrationController {
 	} 
 	
 	@GetMapping("/registration")
-	public String registration(Model model) {
+	public String registration(Model model, Boolean decision) {
 		model.addAttribute("registration", new RegistrationRequest());
 		return "registration";
 	}
 	
 	@PostMapping("/registration")
-	public String save(@ModelAttribute("registration") RegistrationRequest registrationRequest) {
-		userService.save(registrationRequest);
+	public String save(@ModelAttribute("registration") RegistrationRequest registrationRequest, Model model, Boolean decision) {
+		if (!registrationRequest.getPassword().equals(registrationRequest.getRepeatPassword())) {
+			decision = false;
+			return registration(model, decision);
+		} else {
+			decision = false;
+			userService.save(registrationRequest);			
+		}
 		return "redirect:/login";
 	}
 	
